@@ -31,10 +31,11 @@ public class Trabajador {
         
     }
     
-    public int calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja){
+    public float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja){
+              
+        //Calculamos aqui la antiguedad total del trabajador
         
-        
-        return int antiguedadTotal;
+        return 0;
     }
     
 }
