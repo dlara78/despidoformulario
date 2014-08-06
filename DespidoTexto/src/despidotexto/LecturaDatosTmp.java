@@ -21,6 +21,7 @@ public class LecturaDatosTmp {
     static GregorianCalendar readFecha(String msg, int p_hour, int p_minutes, int p_seconds) {
 
         /*En las siguientes lineas se crean los objetos output, sdf y date_txt*/
+        
         GregorianCalendar output = (GregorianCalendar) GregorianCalendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String date_txt = "";
