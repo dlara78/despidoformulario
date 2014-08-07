@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package despidotexto;
+package despido2;
 
 import java.util.GregorianCalendar;
 

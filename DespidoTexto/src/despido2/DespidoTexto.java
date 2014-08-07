@@ -1,4 +1,4 @@
-package despidotexto;
+package despido2;
 
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class DespidoTexto {
         
         int opcionElegida = 0;
         Scanner scan_Opcion = new Scanner(System.in);
-
+        NewJFrame formulario = new NewJFrame();
         do {
             /* Repetimos este codigo hasta que el usuario seleccione la opcion 3 */
             System.out.println("\nIntroduzca la opción deseada:");
