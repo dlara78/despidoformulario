@@ -21,7 +21,7 @@ public class DespidoTexto {
             /* Repetimos este codigo hasta que el usuario seleccione la opcion 3 */
             System.out.println("\nIntroduzca la opción deseada:");
             System.out.println("(1) - Calcular Despido");
-            System.out.println("(2) - Introducir datos personales");
+            System.out.println("(2) - Lanzar ventana");
             System.out.println("(3) - Salir de la aplicación");
             opcionElegida = scan_Opcion.nextInt();
 
@@ -43,7 +43,7 @@ public class DespidoTexto {
 
                 case 2:
                     /* Realizamos las acciones correspondientes a "Introducir datos personales" */
-                    System.out.println("Introducir datos personales...");
+                    NewJFrame ventana = new NewJFrame();
                     break;
 
             };
