@@ -42,7 +42,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButtonBorrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="413" max="32767" attributes="0"/>
+                      <EmptySpace pref="210" max="32767" attributes="0"/>
                       <Component id="jButtonCalcular" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -65,7 +65,7 @@
                   <Component id="jLabel2" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="jTextField2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="229" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCalcular" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
