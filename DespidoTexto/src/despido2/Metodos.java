@@ -20,4 +20,8 @@ public class Metodos {
         return baseDiaria;
         }
     
+    public void recordarFormatoFecha(){
+      
+    }
+    
 }
