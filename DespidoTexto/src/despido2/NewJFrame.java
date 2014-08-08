@@ -137,6 +137,9 @@ public class NewJFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaAltaFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldFechaAltaFocusLost(evt);
+            }
         });
         jTextFieldFechaAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,15 +270,19 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-        String bCotiz = jTextFieldBaseCotizacion.getText();
+       
         float bCotizacion;
+        float dTrabajados;
+        float bDia;
+        String bCotiz;
+        
+        bCotiz = jTextFieldBaseCotizacion.getText();
         bCotizacion = Float.parseFloat(bCotiz);
         String dTrabaj = jTextFieldDiasTrabajados.getText();
-        float dTrabajados;
         dTrabajados = Float.parseFloat(dTrabaj);
-        float bDia;
         bDia = bCotizacion/dTrabajados;
         String bDiaria = String.valueOf(bDia);
+        
         this.jTextAreaInforme.setText("La base diaria es de " + bDiaria + "€.");
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -290,6 +297,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jTextFieldFechaBajaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusGained
         jTextFieldFechaBaja.setText(null);// TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
+
+    private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
+    //LecturaDatosTmp.readFecha(this.jTextFieldFechaAlta.getText());        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
 
     /**
      * @param args the command line arguments
