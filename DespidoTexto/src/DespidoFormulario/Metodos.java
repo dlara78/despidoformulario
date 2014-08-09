@@ -9,10 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Metodos {
-
-        
-
-
         
     //Este método recibe una fecha en String y devuelve si valor en milis (float)
     //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
