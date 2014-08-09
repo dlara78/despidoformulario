@@ -19,20 +19,19 @@ import java.util.logging.Logger;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-   float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-    
-    
-   
-   /*El siguiente método devuelve el valor en milis (float) de la fecha enviada 
-   * por string
-   */
-   public float pasarFechaAMilis(String fechaString){
+    float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+    float fechaAltaenMilis;
+    float fechaBajaenMilis;
 
-       DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-       
-       //Fecha de alta
+    /*El siguiente método devuelve el valor en milis (float) de la fecha enviada 
+     * por string
+     */
+    public float calcularFechaEnMilis(String fechaString) {
 
-       Date dateFecha = null;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        //Fecha de alta
+        Date dateFecha = null;
         try {
             dateFecha = df.parse(fechaString);
         } catch (ParseException ex) {
@@ -40,20 +39,20 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
-        float fechaEnDias = (calFechaIntroducida.getTimeInMillis()/MILISEGS_POR_DIA);
-        
-       return fechaEnDias;
-   }
+        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
 
-     public float diferenteEntreDosFechas(String fechaPrimera, String fechaSegunda){
+        return fechaEnMilis;
+    }
 
-       float diferenciaEnMilis = this.pasarFechaAMilis(fechaSegunda) - this.pasarFechaAMilis(fechaPrimera);
-       float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
-                 
-       return diferenciaEnDias;
-   }
-   
-   
+    //El siguiente método devuelve la diferencia (en días -float-) entre dos fechas (String) dadas.
+    public float calcularDifEntreDosFechas(String fechaPrimera, String fechaSegunda) {
+
+        float diferenciaEnMilis = this.calcularFechaEnMilis(fechaSegunda) - this.calcularFechaEnMilis(fechaPrimera);
+        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
+
+        return diferenciaEnDias;
+    }
+
     public NewJFrame() {
         initComponents();
     }
@@ -189,6 +188,9 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaBajaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldFechaBajaFocusLost(evt);
             }
         });
 
@@ -548,54 +550,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
-        float bCotizacion;
-        float dTrabajados;
-        float bDia;
-        String bCotiz;
-
-        bCotiz = jTextFieldBaseCotizacion.getText();
-        bCotizacion = Float.parseFloat(bCotiz);
-        String dTrabaj = jTextFieldDiasTrabajados.getText();
-        dTrabajados = Float.parseFloat(dTrabaj);
-        bDia = bCotizacion / dTrabajados;
-        String bDiaria = String.valueOf(bDia);
-
-        /*
-         * Calculamos la diferencia en dias entre las dos fechas dadas
-         *     HABRÍA QUE LLEVARSE ESTAS ACCIONES A UN MÉTODO, EN OTRA CLASE.
-         */
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-        //Fecha de alta
-        Date dateFechaAlta = null;
-        try {
-            dateFechaAlta = df.parse(this.jTextFieldFechaAlta.getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar calFechaAlta = Calendar.getInstance();
-        calFechaAlta.setTime(dateFechaAlta);
-
-        //Fecha de baja
-        //DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateFechaBaja = null;
-        try {
-            dateFechaBaja = df.parse(this.jTextFieldFechaBaja.getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar calFechaBaja = Calendar.getInstance();
-        calFechaBaja.setTime(dateFechaBaja);
-        
-
-        long antTotalMilis;
-        float antTotalDias;
-        String antTotalDiasString;
-        //float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-        antTotalMilis = calFechaAlta.getTimeInMillis() - calFechaBaja.getTimeInMillis();
-        antTotalDias = antTotalMilis / MILISEGS_POR_DIA;
-        antTotalDiasString = String.valueOf(antTotalDias);
-        this.jTextAreaInforme.setText(antTotalDiasString);
+        this.jTextAreaInforme.setText("Iniciando informe..." 
+                + "\nFecha de alta: " + calcularFechaEnMilis(jTextFieldFechaAlta.getText())
+                + "\nFecha de baja: " + calcularFechaEnMilis(jTextFieldFechaBaja.getText())
+                + "\nLa antigüedad total en días es de " 
+                + ((calcularFechaEnMilis(jTextFieldFechaBaja.getText()) - calcularFechaEnMilis(jTextFieldFechaAlta.getText()))/MILISEGS_POR_DIA)
+                + " dias");
 
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
@@ -614,30 +574,17 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
-            this.jTextField2.setText("Alta ok");
-            this.jLabelPanelSuperior.setText("Alta Introducida.");
-//            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//
-//        //Fecha de alta
-//        //float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-//        Date dateFechaAlta = null;
-//        try {
-//            dateFechaAlta = df.parse(this.jTextFieldFechaAlta.getText());
-//        } catch (ParseException ex) {
-//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Calendar calFechaAlta = Calendar.getInstance();
-//        calFechaAlta.setTime(dateFechaAlta);
-//        float altaDias = (calFechaAlta.getTimeInMillis()/MILISEGS_POR_DIA);
-        
-            this.jTextField2.setText(String.valueOf(pasarFechaAMilis(this.jTextFieldFechaAlta.getText())));
-        
+        this.jTextField2.setText(String.valueOf(calcularFechaEnMilis(this.jTextFieldFechaAlta.getText())));
 
     }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
 
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
 
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
+
+    private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
+        this.jTextField3.setText(String.valueOf(calcularFechaEnMilis(this.jTextFieldFechaBaja.getText())));
+    }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     /**
      * @param args the command line arguments
