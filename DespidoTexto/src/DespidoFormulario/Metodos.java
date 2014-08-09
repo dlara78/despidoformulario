@@ -12,14 +12,13 @@ public class Metodos {
 
         float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
 
-  /*El siguiente método devuelve el valor en milis (float) de la fecha enviada 
-     * por string
-     */
+
+        
+    //Este método recibe una fecha en String y devuelve si valor en milis (float)
+    //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
+    // en el cálculo de diferencia entre días.
     public float calcularFechaEnMilis(String fechaString) {
-
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-        //Fecha de alta
         Date dateFecha = null;
         try {
             dateFecha = df.parse(fechaString);
@@ -33,10 +32,9 @@ public class Metodos {
         return fechaEnMilis;
     }
 
-    /*
-    * Al sgte método se le mandan dos fechas (en String) y devuelve la diferencia en días,
-    * en un solo valor float.
-    */
+    
+    // Al sgte método se le mandan dos fechas (en String) y devuelve la diferencia en días,
+    // en un solo valor float.
     public float calcularDifEntreDosFechas(String fechaBaja, String fechaAlta) {
 
         float diferenciaEnMilis = this.calcularFechaEnMilis(fechaBaja) - this.calcularFechaEnMilis(fechaAlta);
