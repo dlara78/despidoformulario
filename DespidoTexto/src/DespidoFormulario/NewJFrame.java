@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DespidoFormulario; 
+package DespidoFormulario;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,13 +19,41 @@ import java.util.logging.Logger;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    public void setjTextFieldAntiguedadTotal(String texto){
-        this.jTextFieldAntiguedadTotal.setText(texto);
-    }   
+   float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
     
+    
+   
+   /*El siguiente método devuelve el valor en milis (float) de la fecha enviada 
+   * por string
+   */
+   public float pasarFechaAMilis(String fechaString){
+
+       DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+       
+       //Fecha de alta
+
+       Date dateFecha = null;
+        try {
+            dateFecha = df.parse(fechaString);
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(dateFecha);
+        float fechaEnDias = (calFechaIntroducida.getTimeInMillis()/MILISEGS_POR_DIA);
+        
+       return fechaEnDias;
+   }
+
+     public float diferenteEntreDosFechas(String fechaPrimera, String fechaSegunda){
+
+       float diferenciaEnMilis = this.pasarFechaAMilis(fechaSegunda) - this.pasarFechaAMilis(fechaPrimera);
+       float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
+                 
+       return diferenciaEnDias;
+   }
+   
+   
     public NewJFrame() {
         initComponents();
     }
@@ -42,7 +70,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        banerSuperior = new javax.swing.JLabel();
+        jLabelPanelSuperior = new javax.swing.JLabel();
         jButtonBorrar = new javax.swing.JButton();
         jButtonCalcular = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -80,7 +108,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaInforme = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -94,10 +122,10 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        banerSuperior.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        banerSuperior.setForeground(new java.awt.Color(255, 0, 0));
-        banerSuperior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        banerSuperior.setText("Prueba de aplicación");
+        jLabelPanelSuperior.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelPanelSuperior.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelPanelSuperior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPanelSuperior.setText("Prueba de aplicación");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,14 +133,14 @@ public class NewJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(banerSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelPanelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(banerSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelPanelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -428,9 +456,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaInforme.setColumns(20);
+        jTextAreaInforme.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaInforme);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -503,7 +531,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
 
-        banerSuperior.setText("Todo borrado");
+        jLabelPanelSuperior.setText("Todo borrado");
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
         jTextFieldFechaAlta.setText(null);
@@ -511,11 +539,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
-        this.banerSuperior.setText("Introduce la base sin decimales");
+        this.jLabelPanelSuperior.setText("Introduce la base sin decimales");
     }//GEN-LAST:event_jTextFieldBaseCotizacionFocusGained
 
     private void jTextFieldDiasTrabajadosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusGained
-        this.banerSuperior.setText("Introduce el nº de días trabajados");
+        this.jLabelPanelSuperior.setText("Introduce el nº de días trabajados");
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
@@ -533,41 +561,42 @@ public class NewJFrame extends javax.swing.JFrame {
         String bDiaria = String.valueOf(bDia);
 
         /*
-        * Calculamos la diferencia en dias entre las dos fechas dadas
-        *     HABRÍA QUE LLEVARSE ESTAS ACCIONES A UN MÉTODO, EN OTRA CLASE.
-        */
+         * Calculamos la diferencia en dias entre las dos fechas dadas
+         *     HABRÍA QUE LLEVARSE ESTAS ACCIONES A UN MÉTODO, EN OTRA CLASE.
+         */
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         //Fecha de alta
-                Date dateFechaAlta = null;
-                try {
-                    dateFechaAlta = df.parse(this.jTextFieldFechaAlta.getText());
-                } catch (ParseException ex) {
-                    Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Calendar calFechaAlta = Calendar.getInstance();
-                calFechaAlta.setTime(dateFechaAlta);
-                
+        Date dateFechaAlta = null;
+        try {
+            dateFechaAlta = df.parse(this.jTextFieldFechaAlta.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar calFechaAlta = Calendar.getInstance();
+        calFechaAlta.setTime(dateFechaAlta);
+
         //Fecha de baja
-                //DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
-                Date dateFechaBaja = null;
-                try {
-                    dateFechaBaja = df.parse(this.jTextFieldFechaBaja.getText());
-                } catch (ParseException ex) {
-                    Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Calendar calFechaBaja = Calendar.getInstance();
-                calFechaBaja.setTime(dateFechaBaja);
+        //DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateFechaBaja = null;
+        try {
+            dateFechaBaja = df.parse(this.jTextFieldFechaBaja.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar calFechaBaja = Calendar.getInstance();
+        calFechaBaja.setTime(dateFechaBaja);
+        
 
         long antTotalMilis;
         float antTotalDias;
         String antTotalDiasString;
-        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-        antTotalMilis = calFechaAlta.getTimeInMillis()-calFechaBaja.getTimeInMillis();
-        antTotalDias = antTotalMilis/MILISEGS_POR_DIA;
+        //float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+        antTotalMilis = calFechaAlta.getTimeInMillis() - calFechaBaja.getTimeInMillis();
+        antTotalDias = antTotalMilis / MILISEGS_POR_DIA;
         antTotalDiasString = String.valueOf(antTotalDias);
-        this.jTextFieldAntiguedadTotal.setText(antTotalDiasString);
-                
+        this.jTextAreaInforme.setText(antTotalDiasString);
+
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -577,7 +606,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jTextFieldFechaAltaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusGained
         jTextFieldFechaAlta.setText(null);// TODO add your handling code here:
-        banerSuperior.setText("RECUERDA: dd/mm/aaaa");
+        jLabelPanelSuperior.setText("RECUERDA: dd/mm/aaaa");
     }//GEN-LAST:event_jTextFieldFechaAltaFocusGained
 
     private void jTextFieldFechaBajaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusGained
@@ -585,10 +614,29 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
+            this.jTextField2.setText("Alta ok");
+            this.jLabelPanelSuperior.setText("Alta Introducida.");
+//            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//
+//        //Fecha de alta
+//        //float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+//        Date dateFechaAlta = null;
+//        try {
+//            dateFechaAlta = df.parse(this.jTextFieldFechaAlta.getText());
+//        } catch (ParseException ex) {
+//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        Calendar calFechaAlta = Calendar.getInstance();
+//        calFechaAlta.setTime(dateFechaAlta);
+//        float altaDias = (calFechaAlta.getTimeInMillis()/MILISEGS_POR_DIA);
+        
+            this.jTextField2.setText(String.valueOf(pasarFechaAMilis(this.jTextFieldFechaAlta.getText())));
+        
+
     }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
 
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
-   
+
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
 
     /**
@@ -627,7 +675,6 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel banerSuperior;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
@@ -647,6 +694,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelPanelSuperior;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
@@ -656,7 +704,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaInforme;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
