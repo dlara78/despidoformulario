@@ -10,14 +10,14 @@ import java.util.logging.Logger;
 
 public class Metodos {
 
-        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+        
 
 
         
     //Este método recibe una fecha en String y devuelve si valor en milis (float)
     //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
     // en el cálculo de diferencia entre días.
-    public float calcularFechaEnMilis(String fechaString) {
+    public static float calcularFechaEnMilis(String fechaString) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateFecha = null;
         try {
@@ -31,13 +31,13 @@ public class Metodos {
 
         return fechaEnMilis;
     }
-
+    
     
     // Al sgte método se le mandan dos fechas (en String) y devuelve la diferencia en días,
     // en un solo valor float.
-    public float calcularDifEntreDosFechas(String fechaBaja, String fechaAlta) {
-
-        float diferenciaEnMilis = this.calcularFechaEnMilis(fechaBaja) - this.calcularFechaEnMilis(fechaAlta);
+    public static float calcularDifEntreDosFechas(String fechaBaja, String fechaAlta) {
+        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+        float diferenciaEnMilis = calcularFechaEnMilis(fechaBaja) - calcularFechaEnMilis(fechaAlta);
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
 
         return diferenciaEnDias;
