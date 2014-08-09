@@ -7,10 +7,13 @@ package DespidoFormulario;
 
 public class NewJFrame extends javax.swing.JFrame {
 
+    float antiguedadEnDias = 0;
+    float diasIndemCausaObjetiva = 0;
+    
     public NewJFrame() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -507,22 +510,15 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
-        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-        float antiguedadTotalEnDias;
-        
-        antiguedadTotalEnDias = 
-                Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
-        this.jTextFieldAntiguedadTotal.setText(String.valueOf(antiguedadTotalEnDias));
-
-        this.jTextAreaInforme.setText("Iniciando informe..." 
-                + "\nLa antigüedad total en días\nes de " 
+               this.jTextAreaInforme.setText("Iniciando informe..."
+                + "\nLa antigüedad total en días\nes de "
                 + (Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText()))
                 + " dias"
-                + "\nLa base de cotización diaria es: " 
+                + "\nLa base de cotización diaria es: "
                 + (Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText()))
-                + "dias\n")
-                ;
-        
+                + "dias\n"
+               );
+
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     private void jTextFieldFechaAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaActionPerformed
@@ -539,6 +535,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
+
         this.jTextField2.setText(String.valueOf(Metodos.calcularFechaEnMilis(this.jTextFieldFechaAlta.getText())));
 
     }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
@@ -548,7 +545,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
 
     private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
-        this.jTextField3.setText(String.valueOf(Metodos.calcularFechaEnMilis(this.jTextFieldFechaBaja.getText())));
+   
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     /**
