@@ -95,6 +95,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         banerSuperior.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        banerSuperior.setForeground(new java.awt.Color(255, 0, 0));
         banerSuperior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banerSuperior.setText("Prueba de aplicación");
 
