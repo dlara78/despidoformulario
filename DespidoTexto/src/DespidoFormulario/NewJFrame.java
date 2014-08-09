@@ -32,7 +32,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldFechaAlta = new javax.swing.JTextField();
         jTextFieldFechaBaja = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxTipoDespido = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -41,7 +41,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldDiasTrabajados = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldDiasIndemnizacion = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -123,7 +123,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Baja");
 
-        jTextFieldFechaAlta.setText("formato dd/mm/aaaa");
+        jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldFechaAlta.setText("dd/mm/aaaa");
         jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaAltaFocusGained(evt);
@@ -138,7 +139,8 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldFechaBaja.setText("formato dd/mm/aaaa");
+        jTextFieldFechaBaja.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldFechaBaja.setText("dd/mm/aaaa");
         jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaBajaFocusGained(evt);
@@ -152,7 +154,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo de despido");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente (45 + 33)", "Causa objetiva (20)" }));
+        jComboBoxTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente (45 + 33)", "Causa objetiva (20)" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -173,7 +175,7 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,7 +184,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +263,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Dias de Indemniz.");
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldDiasIndemnizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -285,7 +287,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDiasIndemnizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextFieldAntiguedadTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,7 +303,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldDiasIndemnizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -492,6 +494,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldDiasTrabajados.setText(null);
         jTextFieldFechaAlta.setText(null);
         jTextFieldFechaBaja.setText(null);
+        jTextAreaInforme.setText(null);
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
@@ -505,11 +508,20 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
         float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+        float antiguedadTotalEnDias;
+        
+        antiguedadTotalEnDias = 
+                Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
+        this.jTextFieldAntiguedadTotal.setText(String.valueOf(antiguedadTotalEnDias));
 
         this.jTextAreaInforme.setText("Iniciando informe..." 
                 + "\nLa antigüedad total en días\nes de " 
                 + (Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText()))
-                + " dias");
+                + " dias"
+                + "\nLa base de cotización diaria es: " 
+                + (Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText()))
+                + "dias\n")
+                ;
         
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -578,7 +590,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBoxTipoDespido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -607,7 +619,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaInforme;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -615,6 +626,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextFieldAntiguedadTotal;
     private javax.swing.JTextField jTextFieldBaseCotizacion;
+    private javax.swing.JTextField jTextFieldDiasIndemnizacion;
     private javax.swing.JTextField jTextFieldDiasTrabajados;
     private javax.swing.JTextField jTextFieldFechaAlta;
     private javax.swing.JTextField jTextFieldFechaBaja;
