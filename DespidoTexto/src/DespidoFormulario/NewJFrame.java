@@ -515,8 +515,8 @@ public class NewJFrame extends javax.swing.JFrame {
                 + (Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText()))
                 + " dias"
                 + "\nLa base de cotización diaria es: "
-                + (Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText()))
-                + "dias\n"
+                + Metodos.darFormatoMoneda((Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText())))
+                + "/dias\n"
         );
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
