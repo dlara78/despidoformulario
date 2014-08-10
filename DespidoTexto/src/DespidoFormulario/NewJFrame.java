@@ -5,11 +5,18 @@
  */
 package DespidoFormulario;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class NewJFrame extends javax.swing.JFrame {
-    
+
     float antiguedadEnDias = 0;
     float diasIndemCausaObjetiva = 0;
-    
+
     public NewJFrame() {
         initComponents();
     }
@@ -491,7 +498,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        
+
         jLabelPanelSuperior.setText("Todo borrado");
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
@@ -509,7 +516,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-        
+
         this.jTextAreaInforme.setText("Iniciando informe..."
                 + "\nLa antigüedad total en días\nes de "
                 + (Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText()))
@@ -518,6 +525,38 @@ public class NewJFrame extends javax.swing.JFrame {
                 + Metodos.darFormatoMoneda((Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText())))
                 + "/dias\n"
         );
+
+        
+        // Ejemplo para realizar los calculos usando una clase externa no estatica
+        
+        // Convertimos los datos de entrada a sus respectivos tipos
+        // Fechas
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
+        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
+
+        try {
+            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Base de cotizacion
+        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
+        
+        
+        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
+        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
+        
+        // Un vez que la hemos creado, podemos acceder a sus metodos.
+        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
+        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -535,7 +574,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
-        
+
         this.jTextField2.setText(String.valueOf(Metodos.calcularFechaEnMilis(this.jTextFieldFechaAlta.getText())));
 
     }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
@@ -545,9 +584,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
 
     private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
-        
+
         antiguedadEnDias = Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
-        
+
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     /**
