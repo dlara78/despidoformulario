@@ -518,8 +518,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
         this.jTextAreaInforme.setText("Iniciando informe..."
-                + "\nLa antigüedad total en días\nes de "
-                + (Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText()))
+                + "\nLa antigüedad total en días es de "
+                + Metodos.darFormatoEsp((Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText())))
                 + " dias"
                 + "\nLa base de cotización diaria es: "
                 + Metodos.darFormatoMoneda((Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText())))
