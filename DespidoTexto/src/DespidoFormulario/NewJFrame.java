@@ -14,8 +14,10 @@ import java.util.logging.Logger;
 
 public class NewJFrame extends javax.swing.JFrame {
 
-    float antiguedadEnDias = 0;
+    float antiguedadEnDias;
     float diasIndemCausaObjetiva = 0;
+    float diasIndemnImprocedente = 0;
+    float baseCotizacionDia = 0;
 
     public NewJFrame() {
         initComponents();
@@ -286,7 +288,7 @@ public class NewJFrame extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -309,20 +311,19 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCalcular))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButtonBorrar))
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -336,11 +337,12 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 25, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCalcular)
-                    .addComponent(jButtonBorrar)
-                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonBorrar)
+                        .addComponent(jButton1))
+                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -367,18 +369,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
+        this.antiguedadEnDias = Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
+        this.baseCotizacionDia = Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText());
+        this.diasIndemCausaObjetiva = Metodos.calculaDiasIndemnObjetiva(antiguedadEnDias);
+        
         this.jTextAreaInforme.setText("Iniciando informe...\n"
-                + "\nLa antigüedad total en días es de "
-                + Metodos.darFormatoEsp((Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText())))
+                + "\nLa antigüedad total en días es de " + Metodos.darFormatoEsp(antiguedadEnDias)
                 + " dias"
-                + "\nLa base de cotización diaria es: "
-                + Metodos.darFormatoMoneda((Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText())))
+                + "\nLa base de cotización diaria es: " + Metodos.darFormatoMoneda(this.baseCotizacionDia)
                 + "/dias\n"
+                + "\nEl número de días de indemnización es: " + Metodos.darFormatoEsp(this.diasIndemCausaObjetiva)
         );
 
-        
         // Ejemplo para realizar los calculos usando una clase externa no estatica
-        
         // Convertimos los datos de entrada a sus respectivos tipos
         // Fechas
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -399,11 +402,10 @@ public class NewJFrame extends javax.swing.JFrame {
 
         // Base de cotizacion
         Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
-        
-        
+
         // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
         Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
-        
+
         // Un vez que la hemos creado, podemos acceder a sus metodos.
         // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
         Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
