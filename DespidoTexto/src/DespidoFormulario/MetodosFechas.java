@@ -31,7 +31,6 @@ public class MetodosFechas {
         float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
         float diferenciaEnMilis = calcularFechaEnMilis(fechaBaja) - calcularFechaEnMilis(fechaAlta);
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
-
         return diferenciaEnDias;
     }
    
