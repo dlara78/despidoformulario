@@ -51,8 +51,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldBaseCotizacion = new javax.swing.JTextField();
         jTextFieldDiasTrabajados = new javax.swing.JTextField();
-        jComboBoxTipoDespido1 = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -221,46 +219,25 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxTipoDespido1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mensual", "Diaria", "Anual" }));
-        jComboBoxTipoDespido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxTipoDespido1ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Base Cotiz");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldBaseCotizacion)
-                            .addComponent(jTextFieldDiasTrabajados, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxTipoDespido1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jTextFieldBaseCotizacion)
+                    .addComponent(jTextFieldDiasTrabajados, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTipoDespido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldBaseCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -349,7 +326,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         pack();
@@ -375,50 +352,49 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
-        //Asignamos valores a las variables que mandaremos al método de informes.
-        this.antiguedadEnDias = MetodosFechas.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
-        this.baseCotizacionDia = MetodosFechas.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText());
-        this.diasIndemCausaObjetiva = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadEnDias);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
-        
-        
+                
         //Preparamos el informe.
         if (tipoDespido.equals("Causa objetiva")){
         this.jTextAreaInforme.setText(
                 Informes.informeCausaObjetiva(
-                        tipoDespido, antiguedadEnDias, baseCotizacionDia, diasIndemCausaObjetiva,
-                        MetodosFechas.calculaImporteIndemnObjetiva(diasIndemCausaObjetiva, baseCotizacionDia))
+                        tipoDespido, 
+                        this.jTextFieldFechaAlta.getText(), 
+                        this.jTextFieldFechaBaja.getText(), 
+                        this.jTextFieldBaseCotizacion.getText(),
+                        this.jTextFieldDiasTrabajados.getText()
+        )
         );
         } else this.jTextAreaInforme.setText("Despido pendiente de programar");
         
         // Ejemplo para realizar los calculos usando una clase externa no estatica
         // Convertimos los datos de entrada a sus respectivos tipos
         // Fechas
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
-        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
-
-        try {
-            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Base de cotizacion
-        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
-
-        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
-        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
-
-        // Un vez que la hemos creado, podemos acceder a sus metodos.
-        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
-        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
+//        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
+//
+//        try {
+//            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
+//        } catch (ParseException ex) {
+//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        try {
+//            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
+//        } catch (ParseException ex) {
+//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        // Base de cotizacion
+//        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
+//
+//        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
+//        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
+//
+//        // Un vez que la hemos creado, podemos acceder a sus metodos.
+//        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
+//        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -446,10 +422,6 @@ public class NewJFrame extends javax.swing.JFrame {
         antiguedadEnDias = MetodosFechas.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
 
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
-
-    private void jComboBoxTipoDespido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoDespido1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxTipoDespido1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,14 +463,12 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
     private javax.swing.JComboBox jComboBoxTipoDespido;
-    private javax.swing.JComboBox jComboBoxTipoDespido1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelPanelInformacion;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
