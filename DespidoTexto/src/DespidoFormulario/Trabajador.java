@@ -38,7 +38,7 @@ public class Trabajador {
     public float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja){
               
     this.antiguedadTotal = (this.fechaBaja.getTimeInMillis() - this.fechaAlta.getTimeInMillis())/MILISEGS_POR_DIA;
-          
+         
         return antiguedadTotal;
     }
     

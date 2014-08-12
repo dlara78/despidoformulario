@@ -375,18 +375,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
-        this.antiguedadEnDias = Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
-        this.baseCotizacionDia = Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText());
-        this.diasIndemCausaObjetiva = Metodos.calculaDiasIndemnObjetiva(antiguedadEnDias);
+        //Asignamos valores a las variables que mandaremos al método de informes.
+        this.antiguedadEnDias = MetodosFechas.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
+        this.baseCotizacionDia = MetodosFechas.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText());
+        this.diasIndemCausaObjetiva = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadEnDias);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
         
         
         //Preparamos el informe.
-        
         if (tipoDespido.equals("Causa objetiva")){
         this.jTextAreaInforme.setText(
-                Informes.informeCausaObjetiva(tipoDespido, antiguedadEnDias, baseCotizacionDia, diasIndemCausaObjetiva,
-                        Metodos.calculaImporteIndemnObjetiva(diasIndemCausaObjetiva, baseCotizacionDia))
+                Informes.informeCausaObjetiva(
+                        tipoDespido, antiguedadEnDias, baseCotizacionDia, diasIndemCausaObjetiva,
+                        MetodosFechas.calculaImporteIndemnObjetiva(diasIndemCausaObjetiva, baseCotizacionDia))
         );
         } else this.jTextAreaInforme.setText("Despido pendiente de programar");
         
@@ -442,7 +443,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
 
-        antiguedadEnDias = Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
+        antiguedadEnDias = MetodosFechas.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
 
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 

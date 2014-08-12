@@ -7,12 +7,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Metodos {
+public class MetodosFechas {
 
-//METODOS RELATIVOS A --FECHAS--
     //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
     // en el cálculo de diferencia entre días.
     public static float calcularFechaEnMilis(String fechaString) {
@@ -37,35 +37,13 @@ public class Metodos {
 
         return diferenciaEnDias;
     }
-
+   
     public static float calculaDiasIndemnObjetiva(float antiguedadTotal) {
         float diasIndemnizacion = antiguedadTotal * (20f / 365f);
         return diasIndemnizacion;
     }
 
-//============================ fin bloque métodos de FECHAS.                
-//METODOS RELATIVOS A ---FORMATOS---
-    public static String darFormatoMoneda(float cantidad) {
 
-        NumberFormat money = NumberFormat.getCurrencyInstance();
-        String cantidadEuros = money.format(cantidad);
-        return cantidadEuros;
-    }
-
-    public static String darFormatoMoneda(String cantidad) {
-
-        NumberFormat money = NumberFormat.getCurrencyInstance();
-        String cantidadEuros = money.format(cantidad);
-        return cantidadEuros;
-    }
-
-    public static String darFormatoEsp(float cantidad) {
-
-        DecimalFormat formatoEsp = new DecimalFormat("#######.00");
-        String nuevaCantidad = formatoEsp.format(cantidad);
-        return nuevaCantidad;
-    }
-//============================ fin bloque métodos de FORMATOS.
 
 //METODOS VARIOS
     public static float baseCotizDiaria(String baseMensual, String diasTrabajados) {
@@ -80,4 +58,4 @@ public class Metodos {
 //============================ fin bloque métodos de FORMATOS.
 
            
-} //Corchete final de la clase Metodos.
+} //Corchete final de la clase MetodosFechas.
