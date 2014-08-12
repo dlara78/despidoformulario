@@ -34,15 +34,19 @@ public class Informes {
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
         float diasHastaReforma = MetodosFechas.diasHastaReforma(fechaAlta);
+        float diasDesdeReforma = MetodosFechas.diasHastaReforma(fechaBaja);
         String informe = ("Iniciando informe...\n"
                 + "\nTipo de despido: " + tipoDespido
                 + "\nALTA: " + MetodosFechas.convertirFechaBonita(fechaAlta)
                 + "\nBAJA: " + MetodosFechas.convertirFechaBonita(fechaBaja)
-                + "\n\n(Antigüedad total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
+                + "\n\n(Antigüedad total: " + (MetodosFormatos.darFormatoEsp(diasDesdeReforma + diasHastaReforma) + " dias)"
                 + "\nAntigüedad antes de reforma: " + MetodosFormatos.darFormatoEsp(diasHastaReforma)
+                + "\nAntigüedad después de reforma: " + MetodosFormatos.darFormatoEsp(diasDesdeReforma)
                 + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias\n"
-                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
-                + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
+                + "\nEl número de días de indemnización es: <pendiente>"
+                + "\nEl importe de la indemnización es: <pendiente>"
+                )
+                );
 
         return informe;
     }

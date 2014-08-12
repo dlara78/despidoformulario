@@ -13,17 +13,22 @@ import sun.util.calendar.Gregorian;
 public class MetodosFechas {
 
     public static float diasHastaReforma (String fecha){
-        
         float dias;
         float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
-        float fechaInicio = MetodosFechas.calcularFechaEnMilis(fecha);
         float temp1 = reforma.getTimeInMillis() - MetodosFechas.calcularFechaEnMilis(fecha);
         dias = temp1 / MILISEGS_POR_DIA;        
         return dias;
     }
 
-
+    public static float diasDesdeReforma (String fecha){
+            float dias;
+            float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+            GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
+            float temp1 = MetodosFechas.calcularFechaEnMilis(fecha) - reforma.getTimeInMillis();
+            dias = temp1 / MILISEGS_POR_DIA;        
+            return dias;
+        }
 
 
 
