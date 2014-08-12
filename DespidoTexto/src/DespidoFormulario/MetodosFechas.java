@@ -5,12 +5,29 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.util.calendar.Gregorian;
 
 public class MetodosFechas {
 
-    //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
+    public static float diasHastaReforma (String fecha){
+        
+        float dias;
+        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
+        float fechaInicio = MetodosFechas.calcularFechaEnMilis(fecha);
+        float temp1 = reforma.getTimeInMillis() - MetodosFechas.calcularFechaEnMilis(fecha);
+        dias = temp1 / MILISEGS_POR_DIA;        
+        return dias;
+    }
+
+
+
+
+
+//---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
     // en el cálculo de diferencia entre días.
     public static float calcularFechaEnMilis(String fechaString) {
 

@@ -339,20 +339,29 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
 
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
-                
+
         //Preparamos el informe.
-        if (tipoDespido.equals("Causa objetiva")){
-        this.jTextAreaInforme.setText(
-                Informes.informeCausaObjetiva(
-                        tipoDespido, 
-                        this.jTextFieldFechaAlta.getText(), 
-                        this.jTextFieldFechaBaja.getText(), 
-                        this.jTextFieldBaseCotizacion.getText(),
-                        this.jTextFieldDiasTrabajados.getText()
-        )
-        );
-        } else this.jTextAreaInforme.setText("Despido pendiente de programar");
-        
+        if (tipoDespido.equals("Causa objetiva")) {
+            this.jTextAreaInforme.setText(
+                    Informes.informeCausaObjetiva(
+                            tipoDespido,
+                            this.jTextFieldFechaAlta.getText(),
+                            this.jTextFieldFechaBaja.getText(),
+                            this.jTextFieldBaseCotizacion.getText(),
+                            this.jTextFieldDiasTrabajados.getText()
+                    )
+            );
+        } else {
+            this.jTextAreaInforme.setText(
+                    Informes.informeImprocedente(tipoDespido,
+                            this.jTextFieldFechaAlta.getText(),
+                            this.jTextFieldFechaBaja.getText(),
+                            this.jTextFieldBaseCotizacion.getText(),
+                            this.jTextFieldDiasTrabajados.getText()
+                    )
+            );
+        }
+
         // Ejemplo para realizar los calculos usando una clase externa no estatica
         // Convertimos los datos de entrada a sus respectivos tipos
         // Fechas
