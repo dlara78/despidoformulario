@@ -1,13 +1,9 @@
 package DespidoFormulario;
 
-import java.util.GregorianCalendar;
+import java.text.DateFormat;
 
-/**
- *
- * @author david
- */
 public class Informes {
-
+          
     public static String informeCausaObjetiva(
             String tipoDespido, String fechaAlta, String fechaBaja,
             String bCotiz, String diasCotizados) {
@@ -19,7 +15,9 @@ public class Informes {
 
         String informe = ("Iniciando informe...\n"
                 + "\nTipo de despido: " + tipoDespido
-                + "\nLa antigüedad total en días es de " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias"
+                + "\nALTA: " + MetodosFechas.convertirFechaBonita(fechaAlta)
+                + "\nBAJA: " + MetodosFechas.convertirFechaBonita(fechaBaja)
+                + "\n(Antigüedad total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + "\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias\n"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
