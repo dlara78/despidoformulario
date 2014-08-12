@@ -35,7 +35,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabelPanelSuperior = new javax.swing.JLabel();
+        jLabelPanelInformacion = new javax.swing.JLabel();
         jButtonBorrar = new javax.swing.JButton();
         jButtonCalcular = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -69,10 +69,10 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabelPanelSuperior.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelPanelSuperior.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelPanelSuperior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPanelSuperior.setText("Prueba de aplicación");
+        jLabelPanelInformacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelPanelInformacion.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelPanelInformacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPanelInformacion.setText("Prueba de aplicación");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,14 +80,14 @@ public class NewJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelPanelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelPanelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelPanelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelPanelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -118,7 +118,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel5.setText("Fecha Baja");
 
         jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFechaAlta.setText("dd/mm/aaaa");
+        jTextFieldFechaAlta.setToolTipText("");
         jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaAltaFocusGained(evt);
@@ -134,7 +134,6 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jTextFieldFechaBaja.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFechaBaja.setText("dd/mm/aaaa");
         jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaBajaFocusGained(evt);
@@ -358,7 +357,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
 
-        jLabelPanelSuperior.setText("Todo borrado");
+        jLabelPanelInformacion.setText("Todo borrado");
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
         jTextFieldFechaAlta.setText(null);
@@ -367,11 +366,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
-        this.jLabelPanelSuperior.setText("Introduce la base sin decimales");
+        this.jLabelPanelInformacion.setText("Introduce la base sin decimales");
     }//GEN-LAST:event_jTextFieldBaseCotizacionFocusGained
 
     private void jTextFieldDiasTrabajadosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusGained
-        this.jLabelPanelSuperior.setText("Introduce el nº de días trabajados");
+        this.jLabelPanelInformacion.setText("Introduce el nº de días trabajados");
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
@@ -379,15 +378,18 @@ public class NewJFrame extends javax.swing.JFrame {
         this.antiguedadEnDias = Metodos.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
         this.baseCotizacionDia = Metodos.baseCotizDiaria(jTextFieldBaseCotizacion.getText(), jTextFieldDiasTrabajados.getText());
         this.diasIndemCausaObjetiva = Metodos.calculaDiasIndemnObjetiva(antiguedadEnDias);
+        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
         
-        this.jTextAreaInforme.setText("Iniciando informe...\n"
-                + "\nLa antigüedad total en días es de " + Metodos.darFormatoEsp(antiguedadEnDias)
-                + " dias"
-                + "\nLa base de cotización diaria es: " + Metodos.darFormatoMoneda(this.baseCotizacionDia)
-                + "/dias\n"
-                + "\nEl número de días de indemnización es: " + Metodos.darFormatoEsp(this.diasIndemCausaObjetiva)
+        
+        //Preparamos el informe.
+        
+        if (tipoDespido.equals("Causa objetiva")){
+        this.jTextAreaInforme.setText(
+                Informes.informeCausaObjetiva(tipoDespido, antiguedadEnDias, baseCotizacionDia, diasIndemCausaObjetiva,
+                        Metodos.calculaImporteIndemnObjetiva(diasIndemCausaObjetiva, baseCotizacionDia))
         );
-
+        } else this.jTextAreaInforme.setText("Despido pendiente de programar");
+        
         // Ejemplo para realizar los calculos usando una clase externa no estatica
         // Convertimos los datos de entrada a sus respectivos tipos
         // Fechas
@@ -424,12 +426,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaAltaActionPerformed
 
     private void jTextFieldFechaAltaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusGained
-        jTextFieldFechaAlta.setText(null);// TODO add your handling code here:
-        jLabelPanelSuperior.setText("RECUERDA: dd/mm/aaaa");
+        jLabelPanelInformacion.setText("RECUERDA: dd/mm/aaaa");
     }//GEN-LAST:event_jTextFieldFechaAltaFocusGained
 
     private void jTextFieldFechaBajaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusGained
-        jTextFieldFechaBaja.setText(null);// TODO add your handling code here:
+        jLabelPanelInformacion.setText("RECUERDA: dd/mm/aaaa");
     }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
@@ -497,7 +498,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelPanelSuperior;
+    private javax.swing.JLabel jLabelPanelInformacion;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
