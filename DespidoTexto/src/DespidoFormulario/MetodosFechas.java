@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,8 +40,20 @@ public class MetodosFechas {
         return diasIndemnizacion;
     }
 
-
-
+    public static float calculaDiasImprocedente(String fechaFin, String fechaInicio) {
+    
+        //Metodo "en construccion"       
+        
+        float diasIndemnizacion = 0;
+        Calendar fechaAlta = Calendar.getInstance();
+        Calendar fechaBaja = Calendar.getInstance();
+        Calendar reforma = Calendar.getInstance();
+        
+        return diasIndemnizacion;
+        
+    }
+    
+    
 //METODOS VARIOS
     public static float baseCotizDiaria(String baseMensual, String diasTrabajados) {
         float baseCotizDia = (Float.parseFloat(baseMensual) / Float.parseFloat(diasTrabajados));
@@ -51,7 +64,5 @@ public class MetodosFechas {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
     }
-//============================ fin bloque métodos de FORMATOS.
-
            
 } //Corchete final de la clase MetodosFechas.
