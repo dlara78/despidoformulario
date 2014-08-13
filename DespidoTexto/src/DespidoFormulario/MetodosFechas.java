@@ -14,23 +14,21 @@ public class MetodosFechas {
 
     public static float diasHastaReforma(String fecha) {
         float dias;
-        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
-        float temp1 = reforma.getTimeInMillis() - MetodosFechas.calcularFechaEnMilis(fecha);
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
+        float temp1 = reforma.getTimeInMillis() - MetodosFechas.convertirFechaInicialStringEnMilis(fecha);
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
     public static float diasDesdeReforma(String fecha) {
         float dias;
-        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
-        float temp1 = MetodosFechas.calcularFechaEnMilis(fecha) - reforma.getTimeInMillis();
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
+        float temp1 = MetodosFechas.convertirFechaInicialStringEnMilis(fecha) - reforma.getTimeInMillis();
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
-//---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
-    // en el cálculo de diferencia entre días.
-    public static float calcularFechaEnMilis(String fechaString) {
+    public static float convertirFechaInicialStringEnMilis(String fechaString) {
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateFecha = null;
@@ -42,9 +40,27 @@ public class MetodosFechas {
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
         float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-
+        
         return fechaEnMilis;
     }
+    
+    public static float convertirFechaFinalStringEnMilis(String fechaString) {
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateFecha = null;
+        try {
+            dateFecha = df.parse(fechaString);
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(dateFecha);
+        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
+        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
+        
+        return fechaEnMilis;
+    }
+    
 
     public static GregorianCalendar convertirFechaStringAGregorian(String fechaImportada) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -56,6 +72,8 @@ public class MetodosFechas {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        fechaGregorian.roll(Calendar.HOUR, 24);
+        
         return fechaGregorian;
     }
     
@@ -80,7 +98,7 @@ public class MetodosFechas {
     }
 
     public static float calcularFloatEntreDosFechasString(String fechaBaja, String fechaAlta) {
-        float diferenciaEnMilis = calcularFechaEnMilis(fechaBaja) - calcularFechaEnMilis(fechaAlta);
+        float diferenciaEnMilis = convertirFechaFinalStringEnMilis(fechaBaja) - convertirFechaInicialStringEnMilis(fechaAlta);
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
     }
