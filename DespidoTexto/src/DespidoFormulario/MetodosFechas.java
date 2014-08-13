@@ -109,7 +109,6 @@ public class MetodosFechas {
     }
 
     public static float calculaDiasImprocedente(String fechaFin, String fechaInicio) {
-
         //Metodo "en construccion"       
         float diasIndemnizacion = 0;
         Calendar fechaAlta = Calendar.getInstance();
@@ -131,7 +130,6 @@ public class MetodosFechas {
     }
 
     public static float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
-
         float antiguedadTotal;
         antiguedadTotal = (fechaBaja.getTimeInMillis() - fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
         return antiguedadTotal;
