@@ -15,12 +15,18 @@ public class Informes {
 
         String informe = ("Iniciando informe...\n"
                 + "\nTipo de despido: " + tipoDespido
-                + "\nALTA: " + MetodosFechas.convertirFechaBonita(fechaAlta)
-                + "\nBAJA: " + MetodosFechas.convertirFechaBonita(fechaBaja)
+                + "\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
+                + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
                 + "\n(Antigüedad total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + "\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias\n"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
-                + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
+                + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion)
+                + "\n\n\nAntigüedad metodo DANI: " 
+                + MetodosFechas.calcularAntiguedad(
+                        MetodosFechas.convertirFechaStringAGregorian(fechaAlta), //Argumento #1
+                        MetodosFechas.convertirFechaStringAGregorian(fechaBaja)) //Argumento #2
+                
+                );
 
         return informe;
     }
@@ -45,11 +51,13 @@ public class Informes {
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
             
+            
         } else if (fBajaMilis < reformaMilis){
             
             antiguedadTotal = MetodosFechas.calcularDifEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = antiguedadTotal;
             diasDesdeReforma = 0;
+                    
             
         };
         
@@ -60,8 +68,8 @@ public class Informes {
         
         String informe = ("Iniciando informe...\n"
                 + "\nTipo de despido: " + tipoDespido
-                + "\nALTA: " + MetodosFechas.convertirFechaBonita(fechaAlta)
-                + "\nBAJA: " + MetodosFechas.convertirFechaBonita(fechaBaja)
+                + "\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
+                + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
                 + "\n\n(Antigüedad total: " + (MetodosFormatos.darFormatoEsp(diasDesdeReforma + diasHastaReforma) + " dias)"
                 + "\nAntigüedad antes de reforma: " + MetodosFormatos.darFormatoEsp(diasHastaReforma)
                 + "\nAntigüedad después de reforma: " + MetodosFormatos.darFormatoEsp(diasDesdeReforma)

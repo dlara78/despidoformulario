@@ -5,6 +5,13 @@
  */
 package DespidoFormulario;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class NewJFrame extends javax.swing.JFrame {
 
     float antiguedadEnDias;
@@ -365,31 +372,31 @@ public class NewJFrame extends javax.swing.JFrame {
         // Ejemplo para realizar los calculos usando una clase externa no estatica
         // Convertimos los datos de entrada a sus respectivos tipos
         // Fechas
-//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
-//        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
-//
-//        try {
-//            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
-//        } catch (ParseException ex) {
-//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        try {
-//            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
-//        } catch (ParseException ex) {
-//            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        // Base de cotizacion
-//        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
-//
-//        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
-//        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
-//
-//        // Un vez que la hemos creado, podemos acceder a sus metodos.
-//        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
-//        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
+        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
+
+        try {
+            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Base de cotizacion
+        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
+
+        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
+        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
+
+        // Un vez que la hemos creado, podemos acceder a sus metodos.
+        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
+        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 

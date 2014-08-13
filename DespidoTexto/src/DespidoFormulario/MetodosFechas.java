@@ -1,5 +1,6 @@
 package DespidoFormulario;
 
+import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,25 +12,21 @@ import java.util.logging.Logger;
 
 public class MetodosFechas {
 
-    public static float diasHastaReforma (String fecha){
+    public static float diasHastaReforma(String fecha) {
         float dias;
-        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
         float temp1 = reforma.getTimeInMillis() - MetodosFechas.calcularFechaEnMilis(fecha);
-        dias = temp1 / MILISEGS_POR_DIA;        
+        dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
-    public static float diasDesdeReforma (String fecha){
-            float dias;
-            float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-            GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
-            float temp1 = MetodosFechas.calcularFechaEnMilis(fecha) - reforma.getTimeInMillis();
-            dias = temp1 / MILISEGS_POR_DIA;        
-            return dias;
-        }
-
-
+    public static float diasDesdeReforma(String fecha) {
+        float dias;
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 23, 59);
+        float temp1 = MetodosFechas.calcularFechaEnMilis(fecha) - reforma.getTimeInMillis();
+        dias = temp1 / MILISEGS_POR_DIA;
+        return dias;
+    }
 
 //---OJO--- puede que desprecie horas del día, lo que provoque un fallo.
     // en el cálculo de diferencia entre días.
@@ -49,14 +46,28 @@ public class MetodosFechas {
         return fechaEnMilis;
     }
 
-    public static String convertirFechaBonita(String fechaString) {
+    public static GregorianCalendar convertirFechaStringAGregorian(String fechaImportada) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        GregorianCalendar fechaGregorian = (GregorianCalendar) GregorianCalendar.getInstance();
+        
+        try {
+            fechaGregorian.setTime(df.parse(fechaImportada));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return fechaGregorian;
+    }
+    
+    
+    public static String convertirAFechaBonita(String fechaString) {
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat df1 = DateFormat.getDateInstance(DateFormat.SHORT);
         DateFormat df2 = DateFormat.getDateInstance(DateFormat.MEDIUM);
         DateFormat df3 = DateFormat.getDateInstance(DateFormat.LONG);
         DateFormat df4 = DateFormat.getDateInstance(DateFormat.FULL);
-      
+
         Date dateFecha = null;
         try {
             dateFecha = df.parse(fechaString);
@@ -72,7 +83,6 @@ public class MetodosFechas {
     }
 
     public static float calcularDifEntreDosFechas(String fechaBaja, String fechaAlta) {
-        float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
         float diferenciaEnMilis = calcularFechaEnMilis(fechaBaja) - calcularFechaEnMilis(fechaAlta);
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
@@ -95,7 +105,6 @@ public class MetodosFechas {
 
     }
 
-//METODOS VARIOS
     public static float baseCotizDiaria(String baseMensual, String diasTrabajados) {
         float baseCotizDia = (Float.parseFloat(baseMensual) / Float.parseFloat(diasTrabajados));
         return baseCotizDia;
@@ -104,6 +113,13 @@ public class MetodosFechas {
     public static float calculaImporteIndemnObjetiva(float diasIndemnizacion, float baseDiaria) {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
+    }
+
+    public static float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
+
+        float antiguedadTotal;
+        antiguedadTotal = (fechaBaja.getTimeInMillis() - fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
+        return antiguedadTotal;
     }
 
 } //Corchete final de la clase MetodosFechas.
