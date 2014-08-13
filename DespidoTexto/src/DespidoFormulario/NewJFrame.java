@@ -421,7 +421,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
 
-        antiguedadEnDias = MetodosFechas.calcularDifEntreDosFechas(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
+        antiguedadEnDias = MetodosFechas.calcularFloatEntreDosFechasString(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
 
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 

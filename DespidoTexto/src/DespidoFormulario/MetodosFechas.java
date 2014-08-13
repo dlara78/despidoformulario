@@ -63,10 +63,7 @@ public class MetodosFechas {
     public static String convertirAFechaBonita(String fechaString) {
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat df1 = DateFormat.getDateInstance(DateFormat.SHORT);
-        DateFormat df2 = DateFormat.getDateInstance(DateFormat.MEDIUM);
-        DateFormat df3 = DateFormat.getDateInstance(DateFormat.LONG);
-        DateFormat df4 = DateFormat.getDateInstance(DateFormat.FULL);
+        DateFormat dfCompleta = DateFormat.getDateInstance(DateFormat.FULL);
 
         Date dateFecha = null;
         try {
@@ -77,12 +74,12 @@ public class MetodosFechas {
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
 
-        String fechaBonita = df4.format(dateFecha);
+        String fechaBonita = dfCompleta.format(dateFecha);
 
         return fechaBonita;
     }
 
-    public static float calcularDifEntreDosFechas(String fechaBaja, String fechaAlta) {
+    public static float calcularFloatEntreDosFechasString(String fechaBaja, String fechaAlta) {
         float diferenciaEnMilis = calcularFechaEnMilis(fechaBaja) - calcularFechaEnMilis(fechaAlta);
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
