@@ -40,10 +40,10 @@ public class MetodosFechas {
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
         float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-        
+
         return fechaEnMilis;
     }
-    
+
     public static float convertirFechaFinalStringEnMilis(String fechaString) {
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -57,15 +57,14 @@ public class MetodosFechas {
         calFechaIntroducida.setTime(dateFecha);
         calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
         float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-        
+
         return fechaEnMilis;
     }
-    
 
     public static GregorianCalendar convertirFechaStringAGregorian(String fechaImportada) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         GregorianCalendar fechaGregorian = (GregorianCalendar) GregorianCalendar.getInstance();
-        
+
         try {
             fechaGregorian.setTime(df.parse(fechaImportada));
         } catch (ParseException ex) {
@@ -73,11 +72,10 @@ public class MetodosFechas {
         }
 
         fechaGregorian.roll(Calendar.HOUR, 24);
-        
+
         return fechaGregorian;
     }
-    
-    
+
     public static String convertirAFechaBonita(String fechaString) {
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -124,15 +122,15 @@ public class MetodosFechas {
         return baseCotizDia;
     }
 
-    public static float calculaImporteIndemnObjetiva(float diasIndemnizacion, float baseDiaria) {
-        float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
-        return importeIndemnObjetiva;
-    }
-
     public static float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
         float antiguedadTotal;
         antiguedadTotal = (fechaBaja.getTimeInMillis() - fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
         return antiguedadTotal;
+    }
+
+    public static float calculaImporteIndemnObjetiva(float diasIndemnizacion, float baseDiaria) {
+        float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
+        return importeIndemnObjetiva;
     }
 
 } //Corchete final de la clase MetodosFechas.

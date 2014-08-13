@@ -61,7 +61,9 @@ public class Informes {
         
         } else {
             
-            //Inserte aquí su código.
+            float antiguedadPREreforma;
+            float antiguedadPOSTreforma;
+            
             
         };
 
