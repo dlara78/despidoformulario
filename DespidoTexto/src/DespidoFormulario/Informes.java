@@ -29,12 +29,35 @@ public class Informes {
             String tipoDespido, String fechaAlta, String fechaBaja,
             String bCotiz, String diasCotizados) {
 
-        float antiguedadTotal = MetodosFechas.calcularDifEntreDosFechas(fechaBaja, fechaAlta);
+        float antiguedadTotal = 0;
+        float reformaMilis = MetodosFechas.calcularFechaEnMilis("12/02/2012");
+        float fAltaMilis = MetodosFechas.calcularFechaEnMilis(fechaAlta);
+        float fBajaMilis = MetodosFechas.calcularFechaEnMilis(fechaBaja);
         float bCotizDiaria = Float.valueOf(bCotiz) / Float.valueOf(diasCotizados);
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
         float diasHastaReforma = MetodosFechas.diasHastaReforma(fechaAlta);
-        float diasDesdeReforma = MetodosFechas.diasHastaReforma(fechaBaja);
+        float diasDesdeReforma = MetodosFechas.diasDesdeReforma(fechaBaja);
+        
+        if ( fAltaMilis > reformaMilis){
+            
+            antiguedadTotal = MetodosFechas.calcularDifEntreDosFechas(fechaBaja, fechaAlta);
+            diasHastaReforma = 0;
+            diasDesdeReforma = antiguedadTotal;
+            
+        } else if (fBajaMilis < reformaMilis){
+            
+            antiguedadTotal = MetodosFechas.calcularDifEntreDosFechas(fechaBaja, fechaAlta);
+            diasHastaReforma = antiguedadTotal;
+            diasDesdeReforma = 0;
+            
+        };
+        
+        
+        
+        
+        
+        
         String informe = ("Iniciando informe...\n"
                 + "\nTipo de despido: " + tipoDespido
                 + "\nALTA: " + MetodosFechas.convertirFechaBonita(fechaAlta)
