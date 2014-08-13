@@ -59,6 +59,10 @@ public class Informes {
             numDiasIndemnizacion = antiguedadTotal * (45f / 365f);
             importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
         
+        } else {
+            
+            //Inserte aquí su código.
+            
         };
 
         String informe = ("Iniciando informe...\n"
