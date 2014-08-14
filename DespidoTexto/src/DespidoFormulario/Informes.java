@@ -98,7 +98,9 @@ public class Informes {
             
             if (numDiasIndemnPreReforma > 1260f) {
                 numDiasIndemnPreReforma = 1260f;
-                textoTopeMensPRE = " (TOPE ALCANZADO)";
+                textoTopeMensPRE = " ####>>> TOPE ALCANZADO";
+                numDiasIndemnizacion = 1260f;
+                numDiasIndemnPostReforma = 0;
             }
             
             if (numDiasIndemnPostReforma > 720f) {
