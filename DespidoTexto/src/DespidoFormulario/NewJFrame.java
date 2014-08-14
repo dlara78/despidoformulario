@@ -446,9 +446,9 @@ public class NewJFrame extends javax.swing.JFrame {
         try{
             boolean complete = this.jTextAreaInforme.print();
             if (complete) {
-                JOptionPane.showMessageDialog(null, "Imprimido", "Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Trabajo terminado", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Imprimiendo", "Impresora", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Acción completada", "Impresora", JOptionPane.ERROR_MESSAGE);
             }
         } catch (PrinterException e) {
             JOptionPane.showMessageDialog(null, e);
