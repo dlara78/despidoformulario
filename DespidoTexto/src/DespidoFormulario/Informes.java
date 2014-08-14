@@ -22,13 +22,12 @@ public class Informes {
             textoTopeMens = " (TOPE ALCANZADO)";
         }
         
-        String informe = ("Iniciando informe...\n"
-                + "\nTipo de despido: " + tipoDespido
-                + "\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
+        String informe = ("\nTipo de despido: " + tipoDespido
+                + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
                 + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
-                + "\n(Antigüedad total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
-                + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias\n"
-                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
+                + "\n(Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
+                + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
+                + "\n\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
 
         return informe;
@@ -108,20 +107,19 @@ public class Informes {
             }
             
             textoControl = 
-                    "\nAntigüedad antes de reforma: " + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE
+                    "\n\nAntigüedad antes de reforma: " + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE
                     + "\nAntigüedad después de reforma: " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST;
         };
 
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
 
-        String informe = ("Iniciando informe...\n"
-                + "\nTipo de despido: " + tipoDespido
-                + "\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
+        String informe = ("\nTipo de despido: " + tipoDespido
+                + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
                 + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
-                + "\n(Antigüedad total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
+                + "\n(Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + textoControl
-                + "\n\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias\n"
-                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
+                + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
+                + "\n\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
 
         return informe;
