@@ -5,12 +5,14 @@
  */
 package DespidoFormulario;
 
+import java.awt.print.PrinterException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -49,7 +51,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldDiasTrabajados = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldBaseCotizacion = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonImprimir = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -232,9 +234,14 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Imprimir");
-        jButton1.setEnabled(false);
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.setEnabled(false);
+        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -300,7 +307,7 @@ public class NewJFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -315,7 +322,7 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonBorrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(jButtonImprimir))
                             .addComponent(jButtonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +356,8 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-
+        
+        this.jButtonImprimir.setEnabled(rootPaneCheckingEnabled);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
         //Preparamos el informe.
@@ -434,6 +442,19 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextAreaInformeMouseClicked
 
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        try{
+            boolean complete = this.jTextAreaInforme.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Imprimido", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Imprimiendo", "Impresora", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -470,9 +491,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
+    private javax.swing.JButton jButtonImprimir;
     private javax.swing.JComboBox jComboBoxTipoDespido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
