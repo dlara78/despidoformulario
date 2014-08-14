@@ -147,7 +147,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo de despido");
 
-        jComboBoxTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Causa objetiva", "Despido improcedente" }));
+        jComboBoxTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente", "Causa objetiva" }));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 204));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -336,7 +336,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
-        this.jLabelPanelInformacion.setText("Introduce la base sin decimales");
+        this.jLabelPanelInformacion.setText("Indica los decimales con un punto (.)");
     }//GEN-LAST:event_jTextFieldBaseCotizacionFocusGained
 
     private void jTextFieldDiasTrabajadosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusGained

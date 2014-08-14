@@ -31,7 +31,7 @@ public class MetodosFormatos {
 
     public static String darFormatoEsp(float cantidad) {
 
-        DecimalFormat formatoEsp = new DecimalFormat("#######.00");
+        DecimalFormat formatoEsp = new DecimalFormat("#####00.00");
         String nuevaCantidad = formatoEsp.format(cantidad);
         return nuevaCantidad;
     }

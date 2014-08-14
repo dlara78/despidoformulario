@@ -23,7 +23,7 @@ public class MetodosFechas {
     public static float diasDesdeReforma(String fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
-        float temp1 = MetodosFechas.convertirFechaInicialStringEnMilis(fecha) - reforma.getTimeInMillis();
+        float temp1 = MetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
