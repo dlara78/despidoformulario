@@ -244,6 +244,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jTextAreaInforme.setColumns(20);
         jTextAreaInforme.setRows(5);
+        jTextAreaInforme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextAreaInformeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextAreaInforme);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -424,6 +429,10 @@ public class NewJFrame extends javax.swing.JFrame {
         antiguedadEnDias = MetodosFechas.calcularFloatEntreDosFechasString(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
 
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
+
+    private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextAreaInformeMouseClicked
 
     /**
      * @param args the command line arguments
