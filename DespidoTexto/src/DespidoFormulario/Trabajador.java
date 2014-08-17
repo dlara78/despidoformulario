@@ -20,6 +20,11 @@ public class Trabajador {
     GregorianCalendar fechaBaja;
     float baseCotizacion;
     float antiguedadTotal;
+    float antiguedadPreReforma = 0;
+    float antiguedadPostReform = 0;
+    float diasIndemnizacionTotal = 0;
+    float diasIndemnizacionPreReforma = 0;
+    float diasIndemnizacionPostReforma = 0;
         
     
     public Trabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion){
