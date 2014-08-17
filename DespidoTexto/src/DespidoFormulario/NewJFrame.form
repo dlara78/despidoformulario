@@ -349,6 +349,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonImprimir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/DespidoFormulario/icon-printer.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Imprimir"/>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="verticalAlignment" type="int" value="3"/>

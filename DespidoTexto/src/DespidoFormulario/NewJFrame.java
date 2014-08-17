@@ -234,6 +234,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DespidoFormulario/icon-printer.png"))); // NOI18N
         jButtonImprimir.setText("Imprimir");
         jButtonImprimir.setEnabled(false);
         jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
