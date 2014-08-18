@@ -98,7 +98,7 @@ public class Informes {
             
             if (numDiasIndemnPreReforma > 1260f) {
                 numDiasIndemnPreReforma = 1260f;
-                textoTopeMensPRE = " ####>>> TOPE ALCANZADO";
+                textoTopeMensPRE = " (TOPE ALCANZADO)";
                 numDiasIndemnizacion = 1260f;
                 numDiasIndemnPostReforma = 0;
             }
@@ -118,7 +118,7 @@ public class Informes {
         String informe = ("\nTipo de despido: " + tipoDespido
                 + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
                 + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
-                + "\n\n Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias. "
+                + "\n\n Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias. \n"
                 + textoControl
                 + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\n\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
