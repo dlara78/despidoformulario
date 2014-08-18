@@ -109,8 +109,8 @@ public class Informes {
             }
             
             textoControl = 
-                    "\n\nAntigüedad antes de reforma: " + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE
-                    + "\nAntigüedad después de reforma: " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST;
+                    "( " + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma" 
+                    + " y " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
         };
 
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
@@ -118,7 +118,7 @@ public class Informes {
         String informe = ("\nTipo de despido: " + tipoDespido
                 + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
                 + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
-                + "\n(Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
+                + "\n\n Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias. "
                 + textoControl
                 + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\n\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
