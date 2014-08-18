@@ -115,6 +115,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldFechaAlta.setToolTipText("");
+        jTextFieldFechaAlta.setName(""); // NOI18N
         jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldFechaAltaFocusGained(evt);
