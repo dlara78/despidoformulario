@@ -46,10 +46,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaInforme = new javax.swing.JTextArea();
+        jButtonCopiarInforme = new javax.swing.JButton();
+        jButtonImprimir = new javax.swing.JButton();
+        jButtonBorrar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jButtonCalcular = new javax.swing.JButton();
-        jButtonBorrar = new javax.swing.JButton();
-        jButtonImprimir = new javax.swing.JButton();
         jComboBoxTipoDespido = new javax.swing.JComboBox();
 
         jMenu1.setText("jMenu1");
@@ -65,7 +66,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(189, 214, 248));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Base Cotización");
@@ -77,7 +78,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Días cotizados");
@@ -98,12 +99,12 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldBaseCotizacion)
-                    .addComponent(jTextFieldDiasTrabajados))
+                    .addComponent(jTextFieldDiasTrabajados, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jTextFieldBaseCotizacion))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -122,7 +123,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(189, 214, 248));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Fecha Alta");
@@ -144,7 +145,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Baja");
@@ -166,12 +167,12 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFechaAlta)
-                    .addComponent(jTextFieldFechaBaja))
+                    .addComponent(jTextFieldFechaBaja)
+                    .addComponent(jTextFieldFechaAlta))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -217,6 +218,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel15.setText("Informe detallado");
 
         jTextAreaInforme.setColumns(20);
+        jTextAreaInforme.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jTextAreaInforme.setRows(5);
         jTextAreaInforme.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -225,6 +227,31 @@ public class NewJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTextAreaInforme);
 
+        jButtonCopiarInforme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
+        jButtonCopiarInforme.setText("Copiar");
+        jButtonCopiarInforme.setToolTipText("");
+        jButtonCopiarInforme.setEnabled(false);
+
+        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
+        jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.setEnabled(false);
+        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+
+        jButtonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
+        jButtonBorrar.setText("Borrar todo");
+        jButtonBorrar.setEnabled(false);
+        jButtonBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -232,17 +259,31 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(10, 10, 10))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -259,26 +300,6 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/goma de borrar.png"))); // NOI18N
-        jButtonBorrar.setText("Borrar todo");
-        jButtonBorrar.setEnabled(false);
-        jButtonBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarActionPerformed(evt);
-            }
-        });
-
-        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/printer_accept.png"))); // NOI18N
-        jButtonImprimir.setText("Imprimir");
-        jButtonImprimir.setEnabled(false);
-        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImprimirActionPerformed(evt);
-            }
-        });
-
         jComboBoxTipoDespido.setBackground(new java.awt.Color(204, 204, 255));
         jComboBoxTipoDespido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxTipoDespido.setForeground(new java.awt.Color(0, 0, 153));
@@ -292,13 +313,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonBorrar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButtonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -307,12 +322,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButtonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonImprimir))
-                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -324,10 +334,10 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -354,6 +364,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextAreaInforme.setText(null);
         jButtonBorrar.setEnabled(false);
         jButtonImprimir.setEnabled(false);
+        jButtonCopiarInforme.setEnabled(false);
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
@@ -365,6 +376,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
         
         jButtonBorrar.setEnabled(true);
+        jButtonCopiarInforme.setEnabled(true);
         this.jButtonImprimir.setEnabled(rootPaneCheckingEnabled);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
@@ -499,6 +511,7 @@ public class NewJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
+    private javax.swing.JButton jButtonCopiarInforme;
     private javax.swing.JButton jButtonImprimir;
     private javax.swing.JComboBox jComboBoxTipoDespido;
     private javax.swing.JLabel jLabel1;
