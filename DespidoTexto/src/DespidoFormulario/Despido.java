@@ -4,18 +4,19 @@ import java.awt.print.PrinterException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Despido extends javax.swing.JFrame {
-
+    
     float antiguedadEnDias;
     float diasIndemCausaObjetiva = 0;
     float diasIndemnImprocedente = 0;
     float baseCotizacionDia = 0;
-
+    
     public Despido() {
         initComponents();
     }
@@ -132,6 +133,11 @@ public class Despido extends javax.swing.JFrame {
         jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldFechaAlta.setToolTipText("");
         jTextFieldFechaAlta.setName(""); // NOI18N
+        jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldFechaAltaFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
@@ -139,6 +145,11 @@ public class Despido extends javax.swing.JFrame {
         jLabel5.setText("Fecha Baja");
 
         jTextFieldFechaBaja.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldFechaBajaFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -352,7 +363,7 @@ public class Despido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-
+        
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
         jTextFieldFechaAlta.setText(null);
@@ -373,7 +384,7 @@ public class Despido extends javax.swing.JFrame {
         
         jButtonBorrar.setEnabled(true);
         jButtonCopiarInforme.setEnabled(true);
-        this.jButtonImprimir.setEnabled(rootPaneCheckingEnabled);
+        jButtonImprimir.setEnabled(true);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
         //Preparamos el informe.
@@ -404,15 +415,15 @@ public class Despido extends javax.swing.JFrame {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
         GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
-
+        
         try {
             fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         try {
-            fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
+            fechaBaja.setTime(df.parse(jTextFieldFechaBaja.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -438,7 +449,7 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAreaInformeMouseClicked
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-        try{
+        try {
             boolean complete = this.jTextAreaInforme.print();
             if (complete) {
                 JOptionPane.showMessageDialog(null, "Trabajo terminado", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -451,13 +462,38 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void jButtonCopiarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopiarInformeActionPerformed
-
+        
         this.jTextAreaInforme.copy();
     }//GEN-LAST:event_jButtonCopiarInformeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateFecha = null;
+        try {
+            dateFecha = df.parse(this.jTextFieldFechaAlta.getText());
+        } catch (ParseException ex) {
+            this.jTextFieldFechaAlta.setText("ERROR");
+            this.jTextAreaInforme.setText("RECUERDE: La fecha debe estar \nen el sgte formato: dd/mm/aaaa");
+        }
+        jButtonBorrar.setEnabled(true);
+
+    }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
+
+    private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateFecha = null;
+        try {
+            dateFecha = df.parse(this.jTextFieldFechaBaja.getText());
+        } catch (ParseException ex) {
+            this.jTextFieldFechaBaja.setText("ERROR");
+            this.jTextAreaInforme.setText("RECUERDE: La fecha debe estar \nen el sgte formato: dd/mm/aaaa");
+        }
+        jButtonBorrar.setEnabled(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     /**
      * @param args the command line arguments
