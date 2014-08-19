@@ -1,6 +1,6 @@
 package DespidoFormulario;
 
-import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
+import static DespidoFormulario.DespidoTrabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,12 +10,12 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MetodosFechas {
+public class DespidoMetodosFechas {
 
     public static float diasHastaReforma(String fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
-        float temp1 = reforma.getTimeInMillis() - MetodosFechas.convertirFechaInicialStringEnMilis(fecha);
+        float temp1 = reforma.getTimeInMillis() - DespidoMetodosFechas.convertirFechaInicialStringEnMilis(fecha);
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
@@ -23,7 +23,7 @@ public class MetodosFechas {
     public static float diasDesdeReforma(String fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
-        float temp1 = MetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
+        float temp1 = DespidoMetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
@@ -35,7 +35,7 @@ public class MetodosFechas {
         try {
             dateFecha = df.parse(fechaString);
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
@@ -51,7 +51,7 @@ public class MetodosFechas {
         try {
             dateFecha = df.parse(fechaString);
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
@@ -68,7 +68,7 @@ public class MetodosFechas {
         try {
             fechaGregorian.setTime(df.parse(fechaImportada));
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         fechaGregorian.roll(Calendar.HOUR, 24);
@@ -85,7 +85,7 @@ public class MetodosFechas {
         try {
             dateFecha = df.parse(fechaString);
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(dateFecha);
@@ -133,4 +133,4 @@ public class MetodosFechas {
         return importeIndemnObjetiva;
     }
 
-} //Corchete final de la clase MetodosFechas.
+} //Corchete final de la clase DespidoMetodosFechas.

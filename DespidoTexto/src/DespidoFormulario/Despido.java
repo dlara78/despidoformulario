@@ -9,14 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class NewJFrame extends javax.swing.JFrame {
+public class Despido extends javax.swing.JFrame {
 
     float antiguedadEnDias;
     float diasIndemCausaObjetiva = 0;
     float diasIndemnImprocedente = 0;
     float baseCotizacionDia = 0;
 
-    public NewJFrame() {
+    public Despido() {
         initComponents();
     }
 
@@ -49,6 +49,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jButtonCopiarInforme = new javax.swing.JButton();
         jButtonImprimir = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jButtonCalcular = new javax.swing.JButton();
         jComboBoxTipoDespido = new javax.swing.JComboBox();
@@ -131,19 +132,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldFechaAlta.setToolTipText("");
         jTextFieldFechaAlta.setName(""); // NOI18N
-        jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaAltaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaAltaFocusLost(evt);
-            }
-        });
-        jTextFieldFechaAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFechaAltaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
@@ -151,14 +139,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel5.setText("Fecha Baja");
 
         jTextFieldFechaBaja.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaBajaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaBajaFocusLost(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -231,6 +211,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jButtonCopiarInforme.setText("Copiar");
         jButtonCopiarInforme.setToolTipText("");
         jButtonCopiarInforme.setEnabled(false);
+        jButtonCopiarInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCopiarInformeActionPerformed(evt);
+            }
+        });
 
         jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
         jButtonImprimir.setText("Imprimir");
@@ -252,6 +237,13 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -260,12 +252,14 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonImprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCopiarInforme)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -278,12 +272,14 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -383,7 +379,7 @@ public class NewJFrame extends javax.swing.JFrame {
         //Preparamos el informe.
         if (tipoDespido.equals("Causa objetiva")) {
             this.jTextAreaInforme.setText(
-                    Informes.informeCausaObjetiva(
+                    DespidoInformes.informeCausaObjetiva(
                             tipoDespido,
                             this.jTextFieldFechaAlta.getText(),
                             this.jTextFieldFechaBaja.getText(),
@@ -393,7 +389,7 @@ public class NewJFrame extends javax.swing.JFrame {
             );
         } else {
             this.jTextAreaInforme.setText(
-                    Informes.informeImprocedente(tipoDespido,
+                    DespidoInformes.informeImprocedente(tipoDespido,
                             this.jTextFieldFechaAlta.getText(),
                             this.jTextFieldFechaBaja.getText(),
                             this.jTextFieldBaseCotizacion.getText(),
@@ -412,20 +408,20 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
             fechaAlta.setTime(df.parse(jTextFieldFechaBaja.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Base de cotizacion
         Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
 
-        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase Trabajador
-        Trabajador t = new Trabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
+        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase DespidoTrabajador
+        DespidoTrabajador t = new DespidoTrabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
 
         // Un vez que la hemos creado, podemos acceder a sus metodos.
         // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
@@ -433,28 +429,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
-    private void jTextFieldFechaAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFechaAltaActionPerformed
-
-    private void jTextFieldFechaAltaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusGained
-    }//GEN-LAST:event_jTextFieldFechaAltaFocusGained
-
-    private void jTextFieldFechaBajaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusGained
-    }//GEN-LAST:event_jTextFieldFechaBajaFocusGained
-
-    private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
-    }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
-
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
 
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
-
-    private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
-
-        antiguedadEnDias = MetodosFechas.calcularFloatEntreDosFechasString(jTextFieldFechaBaja.getText(), jTextFieldFechaAlta.getText());
-
-    }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
         // TODO add your handling code here:
@@ -473,6 +450,15 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
+    private void jButtonCopiarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopiarInformeActionPerformed
+
+        this.jTextAreaInforme.copy();
+    }//GEN-LAST:event_jButtonCopiarInformeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -490,25 +476,26 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Despido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Despido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Despido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Despido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new Despido().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCalcular;
     private javax.swing.JButton jButtonCopiarInforme;

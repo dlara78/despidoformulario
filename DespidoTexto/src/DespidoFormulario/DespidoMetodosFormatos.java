@@ -13,7 +13,7 @@ import java.text.NumberFormat;
  *
  * @author david
  */
-public class MetodosFormatos {
+public class DespidoMetodosFormatos {
  
     public static String darFormatoMoneda(float cantidad) {
 

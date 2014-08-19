@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  *
  * @author david
  */
-public class Trabajador {
+public class DespidoTrabajador {
    
     static float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
     static float DIAS_ANIO = 365;
@@ -27,7 +27,7 @@ public class Trabajador {
     float diasIndemnizacionPostReforma = 0;
         
     
-    public Trabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion){
+    public DespidoTrabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion){
         
         this.nombre = nombre;
         this.empresa = empresa;
