@@ -394,7 +394,8 @@ public class Despido extends javax.swing.JFrame {
         jButtonImprimir.setEnabled(true);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
-        //Preparamos el informe.
+
+//Preparamos el informe.
         if (tipoDespido.equals("Causa objetiva")) {
             this.jTextAreaInforme.setText(
                     DespidoInformes.informeCausaObjetiva(
