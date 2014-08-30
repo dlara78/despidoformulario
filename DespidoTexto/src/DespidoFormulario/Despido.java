@@ -47,13 +47,13 @@ public class Despido extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaInforme = new javax.swing.JTextArea();
-        jButtonCopiarInforme = new javax.swing.JButton();
-        jButtonImprimir = new javax.swing.JButton();
-        jButtonBorrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jButtonCalcular = new javax.swing.JButton();
         jComboBoxTipoDespido = new javax.swing.JComboBox();
+        jButtonBorrar = new javax.swing.JButton();
+        jButtonImprimir = new javax.swing.JButton();
+        jButtonCopiarInforme = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -189,15 +189,15 @@ public class Despido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -219,60 +219,15 @@ public class Despido extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTextAreaInforme);
 
-        jButtonCopiarInforme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
-        jButtonCopiarInforme.setText("Copiar");
-        jButtonCopiarInforme.setToolTipText("");
-        jButtonCopiarInforme.setEnabled(false);
-        jButtonCopiarInforme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCopiarInformeActionPerformed(evt);
-            }
-        });
-
-        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
-        jButtonImprimir.setText("Imprimir");
-        jButtonImprimir.setEnabled(false);
-        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImprimirActionPerformed(evt);
-            }
-        });
-
-        jButtonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
-        jButtonBorrar.setText("Borrar todo");
-        jButtonBorrar.setEnabled(false);
-        jButtonBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButtonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonImprimir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonCopiarInforme)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -280,17 +235,8 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonBorrar)
-                            .addComponent(jButtonImprimir)
-                            .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -301,6 +247,7 @@ public class Despido extends javax.swing.JFrame {
         jButtonCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/calcular_Peque.png"))); // NOI18N
         jButtonCalcular.setText("Calcular");
         jButtonCalcular.setToolTipText("");
+        jButtonCalcular.setEnabled(false);
         jButtonCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCalcularActionPerformed(evt);
@@ -312,6 +259,41 @@ public class Despido extends javax.swing.JFrame {
         jComboBoxTipoDespido.setForeground(new java.awt.Color(0, 0, 153));
         jComboBoxTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente", "Causa objetiva" }));
 
+        jButtonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
+        jButtonBorrar.setEnabled(false);
+        jButtonBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
+            }
+        });
+
+        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
+        jButtonImprimir.setEnabled(false);
+        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+
+        jButtonCopiarInforme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
+        jButtonCopiarInforme.setToolTipText("");
+        jButtonCopiarInforme.setEnabled(false);
+        jButtonCopiarInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCopiarInformeActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("jButton1");
+        jButton1.setEnabled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -319,18 +301,34 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxTipoDespido, 0, 195, Short.MAX_VALUE)
+                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCalcular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBorrar)
+                    .addComponent(jButtonImprimir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -358,28 +356,16 @@ public class Despido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        
-        jTextFieldBaseCotizacion.setText(null);
-        jTextFieldDiasTrabajados.setText(null);
-        jTextFieldFechaAlta.setText(null);
-        jTextFieldFechaBaja.setText(null);
-        jTextAreaInforme.setText(null);
-        jButtonBorrar.setEnabled(false);
-        jButtonImprimir.setEnabled(false);
-        jButtonCopiarInforme.setEnabled(false);
-    }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
     }//GEN-LAST:event_jTextFieldBaseCotizacionFocusGained
@@ -449,34 +435,10 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
-
-    }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
-
-    private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAreaInformeMouseClicked
-
-    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-        try {
-            boolean complete = this.jTextAreaInforme.print();
-            if (complete) {
-                JOptionPane.showMessageDialog(null, "Trabajo terminado", "Information", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Acción completada", "Impresora", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (PrinterException e) {
-            JOptionPane.showMessageDialog(null, e);
+        if (jTextFieldFechaAlta != null && jTextFieldFechaBaja != null && jTextFieldBaseCotizacion != null) {
+            this.jButtonCalcular.setEnabled(true);
         }
-    }//GEN-LAST:event_jButtonImprimirActionPerformed
-
-    private void jButtonCopiarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopiarInformeActionPerformed
-        
-        this.jTextAreaInforme.copy();
-    }//GEN-LAST:event_jButtonCopiarInformeActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
 
     private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -502,6 +464,45 @@ public class Despido extends javax.swing.JFrame {
         }
         jButtonBorrar.setEnabled(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+
+        jTextFieldBaseCotizacion.setText(null);
+        jTextFieldDiasTrabajados.setText(null);
+        jTextFieldFechaAlta.setText(null);
+        jTextFieldFechaBaja.setText(null);
+        jTextAreaInforme.setText(null);
+        jButtonBorrar.setEnabled(false);
+        jButtonImprimir.setEnabled(false);
+        jButtonCopiarInforme.setEnabled(false);
+        jButtonCalcular.setEnabled(false);
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        try {
+            boolean complete = this.jTextAreaInforme.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Trabajo terminado", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Acción completada", "Impresora", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
+    private void jButtonCopiarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopiarInformeActionPerformed
+
+        this.jTextAreaInforme.copy();
+    }//GEN-LAST:event_jButtonCopiarInformeActionPerformed
+
+    private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextAreaInformeMouseClicked
 
     /**
      * @param args the command line arguments

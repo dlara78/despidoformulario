@@ -1,19 +1,16 @@
-
-
 package DespidoFormulario;
 
 import java.util.GregorianCalendar;
-
 
 /**
  *
  * @author david
  */
 public class DespidoTrabajador {
-   
+
     static float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
-    static float DIAS_ANIO = 365;
-    
+    /*    static float DIAS_ANIO = 365;*/
+
     String nombre;
     String empresa;
     GregorianCalendar fechaAlta;
@@ -25,23 +22,29 @@ public class DespidoTrabajador {
     float diasIndemnizacionTotal = 0;
     float diasIndemnizacionPreReforma = 0;
     float diasIndemnizacionPostReforma = 0;
-        
-    
-    public DespidoTrabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion){
-        
+
+    public DespidoTrabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion) {
+
         this.nombre = nombre;
         this.empresa = empresa;
         this.fechaAlta = fechaAlta;
         this.fechaBaja = fechaBaja;
         this.baseCotizacion = baseCotizacion;
-        
     }
-    
-    public float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja){
-              
-    this.antiguedadTotal = (this.fechaBaja.getTimeInMillis() - this.fechaAlta.getTimeInMillis())/MILISEGS_POR_DIA;
-         
+
+    public String informe1() {
+        String informe = null;
+
+        informe = "Comienza el informe: " + "\nNombre: " + this.nombre
+                + "\nEmpresa: " + this.empresa;
+        return informe;
+    }
+
+    public float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
+
+        this.antiguedadTotal = (this.fechaBaja.getTimeInMillis() - this.fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
+
         return antiguedadTotal;
     }
-    
+
 }
