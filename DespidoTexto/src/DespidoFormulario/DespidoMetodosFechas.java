@@ -30,8 +30,8 @@ public class DespidoMetodosFechas {
 
     public static float convertirFechaInicialStringEnMilis(String fechaString) {
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateFecha = null;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dateFecha = df.parse(fechaString);
         } catch (ParseException ex) {
