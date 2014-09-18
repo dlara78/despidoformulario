@@ -40,10 +40,9 @@ public class Despido extends javax.swing.JFrame {
         jTextFieldDiasTrabajados = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldFechaAlta = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldFechaBaja = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jDateChooserFechaAlta = new com.toedter.calendar.JDateChooser();
+        jDateChooserFechaBaja = new com.toedter.calendar.JDateChooser();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -132,31 +131,10 @@ public class Despido extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Fecha Alta");
 
-        jTextFieldFechaAlta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFechaAlta.setToolTipText("");
-        jTextFieldFechaAlta.setName(""); // NOI18N
-        jTextFieldFechaAlta.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaAltaFocusLost(evt);
-            }
-        });
-        jTextFieldFechaAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFechaAltaActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Baja");
-
-        jTextFieldFechaBaja.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFechaBaja.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldFechaBajaFocusLost(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -169,36 +147,33 @@ public class Despido extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFechaBaja)
-                    .addComponent(jTextFieldFechaAlta))
+                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFechaAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -206,9 +181,7 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -312,7 +285,7 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTipoDespido, 0, 195, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTipoDespido, 0, 370, Short.MAX_VALUE)
                     .addComponent(jButtonCalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -397,8 +370,8 @@ public class Despido extends javax.swing.JFrame {
             this.jTextAreaInforme.setText(
                     DespidoInformes.informeCausaObjetiva(
                             tipoDespido,
-                            this.jTextFieldFechaAlta.getText(),
-                            this.jTextFieldFechaBaja.getText(),
+                            this.jDateChooserFechaAlta.getName(),
+                            this.jDateChooserFechaBaja.getName(),
                             this.jTextFieldBaseCotizacion.getText(),
                             this.jTextFieldDiasTrabajados.getText()
                     )
@@ -406,8 +379,8 @@ public class Despido extends javax.swing.JFrame {
         } else {
             this.jTextAreaInforme.setText(
                     DespidoInformes.informeImprocedente(tipoDespido,
-                            this.jTextFieldFechaAlta.getText(),
-                            this.jTextFieldFechaBaja.getText(),
+                            this.jDateChooserFechaAlta.getName(),
+                            this.jDateChooserFechaBaja.getName(),
                             this.jTextFieldBaseCotizacion.getText(),
                             this.jTextFieldDiasTrabajados.getText()
                     )
@@ -422,13 +395,13 @@ public class Despido extends javax.swing.JFrame {
         GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
         
         try {
-            fechaAlta.setTime(df.parse(jTextFieldFechaAlta.getText()));
+            fechaAlta.setTime(df.parse(jDateChooserFechaAlta.getName()));
         } catch (ParseException ex) {
             Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
-            fechaBaja.setTime(df.parse(jTextFieldFechaBaja.getText()));
+            fechaBaja.setTime(df.parse(jDateChooserFechaBaja.getName()));
         } catch (ParseException ex) {
             Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -446,35 +419,10 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
-        if (jTextFieldFechaAlta != null && jTextFieldFechaBaja != null && jTextFieldBaseCotizacion != null) {
+        if (jDateChooserFechaAlta != null && jDateChooserFechaBaja != null && jTextFieldBaseCotizacion != null) {
             this.jButtonCalcular.setEnabled(true);
         }
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
-
-    private void jTextFieldFechaAltaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaFocusLost
-//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        Date dateFecha = null;
-//        try {
-//            dateFecha = df.parse(this.jTextFieldFechaAlta.getText());
-//        } catch (ParseException ex) {
-//            this.jTextFieldFechaAlta.setText("ERROR");
-//            this.jTextAreaInforme.setText("RECUERDE: La fecha debe estar \nen el sgte formato: dd/mm/aaaa");
-//        }
-        jButtonBorrar.setEnabled(true);
-
-    }//GEN-LAST:event_jTextFieldFechaAltaFocusLost
-
-    private void jTextFieldFechaBajaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaBajaFocusLost
-//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        Date dateFecha = null;
-//        try {
-//            dateFecha = df.parse(this.jTextFieldFechaBaja.getText());
-//        } catch (ParseException ex) {
-//            this.jTextFieldFechaBaja.setText("ERROR");
-//            this.jTextAreaInforme.setText("RECUERDE: La fecha debe estar \nen el sgte formato: dd/mm/aaaa");
-//        }
-        jButtonBorrar.setEnabled(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFechaBajaFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -484,8 +432,8 @@ public class Despido extends javax.swing.JFrame {
 
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
-        jTextFieldFechaAlta.setText(null);
-        jTextFieldFechaBaja.setText(null);
+        jDateChooserFechaAlta.setName(null);
+        jDateChooserFechaBaja.setName(null);
         jTextAreaInforme.setText(null);
         jButtonBorrar.setEnabled(false);
         jButtonImprimir.setEnabled(false);
@@ -514,10 +462,6 @@ public class Despido extends javax.swing.JFrame {
     private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextAreaInformeMouseClicked
-
-    private void jTextFieldFechaAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFechaAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFechaAltaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,7 +505,8 @@ public class Despido extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCopiarInforme;
     private javax.swing.JButton jButtonImprimir;
     private javax.swing.JComboBox jComboBoxTipoDespido;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaAlta;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaBaja;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -579,7 +524,5 @@ public class Despido extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaInforme;
     private javax.swing.JTextField jTextFieldBaseCotizacion;
     private javax.swing.JTextField jTextFieldDiasTrabajados;
-    private javax.swing.JTextField jTextFieldFechaAlta;
-    private javax.swing.JTextField jTextFieldFechaBaja;
     // End of variables declaration//GEN-END:variables
 }
