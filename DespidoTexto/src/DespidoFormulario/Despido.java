@@ -1,13 +1,7 @@
 package DespidoFormulario;
 
 import java.awt.print.PrinterException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 public class Despido extends javax.swing.JFrame {
@@ -15,7 +9,7 @@ public class Despido extends javax.swing.JFrame {
     float antiguedadEnDias;
     float diasIndemCausaObjetiva = 0;
     float diasIndemnImprocedente = 0;
-    float baseCotizacionDia = 0;
+    //float baseCotizacionDia = 0;
 
     public Despido() {
         initComponents();
@@ -366,15 +360,42 @@ public class Despido extends javax.swing.JFrame {
         jButtonBorrar.setEnabled(true);
         jButtonCopiarInforme.setEnabled(true);
         jButtonImprimir.setEnabled(true);
-        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
         
+        //REVISAR ESTAS LINEAS
+        float bCotizDiaria = (Float.valueOf(this.jTextFieldBaseCotizacion.getName())) / (Float.valueOf(this.jTextFieldDiasTrabajados.getName()));
+        String informe = "Informe: " + this.jTextFieldBaseCotizacion.getName();
+        this.jTextAreaInforme.setText(informe);
+        //FIN DE REVISION
+        
+        
+        
+        
+        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
+        String fechaBaja
+                = jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)
+                + "/"
+                + jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)
+                + "/"
+                + jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR)
+                + "/";
+        String fechaAlta
+                = jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)
+                + "/"
+                + jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)
+                + "/"
+                + jDateChooserFechaAlta.getCalendar().get(Calendar.YEAR)
+                + "/";
+
+//DespidoTrabajador trabajador = new DespidoTrabajador(fechaAlta, fechaBaja, baseCotizacionDia);
+//        this.jTextAreaInforme.setText(
+//                "La base de cotización es: " + this.jTextFieldBaseCotizacion.getName()
+//                + "\nLos días trabajados son: " + this.jTextFieldDiasTrabajados.getName()
+//                + "\nLa base de cotización diaria es: " + bCotizDiaria);
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
-        if (jDateChooserFechaAlta != null && jDateChooserFechaBaja != null && jTextFieldBaseCotizacion != null) {
-            this.jButtonCalcular.setEnabled(true);
-        }
+        this.jButtonCalcular.setEnabled(true);
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

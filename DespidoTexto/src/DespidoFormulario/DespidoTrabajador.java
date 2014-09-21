@@ -32,4 +32,5 @@ public class DespidoTrabajador {
         this.baseCotizacion = baseCotizacion;
         this.antiguedadTotal = DespidoMetodosFechas.calcularFloatEntreDosFechasString(fechaBaja, fechaAlta);
     }
+    
 }
