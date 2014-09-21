@@ -132,5 +132,5 @@ public class DespidoMetodosFechas {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
     }
-
+    
 } //Corchete final de la clase DespidoMetodosFechas.

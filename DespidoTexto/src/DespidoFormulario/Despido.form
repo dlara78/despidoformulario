@@ -265,8 +265,14 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFechaAlta">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+              </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFechaBaja">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -354,7 +360,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jComboBoxTipoDespido" pref="370" max="32767" attributes="0"/>
+                      <Component id="jComboBoxTipoDespido" max="32767" attributes="0"/>
                       <Component id="jButtonCalcular" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">

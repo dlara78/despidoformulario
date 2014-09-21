@@ -11,12 +11,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Despido extends javax.swing.JFrame {
-    
+
     float antiguedadEnDias;
     float diasIndemCausaObjetiva = 0;
     float diasIndemnImprocedente = 0;
     float baseCotizacionDia = 0;
-    
+
     public Despido() {
         initComponents();
     }
@@ -135,6 +135,10 @@ public class Despido extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Baja");
+
+        jDateChooserFechaAlta.setDateFormatString("dd/MM/yyyy");
+
+        jDateChooserFechaBaja.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -285,7 +289,7 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTipoDespido, 0, 370, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -358,63 +362,12 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-        
+
         jButtonBorrar.setEnabled(true);
         jButtonCopiarInforme.setEnabled(true);
         jButtonImprimir.setEnabled(true);
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
-
-
-//Preparamos el informe.
-        if (tipoDespido.equals("Causa objetiva")) {
-            this.jTextAreaInforme.setText(
-                    DespidoInformes.informeCausaObjetiva(
-                            tipoDespido,
-                            this.jDateChooserFechaAlta.getName(),
-                            this.jDateChooserFechaBaja.getName(),
-                            this.jTextFieldBaseCotizacion.getText(),
-                            this.jTextFieldDiasTrabajados.getText()
-                    )
-            );
-        } else {
-            this.jTextAreaInforme.setText(
-                    DespidoInformes.informeImprocedente(tipoDespido,
-                            this.jDateChooserFechaAlta.getName(),
-                            this.jDateChooserFechaBaja.getName(),
-                            this.jTextFieldBaseCotizacion.getText(),
-                            this.jTextFieldDiasTrabajados.getText()
-                    )
-            );
-        }
-
-        // Ejemplo para realizar los calculos usando una clase externa no estatica
-        // Convertimos los datos de entrada a sus respectivos tipos
-        // Fechas
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        GregorianCalendar fechaAlta = (GregorianCalendar) GregorianCalendar.getInstance();
-        GregorianCalendar fechaBaja = (GregorianCalendar) GregorianCalendar.getInstance();
         
-        try {
-            fechaAlta.setTime(df.parse(jDateChooserFechaAlta.getName()));
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            fechaBaja.setTime(df.parse(jDateChooserFechaBaja.getName()));
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Base de cotizacion
-        Float BaseCotizacion = Float.parseFloat(jTextFieldBaseCotizacion.getText());
-
-        // Una vez que tenemos convertidos todos los datos, creamos una instancia de la clase DespidoTrabajador
-        DespidoTrabajador t = new DespidoTrabajador("Empleado", "Empresa", fechaAlta, fechaBaja, BaseCotizacion);
-
-        // Un vez que la hemos creado, podemos acceder a sus metodos.
-        // El metodo calcularAntiguedad, devuelve un Float, por lo que hemos asignado a antiguedad la salida
-        Float antiguedad = t.calcularAntiguedad(fechaAlta, fechaBaja);
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 

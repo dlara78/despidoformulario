@@ -2,26 +2,17 @@ package DespidoFormulario;
 
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author david
- */
 public class DespidoTrabajador {
 
     static float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
     /*    static float DIAS_ANIO = 365;*/
 
-    String nombre;
-    String empresa;
-    GregorianCalendar fechaAlta;
-    GregorianCalendar fechaBaja;
-    float baseCotizacion;
-    float antiguedadTotal;
-    float antiguedadPreReforma = 0;
-    float antiguedadPostReform = 0;
-    float diasIndemnizacionTotal = 0;
-    float diasIndemnizacionPreReforma = 0;
-    float diasIndemnizacionPostReforma = 0;
+    private String nombre;
+    private String empresa;
+    private GregorianCalendar fechaAlta;
+    private GregorianCalendar fechaBaja;
+    private float baseCotizacion;
+    private float antiguedadTotal;
 
     public DespidoTrabajador(String nombre, String empresa, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion) {
 
@@ -31,20 +22,14 @@ public class DespidoTrabajador {
         this.fechaBaja = fechaBaja;
         this.baseCotizacion = baseCotizacion;
     }
+    
+    public DespidoTrabajador(String fechaAlta, String fechaBaja, float baseCotizacion) {
 
-    public String informe1() {
-        String informe = null;
-
-        informe = "Comienza el informe: " + "\nNombre: " + this.nombre
-                + "\nEmpresa: " + this.empresa;
-        return informe;
+        this.nombre = "Nombre de prueba";
+        this.empresa = "Empresa de prueba";
+        this.fechaAlta = DespidoMetodosFechas.convertirFechaStringAGregorian(fechaAlta); //"dd/MM/yyyy"
+        this.fechaBaja = DespidoMetodosFechas.convertirFechaStringAGregorian(fechaBaja); //"dd/MM/yyyy"
+        this.baseCotizacion = baseCotizacion;
+        this.antiguedadTotal = DespidoMetodosFechas.calcularFloatEntreDosFechasString(fechaBaja, fechaAlta);
     }
-
-    public float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
-
-        this.antiguedadTotal = (this.fechaBaja.getTimeInMillis() - this.fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
-
-        return antiguedadTotal;
-    }
-
 }
