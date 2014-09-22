@@ -358,11 +358,13 @@ public class Despido extends javax.swing.JFrame {
         float bCotizacion = Float.parseFloat(this.jTextFieldBaseCotizacion.getText());
         float diasCotizados = Float.parseFloat(this.jTextFieldDiasTrabajados.getText());
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
-        
-        if (tipoDespido.equals("Despido improcedente")) {
-        this.jTextAreaInforme.setText(
-                Informes.informeCausaObjetiva(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados)
-        );} else this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados));
+
+        if (tipoDespido.equals("Causa objetiva")) {
+            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados)
+            );
+        } else {
+            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados));
+        }
 
         //        DespidoTrabajador trabajador = new DespidoTrabajador(fechaAlta, fechaBaja, bCotizDiaria);
 
