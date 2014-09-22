@@ -2,13 +2,10 @@ package DespidoFormulario;
 
 import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MetodosFechas {
 
@@ -70,17 +67,9 @@ public class MetodosFechas {
         return diasIndemnizacion;
     }
 
-    
-
     public static float baseCotizDiaria(String baseMensual, String diasTrabajados) {
         float baseCotizDia = (Float.parseFloat(baseMensual) / Float.parseFloat(diasTrabajados));
         return baseCotizDia;
-    }
-
-    public static float calcularAntiguedad(GregorianCalendar fechaAlta, GregorianCalendar fechaBaja) {
-        float antiguedadTotal;
-        antiguedadTotal = (fechaBaja.getTimeInMillis() - fechaAlta.getTimeInMillis()) / MILISEGS_POR_DIA;
-        return antiguedadTotal;
     }
 
     public static float calculaImporteIndemnObjetiva(float diasIndemnizacion, float baseDiaria) {
@@ -88,8 +77,17 @@ public class MetodosFechas {
         return importeIndemnObjetiva;
     }
 
-    static long convertirFechaInicialStringEnMilis(String fecha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 } //Corchete final de la clase MetodosFechas.
+
+//  METODOS PARA PASAR UN JCALENDAR A STRING
+//        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
+//        String fechaBaja
+//                = String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
+//                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)) + "/"
+//                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR));
+//
+//        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
+//        String fechaAlta
+//                = String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
+//                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)) + "/"
+//                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.YEAR));

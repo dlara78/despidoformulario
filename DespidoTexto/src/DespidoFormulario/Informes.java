@@ -8,10 +8,10 @@ public class Informes {
 
     public static String informeCausaObjetiva(
             String tipoDespido, Date fechaAlta, Date fechaBaja,
-            String bCotiz, String diasCotizados) {
+            float bCotiz, float diasCotizados) {
 
         float antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
-        float bCotizDiaria = Float.valueOf(bCotiz) / Float.valueOf(diasCotizados);
+        float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
         float topeCausaObjetiva = 360f;
@@ -35,7 +35,7 @@ public class Informes {
 
     public static String informeImprocedente(
             String tipoDespido, Date fechaAlta, Date fechaBaja,
-            String bCotiz, String diasCotizados) {
+            float bCotiz, float diasCotizados) {
 
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
 
@@ -44,7 +44,7 @@ public class Informes {
         float reformaMilis = reforma.getTimeInMillis();
         float fAltaMilis = MetodosFechas.convertirFechaInicialDateEnMilis(fechaAlta);
         float fBajaMilis = MetodosFechas.convertirFechaFinalDateEnMilis(fechaBaja);
-        float bCotizDiaria = Float.valueOf(bCotiz) / Float.valueOf(diasCotizados);
+        float bCotizDiaria = bCotiz/diasCotizados;
         float numDiasIndemnizacion;
         float numDiasIndemnPreReforma;
         float numDiasIndemnPostReforma;
