@@ -1,6 +1,6 @@
 package DespidoFormulario;
 
-import static DespidoFormulario.DespidoTrabajador.MILISEGS_POR_DIA;
+import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,20 +10,52 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DespidoMetodosFechas {
+public class MetodosFechas {
+
+    public static String convertirDateAFechaBonita(Date fechaDate) {
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dfCompleta = DateFormat.getDateInstance(DateFormat.FULL);
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(fechaDate);
+        String fechaBonita = dfCompleta.format(fechaDate);
+        return fechaBonita;
+    }
+
+    public static float calcularDiasEntreDosFechasDate(Date fechaBaja, Date fechaAlta) {
+        
+        Calendar fBaja = Calendar.getInstance();
+        Calendar fAlta = Calendar.getInstance();
+        fBaja.setTime(fechaBaja);
+        fBaja.add(Calendar.HOUR, 24);
+        fAlta.setTime(fechaAlta);
+        float diferenciaEnMilis = fBaja.getTimeInMillis()- fAlta.getTimeInMillis();
+        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
+        return diferenciaEnDias;
+    }
+
+    public static float convertirFechaFinalDateEnMilis(Date fechaFinal) {
+
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(fechaFinal);
+        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
+        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
+
+        return fechaEnMilis;
+    }
 
     public static float diasHastaReforma(String fecha) {
         float dias;
-        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
-        float temp1 = reforma.getTimeInMillis() - DespidoMetodosFechas.convertirFechaInicialStringEnMilis(fecha);
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
+        float temp1 = reforma.getTimeInMillis() - MetodosFechas.convertirFechaInicialStringEnMilis(fecha);
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
     public static float diasDesdeReforma(String fecha) {
         float dias;
-        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
-        float temp1 = DespidoMetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
+        float temp1 = MetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
@@ -132,5 +164,5 @@ public class DespidoMetodosFechas {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
     }
-    
-} //Corchete final de la clase DespidoMetodosFechas.
+
+} //Corchete final de la clase MetodosFechas.
