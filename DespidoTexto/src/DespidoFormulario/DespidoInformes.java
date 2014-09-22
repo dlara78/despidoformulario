@@ -1,6 +1,5 @@
 package DespidoFormulario;
 
-import java.text.DateFormat;
 import java.util.GregorianCalendar;
 import static DespidoFormulario.DespidoTrabajador.MILISEGS_POR_DIA;
 

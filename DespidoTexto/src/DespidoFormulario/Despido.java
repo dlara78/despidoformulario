@@ -364,11 +364,13 @@ public class Despido extends javax.swing.JFrame {
         float bCotizDiaria = Float.parseFloat(this.jTextFieldBaseCotizacion.getText()) / Float.parseFloat(this.jTextFieldDiasTrabajados.getText());
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
+        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
         String fechaBaja
                 = String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
                 + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)) + "/"
                 + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR));
 
+        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
         String fechaAlta
                 = String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
                 + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)) + "/"
