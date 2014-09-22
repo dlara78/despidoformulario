@@ -23,114 +23,46 @@ public class MetodosFechas {
     }
 
     public static float calcularDiasEntreDosFechasDate(Date fechaBaja, Date fechaAlta) {
-        
+
         Calendar fBaja = Calendar.getInstance();
         Calendar fAlta = Calendar.getInstance();
         fBaja.setTime(fechaBaja);
         fBaja.add(Calendar.HOUR, 24);
         fAlta.setTime(fechaAlta);
-        float diferenciaEnMilis = fBaja.getTimeInMillis()- fAlta.getTimeInMillis();
+        float diferenciaEnMilis = fBaja.getTimeInMillis() - fAlta.getTimeInMillis();
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
     }
 
-    public static float convertirFechaFinalDateEnMilis(Date fechaFinal) {
+    public static float convertirFechaInicialDateEnMilis(Date fechaInicial) {
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(fechaInicial);
+        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
+        return fechaEnMilis;
+    }
 
+    public static float convertirFechaFinalDateEnMilis(Date fechaFinal) {
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(fechaFinal);
         calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
         float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-
         return fechaEnMilis;
     }
 
-    public static float diasHastaReforma(String fecha) {
+    public static float diasHastaReforma(Date fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
-        float temp1 = reforma.getTimeInMillis() - MetodosFechas.convertirFechaInicialStringEnMilis(fecha);
+        float temp1 = reforma.getTimeInMillis() - MetodosFechas.convertirFechaInicialDateEnMilis(fecha);
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
-    public static float diasDesdeReforma(String fecha) {
+    public static float diasDesdeReforma(Date fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
-        float temp1 = MetodosFechas.convertirFechaFinalStringEnMilis(fecha) - reforma.getTimeInMillis();
+        float temp1 = MetodosFechas.convertirFechaFinalDateEnMilis(fecha) - reforma.getTimeInMillis();
         dias = temp1 / MILISEGS_POR_DIA;
         return dias;
-    }
-
-    public static float convertirFechaInicialStringEnMilis(String fechaString) {
-
-        Date dateFecha = null;
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            dateFecha = df.parse(fechaString);
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar calFechaIntroducida = Calendar.getInstance();
-        calFechaIntroducida.setTime(dateFecha);
-        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-
-        return fechaEnMilis;
-    }
-
-    public static float convertirFechaFinalStringEnMilis(String fechaString) {
-
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateFecha = null;
-        try {
-            dateFecha = df.parse(fechaString);
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar calFechaIntroducida = Calendar.getInstance();
-        calFechaIntroducida.setTime(dateFecha);
-        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
-        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-
-        return fechaEnMilis;
-    }
-
-    public static GregorianCalendar convertirFechaStringAGregorian(String fechaImportada) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        GregorianCalendar fechaGregorian = (GregorianCalendar) GregorianCalendar.getInstance();
-
-        try {
-            fechaGregorian.setTime(df.parse(fechaImportada));
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        fechaGregorian.roll(Calendar.HOUR, 24);
-
-        return fechaGregorian;
-    }
-
-    public static String convertirAFechaBonita(String fechaString) {
-
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat dfCompleta = DateFormat.getDateInstance(DateFormat.FULL);
-
-        Date dateFecha = null;
-        try {
-            dateFecha = df.parse(fechaString);
-        } catch (ParseException ex) {
-            Logger.getLogger(Despido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Calendar calFechaIntroducida = Calendar.getInstance();
-        calFechaIntroducida.setTime(dateFecha);
-
-        String fechaBonita = dfCompleta.format(dateFecha);
-
-        return fechaBonita;
-    }
-
-    public static float calcularFloatEntreDosFechasString(String fechaBaja, String fechaAlta) {
-        float diferenciaEnMilis = convertirFechaFinalStringEnMilis(fechaBaja) - convertirFechaInicialStringEnMilis(fechaAlta);
-        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
-        return diferenciaEnDias;
     }
 
     public static float calculaDiasIndemnObjetiva(float antiguedadTotal) {
@@ -138,16 +70,7 @@ public class MetodosFechas {
         return diasIndemnizacion;
     }
 
-    public static float calculaDiasImprocedente(String fechaFin, String fechaInicio) {
-        //Metodo "en construccion"       
-        float diasIndemnizacion = 0;
-        Calendar fechaAlta = Calendar.getInstance();
-        Calendar fechaBaja = Calendar.getInstance();
-        Calendar reforma = Calendar.getInstance();
-
-        return diasIndemnizacion;
-
-    }
+    
 
     public static float baseCotizDiaria(String baseMensual, String diasTrabajados) {
         float baseCotizDia = (Float.parseFloat(baseMensual) / Float.parseFloat(diasTrabajados));
@@ -163,6 +86,10 @@ public class MetodosFechas {
     public static float calculaImporteIndemnObjetiva(float diasIndemnizacion, float baseDiaria) {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
+    }
+
+    static long convertirFechaInicialStringEnMilis(String fecha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 } //Corchete final de la clase MetodosFechas.

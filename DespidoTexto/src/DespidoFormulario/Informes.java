@@ -2,14 +2,15 @@ package DespidoFormulario;
 
 import java.util.GregorianCalendar;
 import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
+import java.util.Date;
 
 public class Informes {
 
     public static String informeCausaObjetiva(
-            String tipoDespido, String fechaAlta, String fechaBaja,
+            String tipoDespido, Date fechaAlta, Date fechaBaja,
             String bCotiz, String diasCotizados) {
 
-        float antiguedadTotal = MetodosFechas.calcularFloatEntreDosFechasString(fechaBaja, fechaAlta);
+        float antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
         float bCotizDiaria = Float.valueOf(bCotiz) / Float.valueOf(diasCotizados);
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
@@ -22,8 +23,8 @@ public class Informes {
         }
         
         String informe = ("\nTipo de despido: " + tipoDespido
-                + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
-                + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
+                + "\n\nALTA: " + MetodosFechas.convertirDateAFechaBonita(fechaAlta)
+                + "\nBAJA: " + MetodosFechas.convertirDateAFechaBonita(fechaBaja)
                 + "\n(Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\n\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
@@ -33,7 +34,7 @@ public class Informes {
     }
 
     public static String informeImprocedente(
-            String tipoDespido, String fechaAlta, String fechaBaja,
+            String tipoDespido, Date fechaAlta, Date fechaBaja,
             String bCotiz, String diasCotizados) {
 
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
@@ -41,8 +42,8 @@ public class Informes {
         float antiguedadTotal;
         float antiguedadTotalSumada = 0;
         float reformaMilis = reforma.getTimeInMillis();
-        float fAltaMilis = MetodosFechas.convertirFechaInicialStringEnMilis(fechaAlta);
-        float fBajaMilis = MetodosFechas.convertirFechaFinalStringEnMilis(fechaBaja);
+        float fAltaMilis = MetodosFechas.convertirFechaInicialDateEnMilis(fechaAlta);
+        float fBajaMilis = MetodosFechas.convertirFechaFinalDateEnMilis(fechaBaja);
         float bCotizDiaria = Float.valueOf(bCotiz) / Float.valueOf(diasCotizados);
         float numDiasIndemnizacion;
         float numDiasIndemnPreReforma;
@@ -62,7 +63,7 @@ public class Informes {
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > reformaMilis) {
 
-            antiguedadTotal = MetodosFechas.calcularFloatEntreDosFechasString(fechaBaja, fechaAlta);
+            antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
             numDiasIndemnizacion = antiguedadTotal * (33f / 365f);
@@ -75,7 +76,7 @@ public class Informes {
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= reformaMilis) {
 
-            antiguedadTotal = MetodosFechas.calcularFloatEntreDosFechasString(fechaBaja, fechaAlta);
+            antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
             diasHastaReforma = antiguedadTotal;
             diasDesdeReforma = 0;
             numDiasIndemnizacion = antiguedadTotal * (45f / 365f);
@@ -115,8 +116,8 @@ public class Informes {
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
 
         String informe = ("\nTipo de despido: " + tipoDespido
-                + "\n\nALTA: " + MetodosFechas.convertirAFechaBonita(fechaAlta)
-                + "\nBAJA: " + MetodosFechas.convertirAFechaBonita(fechaBaja)
+                + "\n\nALTA: " + MetodosFechas.convertirDateAFechaBonita(fechaAlta)
+                + "\nBAJA: " + MetodosFechas.convertirDateAFechaBonita(fechaBaja)
                 + "\n\n Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias. \n"
                 + textoControl
                 + "\n\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
