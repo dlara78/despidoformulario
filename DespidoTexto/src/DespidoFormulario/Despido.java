@@ -360,37 +360,23 @@ public class Despido extends javax.swing.JFrame {
         jButtonBorrar.setEnabled(true);
         jButtonCopiarInforme.setEnabled(true);
         jButtonImprimir.setEnabled(true);
-        
-        //REVISAR ESTAS LINEAS
-        float bCotizDiaria = (Float.valueOf(this.jTextFieldBaseCotizacion.getName())) / (Float.valueOf(this.jTextFieldDiasTrabajados.getName()));
-        String informe = "Informe: " + this.jTextFieldBaseCotizacion.getName();
-        this.jTextAreaInforme.setText(informe);
-        //FIN DE REVISION
-        
-        
-        
-        
-        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
-        String fechaBaja
-                = jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)
-                + "/"
-                + jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)
-                + "/"
-                + jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR)
-                + "/";
-        String fechaAlta
-                = jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)
-                + "/"
-                + jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)
-                + "/"
-                + jDateChooserFechaAlta.getCalendar().get(Calendar.YEAR)
-                + "/";
 
-//DespidoTrabajador trabajador = new DespidoTrabajador(fechaAlta, fechaBaja, baseCotizacionDia);
-//        this.jTextAreaInforme.setText(
-//                "La base de cotización es: " + this.jTextFieldBaseCotizacion.getName()
-//                + "\nLos días trabajados son: " + this.jTextFieldDiasTrabajados.getName()
-//                + "\nLa base de cotización diaria es: " + bCotizDiaria);
+        float bCotizDiaria = Float.parseFloat(this.jTextFieldBaseCotizacion.getText()) / Float.parseFloat(this.jTextFieldDiasTrabajados.getText());
+        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
+
+        String fechaBaja
+                = String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
+                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)) + "/"
+                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR));
+
+        String fechaAlta
+                = String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
+                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)) + "/"
+                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.YEAR));
+
+        DespidoTrabajador trabajador = new DespidoTrabajador(fechaAlta, fechaBaja, bCotizDiaria);
+
+//        this.jTextAreaInforme.setText("Texto de prueba");
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
