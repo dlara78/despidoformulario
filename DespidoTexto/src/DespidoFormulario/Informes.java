@@ -19,8 +19,11 @@ public class Informes {
             textoTopeMens = " (TOPE ALCANZADO)";
         }
 
+        GregorianCalendar hoy = new GregorianCalendar();
+
         String informe
-                = ("\nDespido seleccionado: " + tipoDespido
+                = ("Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
+                + "\nDespido seleccionado: " + tipoDespido
                 + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
                 + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
@@ -103,14 +106,17 @@ public class Informes {
             }
 
             textoControl
-                    = "\n( " + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
+                    = "\n(" + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
                     + " y " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
         };
 
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
 
+        GregorianCalendar hoy = new GregorianCalendar();
+
         String informe
-                = ("\nDespido seleccionado: " + tipoDespido
+                = ("Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
+                + "\nDespido seleccionado: " + tipoDespido
                 + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
                 + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"

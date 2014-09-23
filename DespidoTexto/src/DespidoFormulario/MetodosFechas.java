@@ -3,7 +3,6 @@ package DespidoFormulario;
 import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -16,7 +15,7 @@ public class MetodosFechas {
     }
 
     public static String formatearFechaCompleta(GregorianCalendar fechaDate) {
-        DateFormat formatoCompleto = new SimpleDateFormat("EEE, dd/MM/yyyy, HH:mm:SS");
+        DateFormat formatoCompleto = new SimpleDateFormat("EEE, dd/MM/yyyy, HH:mm:S");
         String fechaBonita = formatoCompleto.format(fechaDate.getTime());
         return fechaBonita;
     }
@@ -36,10 +35,9 @@ public class MetodosFechas {
     }
 
     public static float diasDesdeReforma(GregorianCalendar fecha) {
-        float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
         float temp1 = fecha.getTimeInMillis() - reforma.getTimeInMillis();
-        dias = temp1 / MILISEGS_POR_DIA;
+        float dias = temp1 / MILISEGS_POR_DIA;
         return dias;
     }
 
