@@ -2,13 +2,12 @@ package DespidoFormulario;
 
 import java.util.GregorianCalendar;
 import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
-import java.util.Date;
 
 public class Informes {
 
-    public static String informeCausaObjetiva(String tipoDespido, Date fechaAlta, Date fechaBaja, float bCotiz, float diasCotizados) {
+    public static String informeCausaObjetiva(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados) {
 
-        float antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
+        float antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
@@ -22,8 +21,8 @@ public class Informes {
 
         String informe
                 = ("\nDespido seleccionado: " + tipoDespido
-                + "\nFecha de alta: " + MetodosFechas.convertirDateAFechaBonita(fechaAlta)
-                + "\nFecha de baja: " + MetodosFechas.convertirDateAFechaBonita(fechaBaja)
+                + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
+                + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
                 + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\nDías a indemnizar: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
@@ -33,16 +32,16 @@ public class Informes {
     }
 
     public static String informeImprocedente(
-            String tipoDespido, Date fechaAlta, Date fechaBaja,
+            String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja,
             float bCotiz, float diasCotizados) {
 
-        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0);
+        GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
         float antiguedadTotal;
         float antiguedadTotalSumada = 0;
         float reformaMilis = reforma.getTimeInMillis();
-        float fAltaMilis = MetodosFechas.convertirFechaInicialDateEnMilis(fechaAlta);
-        float fBajaMilis = MetodosFechas.convertirFechaFinalDateEnMilis(fechaBaja);
+        float fAltaMilis = fechaAlta.getTimeInMillis();
+        float fBajaMilis = fechaBaja.getTimeInMillis();
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion;
         float numDiasIndemnPreReforma;
@@ -61,7 +60,7 @@ public class Informes {
 
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > reformaMilis) {
-            antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
+            antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
             numDiasIndemnizacion = antiguedadTotal * (33f / 365f);
@@ -72,7 +71,7 @@ public class Informes {
 
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= reformaMilis) {
-            antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
+            antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = antiguedadTotal;
             diasDesdeReforma = 0;
             numDiasIndemnizacion = antiguedadTotal * (45f / 365f);
@@ -112,8 +111,8 @@ public class Informes {
 
         String informe
                 = ("\nDespido seleccionado: " + tipoDespido
-                + "\nFecha de alta: " + MetodosFechas.convertirDateAFechaBonita(fechaAlta)
-                + "\nFecha de baja: " + MetodosFechas.convertirDateAFechaBonita(fechaBaja)
+                + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
+                + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
                 + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + textoControl
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
@@ -123,22 +122,5 @@ public class Informes {
 
         return informe;
     }
-    
-    public static String informeControl (String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados){
-        
-        GregorianCalendar finMaternidad = new GregorianCalendar();
-        finMaternidad = fechaBaja;
-        fechaBaja.add(GregorianCalendar.DAY_OF_MONTH, 112);
-        
-        String informe
-                = ("\nDespido seleccionado: " + tipoDespido
-                + "\nFecha de alta: " + fechaAlta.getTime()
-                + "\nFecha de baja: " + fechaBaja.getTime()
-                + "\nBase de cotización: " + bCotiz + " (en " + diasCotizados+  " dias cotizados)"
-                + "\nSimulación fin maternidad: " + finMaternidad.getTime()
-                );
 
-        return informe; 
-    }
-
-}
+} //Fin de la Clase Informes

@@ -372,19 +372,12 @@ public class Despido extends javax.swing.JFrame {
                 jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
-        this.jTextAreaInforme.setText(
-                        Informes.informeControl(tipoDespido,
-                        fechaAlta,
-                        fechaBaja,
-                        bCotizacion,
-                        diasCotizados));
-
-//        if (tipoDespido.equals("Causa objetiva")) {
-//            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados)
-//            );
-//        } else {
-//            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados));
-//        }
+        if (tipoDespido.equals("Causa objetiva")) {
+            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados)
+            );
+        } else {
+            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados));
+        }
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
