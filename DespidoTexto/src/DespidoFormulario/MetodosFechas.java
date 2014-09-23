@@ -27,23 +27,6 @@ public class MetodosFechas {
         return diferenciaEnDias;
     }
 
-//    public static float convertirFechaInicialDateEnMilis(Date fechaInicial) {
-//        Calendar calFechaIntroducida = Calendar.getInstance();
-//        calFechaIntroducida.setTime(fechaInicial);
-//        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-//        return fechaEnMilis;
-//    }
-
-    public static float convertirFechaFinalDateEnMilis(Date fechaFinal) {
-        Calendar calFechaIntroducida = Calendar.getInstance();
-        calFechaIntroducida.setTime(fechaFinal);
-        calFechaIntroducida.set(Calendar.HOUR, 23);  //Esta linea es para que cuente el día completo.
-        calFechaIntroducida.set(Calendar.MINUTE, 59);  //Esta linea es para que cuente el día completo.
-//        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
-        float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
-        return fechaEnMilis;
-    }
-
     public static float diasHastaReforma(GregorianCalendar fecha) {
         float dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
