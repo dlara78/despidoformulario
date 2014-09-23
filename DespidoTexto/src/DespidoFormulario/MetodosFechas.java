@@ -9,26 +9,48 @@ import java.util.GregorianCalendar;
 
 public class MetodosFechas {
 
+    public static String convertirGregCalAFechaBonita(GregorianCalendar fechaDate) {
+        DateFormat formatoElegante = DateFormat.getDateInstance(DateFormat.FULL);
+        String fechaBonita = formatoElegante.format(fechaDate);
+        return fechaBonita;
+    }
+    
+        public static String convertirGregCalAFechaCompleta(GregorianCalendar fechaDate) {
+        DateFormat formatoCompleto = new SimpleDateFormat("dd/MM/yyyy, HH:mm:SS");
+        String fechaBonita = formatoCompleto.format(fechaDate);
+        return fechaBonita;
+    }
+    
     public static String convertirDateAFechaBonita(Date fechaDate) {
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat dfCompleta = DateFormat.getDateInstance(DateFormat.FULL);
+        DateFormat formatoElegante = DateFormat.getDateInstance(DateFormat.FULL);
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(fechaDate);
-        String fechaBonita = dfCompleta.format(fechaDate);
+        String fechaBonita = formatoElegante.format(fechaDate);
+        return fechaBonita;
+    }
+
+    public static String convertirDateAFechaCompleta(Date fechaDate) {
+
+        DateFormat formatoCompleto = new SimpleDateFormat("dd/MM/yyyy, HH:mm:SS");
+        Calendar calFechaIntroducida = Calendar.getInstance();
+        calFechaIntroducida.setTime(fechaDate);
+        String fechaBonita = formatoCompleto.format(fechaDate);
         return fechaBonita;
     }
 
     public static float calcularDiasEntreDosFechasDate(Date fechaBaja, Date fechaAlta) {
 
-        Calendar fBaja = Calendar.getInstance();
-        Calendar fAlta = Calendar.getInstance();
-        fBaja.setTime(fechaBaja);
-        fBaja.add(Calendar.HOUR, 24);
-        fAlta.setTime(fechaAlta);
-        float diferenciaEnMilis = fBaja.getTimeInMillis() - fAlta.getTimeInMillis();
-        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
-        return diferenciaEnDias;
+        return (int) ((fechaBaja.getTime() - fechaAlta.getTime()) / (1000 * 60 * 60 * 24));
+
+//        GregorianCalendar fBaja = new GregorianCalendar();
+//        GregorianCalendar fAlta = new GregorianCalendar();
+//        fBaja.setTime(fechaBaja);
+//        fBaja.add(Calendar.HOUR, 24);
+//        fAlta.setTime(fechaAlta);
+//        float diferenciaEnMilis = fBaja.getTimeInMillis() - fAlta.getTimeInMillis();
+//        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
+//        return diferenciaEnDias;
     }
 
     public static float convertirFechaInicialDateEnMilis(Date fechaInicial) {
@@ -41,7 +63,9 @@ public class MetodosFechas {
     public static float convertirFechaFinalDateEnMilis(Date fechaFinal) {
         Calendar calFechaIntroducida = Calendar.getInstance();
         calFechaIntroducida.setTime(fechaFinal);
-        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
+        calFechaIntroducida.set(Calendar.HOUR, 23);  //Esta linea es para que cuente el día completo.
+        calFechaIntroducida.set(Calendar.MINUTE, 59);  //Esta linea es para que cuente el día completo.
+//        calFechaIntroducida.add(Calendar.HOUR, 24);  //Esta linea es para que cuente el día completo.
         float fechaEnMilis = calFechaIntroducida.getTimeInMillis();
         return fechaEnMilis;
     }

@@ -61,7 +61,6 @@ public class Informes {
 
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > reformaMilis) {
-
             antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
@@ -73,7 +72,6 @@ public class Informes {
 
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= reformaMilis) {
-
             antiguedadTotal = MetodosFechas.calcularDiasEntreDosFechasDate(fechaBaja, fechaAlta);
             diasHastaReforma = antiguedadTotal;
             diasDesdeReforma = 0;
@@ -85,7 +83,6 @@ public class Informes {
 
             //El siguiente IF es cuando la reforma afecta al periodo.    
         } else {
-
             antiguedadPREreforma = (reformaMilis - fAltaMilis) / MILISEGS_POR_DIA;
             antiguedadPOSTreforma = (fBajaMilis - reformaMilis) / MILISEGS_POR_DIA;
             antiguedadTotalSumada = antiguedadPREreforma + antiguedadPOSTreforma;
@@ -119,12 +116,29 @@ public class Informes {
                 + "\nFecha de baja: " + MetodosFechas.convertirDateAFechaBonita(fechaBaja)
                 + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
                 + textoControl
-                + "\nLa base de cotización diaria es: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
-                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) 
+                + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
+                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
                 + textoTopeMens
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
 
         return informe;
+    }
+    
+    public static String informeControl (String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados){
+        
+        GregorianCalendar finMaternidad = new GregorianCalendar();
+        finMaternidad = fechaBaja;
+        fechaBaja.add(GregorianCalendar.DAY_OF_MONTH, 112);
+        
+        String informe
+                = ("\nDespido seleccionado: " + tipoDespido
+                + "\nFecha de alta: " + fechaAlta.getTime()
+                + "\nFecha de baja: " + fechaBaja.getTime()
+                + "\nBase de cotización: " + bCotiz + " (en " + diasCotizados+  " dias cotizados)"
+                + "\nSimulación fin maternidad: " + finMaternidad.getTime()
+                );
+
+        return informe; 
     }
 
 }

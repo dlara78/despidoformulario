@@ -1,6 +1,8 @@
 package DespidoFormulario;
 
 import java.awt.print.PrinterException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 public class Despido extends javax.swing.JFrame {
@@ -359,14 +361,30 @@ public class Despido extends javax.swing.JFrame {
         float diasCotizados = Float.parseFloat(this.jTextFieldDiasTrabajados.getText());
         String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
 
-        if (tipoDespido.equals("Causa objetiva")) {
-            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados)
-            );
-        } else {
-            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados));
-        }
+        GregorianCalendar fechaAlta = new GregorianCalendar();
+        fechaAlta.setTime(jDateChooserFechaAlta.getDate());
 
-        //        DespidoTrabajador trabajador = new DespidoTrabajador(fechaAlta, fechaBaja, bCotizDiaria);
+        //Completar las 24 horas de la fecha de baja.
+        GregorianCalendar fechaBaja = new GregorianCalendar();
+        fechaBaja.set(
+                jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR),
+                jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH),
+                jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+        //Fin del bloque que AFINA la fecha de baja.
+
+        this.jTextAreaInforme.setText(
+                        Informes.informeControl(tipoDespido,
+                        fechaAlta,
+                        fechaBaja,
+                        bCotizacion,
+                        diasCotizados));
+
+//        if (tipoDespido.equals("Causa objetiva")) {
+//            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados)
+//            );
+//        } else {
+//            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, jDateChooserFechaAlta.getDate(), jDateChooserFechaBaja.getDate(), bCotizacion, diasCotizados));
+//        }
 
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
@@ -382,8 +400,8 @@ public class Despido extends javax.swing.JFrame {
 
         jTextFieldBaseCotizacion.setText(null);
         jTextFieldDiasTrabajados.setText(null);
-        jDateChooserFechaAlta.setName(null);
-        jDateChooserFechaBaja.setName(null);
+        jDateChooserFechaAlta.setCalendar(null);
+        jDateChooserFechaBaja.setCalendar(null);
         jTextAreaInforme.setText(null);
         jButtonBorrar.setEnabled(false);
         jButtonImprimir.setEnabled(false);
