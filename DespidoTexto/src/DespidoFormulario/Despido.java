@@ -310,7 +310,7 @@ public class Despido extends javax.swing.JFrame {
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/Agelso.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/Agelso_blue.jpg"))); // NOI18N
         jLabel3.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
