@@ -13,15 +13,15 @@ public class Despido extends javax.swing.JFrame {
     //float baseCotizacionDia = 0;
 
     public void limpiarFormulario() {
-        jTextFieldBaseCotizacion.setText(null);
-        jTextFieldDiasTrabajados.setText(null);
-        jDateChooserFechaAlta.setCalendar(null);
-        jDateChooserFechaBaja.setCalendar(null);
-        jTextAreaInforme.setText(null);
-        jButtonBorrar.setEnabled(false);
-        jButtonImprimir.setEnabled(false);
-        jButtonCopiarInforme.setEnabled(false);
-        jButtonCalcular.setEnabled(false);
+        txtBaseCotizacion.setText(null);
+        txtDiasCotizados.setText(null);
+        txtFechaAlta.setCalendar(null);
+        txtFechaBaja.setCalendar(null);
+        txtResultado.setText(null);
+        btnBorrar.setEnabled(false);
+        btnImprimir.setEnabled(false);
+        btnCopy.setEnabled(false);
+        btnCalcular.setEnabled(false);
     }
 
     public Despido() {
@@ -37,24 +37,23 @@ public class Despido extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldBaseCotizacion = new javax.swing.JTextField();
+        txtBaseCotizacion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldDiasTrabajados = new javax.swing.JTextField();
+        txtDiasCotizados = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooserFechaAlta = new com.toedter.calendar.JDateChooser();
-        jDateChooserFechaBaja = new com.toedter.calendar.JDateChooser();
+        txtFechaAlta = new com.toedter.calendar.JDateChooser();
+        txtFechaBaja = new com.toedter.calendar.JDateChooser();
         jPanel6 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaInforme = new javax.swing.JTextArea();
+        txtResultado = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
-        jButtonCalcular = new javax.swing.JButton();
-        jComboBoxTipoDespido = new javax.swing.JComboBox();
-        jButtonBorrar = new javax.swing.JButton();
-        jButtonImprimir = new javax.swing.JButton();
-        jButtonCopiarInforme = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
+        cmbTipoDespido = new javax.swing.JComboBox();
+        btnBorrar = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
+        btnCopy = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -67,6 +66,7 @@ public class Despido extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 204, 153));
 
         jPanel2.setBackground(new java.awt.Color(158, 194, 245));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del contrato"));
 
         jPanel3.setBackground(new java.awt.Color(189, 214, 248));
 
@@ -74,26 +74,36 @@ public class Despido extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Base Cotización");
+        jLabel1.setText("B. Cotización");
 
-        jTextFieldBaseCotizacion.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtBaseCotizacion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldBaseCotizacionFocusGained(evt);
+                txtBaseCotizacionFocusGained(evt);
+            }
+        });
+        txtBaseCotizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBaseCotizacionActionPerformed(evt);
             }
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Días cotizados");
 
-        jTextFieldDiasTrabajados.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtDiasCotizados.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldDiasTrabajadosFocusGained(evt);
+                txtDiasCotizadosFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldDiasTrabajadosFocusLost(evt);
+                txtDiasCotizadosFocusLost(evt);
+            }
+        });
+        txtDiasCotizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiasCotizadosActionPerformed(evt);
             }
         });
 
@@ -108,8 +118,8 @@ public class Despido extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDiasTrabajados, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(jTextFieldBaseCotizacion))
+                    .addComponent(txtDiasCotizados)
+                    .addComponent(txtBaseCotizacion))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -118,10 +128,10 @@ public class Despido extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBaseCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBaseCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDiasTrabajados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDiasCotizados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -138,9 +148,9 @@ public class Despido extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Baja");
 
-        jDateChooserFechaAlta.setDateFormatString("dd/MM/yyyy");
+        txtFechaAlta.setDateFormatString("dd/MM/yyyy");
 
-        jDateChooserFechaBaja.setDateFormatString("dd/MM/yyyy");
+        txtFechaBaja.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -149,12 +159,12 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooserFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(txtFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -163,11 +173,11 @@ public class Despido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jDateChooserFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtFechaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -193,21 +203,17 @@ public class Despido extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Informe"));
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Informe detallado");
-
-        jTextAreaInforme.setColumns(20);
-        jTextAreaInforme.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        jTextAreaInforme.setRows(5);
-        jTextAreaInforme.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtResultado.setColumns(20);
+        txtResultado.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        txtResultado.setRows(5);
+        txtResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextAreaInformeMouseClicked(evt);
+                txtResultadoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextAreaInforme);
+        jScrollPane1.setViewportView(txtResultado);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -215,64 +221,60 @@ public class Despido extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel7.setToolTipText("");
 
-        jButtonCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/calcular_Peque.png"))); // NOI18N
-        jButtonCalcular.setText("Calcular");
-        jButtonCalcular.setToolTipText("");
-        jButtonCalcular.setEnabled(false);
-        jButtonCalcular.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/calcular_Peque.png"))); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.setToolTipText("");
+        btnCalcular.setEnabled(false);
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCalcularActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
-        jComboBoxTipoDespido.setBackground(new java.awt.Color(204, 204, 255));
-        jComboBoxTipoDespido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxTipoDespido.setForeground(new java.awt.Color(0, 0, 153));
-        jComboBoxTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente", "Causa objetiva" }));
+        cmbTipoDespido.setBackground(new java.awt.Color(204, 204, 255));
+        cmbTipoDespido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cmbTipoDespido.setForeground(new java.awt.Color(0, 0, 153));
+        cmbTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente", "Causa objetiva" }));
 
-        jButtonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
-        jButtonBorrar.setEnabled(false);
-        jButtonBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
+        btnBorrar.setEnabled(false);
+        btnBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarActionPerformed(evt);
+                btnBorrarActionPerformed(evt);
             }
         });
 
-        jButtonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
-        jButtonImprimir.setEnabled(false);
-        jButtonImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
+        btnImprimir.setEnabled(false);
+        btnImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImprimirActionPerformed(evt);
+                btnImprimirActionPerformed(evt);
             }
         });
 
-        jButtonCopiarInforme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
-        jButtonCopiarInforme.setToolTipText("");
-        jButtonCopiarInforme.setEnabled(false);
-        jButtonCopiarInforme.addActionListener(new java.awt.event.ActionListener() {
+        btnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
+        btnCopy.setToolTipText("");
+        btnCopy.setEnabled(false);
+        btnCopy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCopiarInformeActionPerformed(evt);
+                btnCopyActionPerformed(evt);
             }
         });
 
@@ -290,15 +292,15 @@ public class Despido extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCopy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -306,16 +308,16 @@ public class Despido extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBoxTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCalcular)
+                .addComponent(btnCalcular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonBorrar)
-                    .addComponent(jButtonImprimir))
+                    .addComponent(btnBorrar)
+                    .addComponent(btnImprimir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCopiarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCopy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -335,7 +337,7 @@ public class Despido extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -356,57 +358,57 @@ public class Despido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBaseCotizacionFocusGained
-    }//GEN-LAST:event_jTextFieldBaseCotizacionFocusGained
+    private void txtBaseCotizacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBaseCotizacionFocusGained
+    }//GEN-LAST:event_txtBaseCotizacionFocusGained
 
-    private void jTextFieldDiasTrabajadosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusGained
-    }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusGained
+    private void txtDiasCotizadosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiasCotizadosFocusGained
+    }//GEN-LAST:event_txtDiasCotizadosFocusGained
 
-    private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
 
-        jButtonBorrar.setEnabled(true);
-        jButtonCopiarInforme.setEnabled(true);
-        jButtonImprimir.setEnabled(true);
+        btnBorrar.setEnabled(true);
+        btnCopy.setEnabled(true);
+        btnImprimir.setEnabled(true);
 
-        float bCotizacion = Float.parseFloat(this.jTextFieldBaseCotizacion.getText());
-        float diasCotizados = Float.parseFloat(this.jTextFieldDiasTrabajados.getText());
-        String tipoDespido = String.valueOf(this.jComboBoxTipoDespido.getSelectedItem());
+        float bCotizacion = Float.parseFloat(this.txtBaseCotizacion.getText());
+        float diasCotizados = Float.parseFloat(this.txtDiasCotizados.getText());
+        String tipoDespido = String.valueOf(this.cmbTipoDespido.getSelectedItem());
 
         GregorianCalendar fechaAlta = new GregorianCalendar();
-        fechaAlta.setTime(jDateChooserFechaAlta.getDate());
+        fechaAlta.setTime(txtFechaAlta.getDate());
 
         //Completar las 24 horas de la fecha de baja.
         GregorianCalendar fechaBaja = new GregorianCalendar();
         fechaBaja.set(
-                jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR),
-                jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH),
-                jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+                txtFechaBaja.getCalendar().get(Calendar.YEAR),
+                txtFechaBaja.getCalendar().get(Calendar.MONTH),
+                txtFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
         if (tipoDespido.equals("Causa objetiva")) {
-            this.jTextAreaInforme.setText(Informes.informeCausaObjetiva(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados)
+            this.txtResultado.setText(Informes.informeCausaObjetiva(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados)
             );
         } else {
-            this.jTextAreaInforme.setText(Informes.informeImprocedente(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados));
+            this.txtResultado.setText(Informes.informeImprocedente(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados));
         }
 
-    }//GEN-LAST:event_jButtonCalcularActionPerformed
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
-    private void jTextFieldDiasTrabajadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDiasTrabajadosFocusLost
-        this.jButtonCalcular.setEnabled(true);
-    }//GEN-LAST:event_jTextFieldDiasTrabajadosFocusLost
+    private void txtDiasCotizadosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiasCotizadosFocusLost
+        this.btnCalcular.setEnabled(true);
+    }//GEN-LAST:event_txtDiasCotizadosFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         this.limpiarFormulario();
-    }//GEN-LAST:event_jButtonBorrarActionPerformed
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
-    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
-            boolean complete = this.jTextAreaInforme.print();
+            boolean complete = this.txtResultado.print();
             if (complete) {
                 JOptionPane.showMessageDialog(null, "Trabajo terminado", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -415,16 +417,24 @@ public class Despido extends javax.swing.JFrame {
         } catch (PrinterException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_jButtonImprimirActionPerformed
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
-    private void jButtonCopiarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopiarInformeActionPerformed
+    private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyActionPerformed
 
-        this.jTextAreaInforme.copy();
-    }//GEN-LAST:event_jButtonCopiarInformeActionPerformed
+        this.txtResultado.copy();
+    }//GEN-LAST:event_btnCopyActionPerformed
 
-    private void jTextAreaInformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaInformeMouseClicked
+    private void txtResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtResultadoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAreaInformeMouseClicked
+    }//GEN-LAST:event_txtResultadoMouseClicked
+
+    private void txtDiasCotizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiasCotizadosActionPerformed
+        this.txtDiasCotizados.transferFocus();
+    }//GEN-LAST:event_txtDiasCotizadosActionPerformed
+
+    private void txtBaseCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBaseCotizacionActionPerformed
+        this.txtBaseCotizacion.transferFocus();
+    }//GEN-LAST:event_txtBaseCotizacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -462,16 +472,13 @@ public class Despido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnCopy;
+    private javax.swing.JButton btnImprimir;
+    private javax.swing.JComboBox cmbTipoDespido;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonBorrar;
-    private javax.swing.JButton jButtonCalcular;
-    private javax.swing.JButton jButtonCopiarInforme;
-    private javax.swing.JButton jButtonImprimir;
-    private javax.swing.JComboBox jComboBoxTipoDespido;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaAlta;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaBaja;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -484,8 +491,10 @@ public class Despido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextAreaInforme;
-    private javax.swing.JTextField jTextFieldBaseCotizacion;
-    private javax.swing.JTextField jTextFieldDiasTrabajados;
+    private javax.swing.JTextField txtBaseCotizacion;
+    private javax.swing.JTextField txtDiasCotizados;
+    private com.toedter.calendar.JDateChooser txtFechaAlta;
+    private com.toedter.calendar.JDateChooser txtFechaBaja;
+    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
