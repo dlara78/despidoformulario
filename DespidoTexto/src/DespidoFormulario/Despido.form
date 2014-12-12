@@ -176,6 +176,7 @@
             <Component class="javax.swing.JTextField" name="txtBaseCotizacion">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBaseCotizacionFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBaseCotizacionFocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBaseCotizacionActionPerformed"/>
               </Events>
             </Component>
@@ -195,6 +196,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDiasCotizados">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="30"/>
+              </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDiasCotizadosFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDiasCotizadosFocusLost"/>

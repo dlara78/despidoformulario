@@ -80,6 +80,9 @@ public class Despido extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBaseCotizacionFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBaseCotizacionFocusLost(evt);
+            }
         });
         txtBaseCotizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +96,7 @@ public class Despido extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Días cotizados");
 
+        txtDiasCotizados.setText("30");
         txtDiasCotizados.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtDiasCotizadosFocusGained(evt);
@@ -435,6 +439,10 @@ public class Despido extends javax.swing.JFrame {
     private void txtBaseCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBaseCotizacionActionPerformed
         this.txtBaseCotizacion.transferFocus();
     }//GEN-LAST:event_txtBaseCotizacionActionPerformed
+
+    private void txtBaseCotizacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBaseCotizacionFocusLost
+        this.btnCalcular.setEnabled(true);
+    }//GEN-LAST:event_txtBaseCotizacionFocusLost
 
     /**
      * @param args the command line arguments
