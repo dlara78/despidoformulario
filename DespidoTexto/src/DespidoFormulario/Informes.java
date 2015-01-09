@@ -125,26 +125,31 @@ public class Informes {
                         numDiasIndemnPostReforma = (antiguedadPREreforma * (45f / 365f)) + (antiguedadPOSTreforma * (33f / 365f));
                     }
 
-            textoControl
-                    = "\n(" + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
-                    + " y " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
+            textoControl = "\n(" + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
+                    + " \ny " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
         };
 
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
 
         GregorianCalendar hoy = new GregorianCalendar();
 
-        String informe
-                = ("Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
+        String informe = (
+                "Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
                 + "\nDespido seleccionado: " + tipoDespido
                 + "\n\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
-                + "\n\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)" + textoControl
+                + "\n\nAntigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias"
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
-                + textoTopeMens
-                + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
-
+                + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion))
+                + "\n\n---------------------\n"
+                + "NOTAS:\n"
+                + "Desglose antigüedad = " + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + " + " + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)
+                ;
+                
+        
+        
+        
         return informe;
     }
 
