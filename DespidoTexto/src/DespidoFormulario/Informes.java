@@ -41,7 +41,7 @@ public class Informes {
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
         float antiguedadTotal;
-        float antiguedadTotalSumada = 0;
+        float antiguedadTotalSumada;
         float reformaMilis = reforma.getTimeInMillis();
         float fAltaMilis = fechaAlta.getTimeInMillis();
         float fBajaMilis = fechaBaja.getTimeInMillis();
@@ -60,18 +60,18 @@ public class Informes {
         String textoTopeMensPOST = "";
         float topeImprocedente45 = 1260f;
         float topeImprocedente33 = 720f;
-
+        
+        
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > reformaMilis) {
             antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
             numDiasIndemnizacion = antiguedadTotal * (33f / 365f);
-            if (numDiasIndemnizacion > topeImprocedente33) {
-                textoTopeMens = " (TOPE ALCANZADO)";
-                numDiasIndemnizacion = 720f;
-            }
-
+                    if (numDiasIndemnizacion > topeImprocedente33) {
+                        textoTopeMens = " (TOPE ALCANZADO)";
+                        numDiasIndemnizacion = 720f;
+                    }
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= reformaMilis) {
             antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
@@ -83,7 +83,13 @@ public class Informes {
                 numDiasIndemnizacion = 1260f;
             }
 
-            //El siguiente IF es cuando la reforma afecta al periodo.    
+            /*
+            El siguiente tramo es cuando la antigüedad es afectada por los dos tramos.
+            El límite son 720dias de salario, salvo que del cálculo del periodo
+            anterior a la reforma resultasen más días. En ese caso, la indemnización
+            resultante (de entre 720d y 1260d) sería la máxima aplicable, desechando 
+            la indemnización del periodo posterior a la reforma.
+            */
         } else {
             antiguedadPREreforma = (reformaMilis - fAltaMilis) / MILISEGS_POR_DIA;
             antiguedadPOSTreforma = (fBajaMilis - reformaMilis) / MILISEGS_POR_DIA;
@@ -93,17 +99,21 @@ public class Informes {
             numDiasIndemnPostReforma = antiguedadPOSTreforma * (33f / 365f);
             numDiasIndemnizacion = numDiasIndemnPreReforma + numDiasIndemnPostReforma;
 
-            if (numDiasIndemnPreReforma > 1260f) {
-                numDiasIndemnPreReforma = 1260f;
-                textoTopeMensPRE = " (TOPE ALCANZADO)";
-                numDiasIndemnizacion = 1260f;
-                numDiasIndemnPostReforma = 0;
-            }
-
-            if (numDiasIndemnPostReforma > 720f) {
-                numDiasIndemnPostReforma = 720f;
-                textoTopeMensPOST = " (TOPE ALCANZADO)";
-            }
+                    if (numDiasIndemnPreReforma > 1260f) {
+                        numDiasIndemnPreReforma = 1260f;
+                        textoTopeMensPRE = " (TOPE ALCANZADO)";
+                        numDiasIndemnizacion = 1260f;
+                        numDiasIndemnPostReforma = 0;
+                    }
+                    if (numDiasIndemnPreReforma > 720f) {
+                        textoTopeMensPRE = " (PERIODO 2 DESCARTADO)";
+                        numDiasIndemnizacion = numDiasIndemnPreReforma;
+                        numDiasIndemnPostReforma = 0;
+                    }
+                    if (numDiasIndemnPostReforma > 720f) {
+                        numDiasIndemnPostReforma = 720f;
+                        textoTopeMensPOST = " (TOPE ALCANZADO)";
+                    }
 
             textoControl
                     = "\n(" + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
