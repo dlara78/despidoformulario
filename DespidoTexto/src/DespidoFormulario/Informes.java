@@ -142,10 +142,35 @@ public class Informes {
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion))
-                + "\n\n---------------------\n"
-                + "NOTAS:\n"
-                + "Desglose antigüedad = " + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + " + " + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)
                 ;
+                
+         /* Ejemplo Switch - aprenderaprogramar.com */
+        switch (codigoDespido) {
+        case 'a':
+        case 'b':
+        case 'c':
+
+        String comentarios;
+        break;
+
+        case 'd':
+
+        String comentarios = (
+                "\n\n---------------------" 
+                + "\nNOTAS:"
+                + "Desglose antigüedad = \" + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + \" + \" + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)\n" +
+"                ;
+                + ""
+                + ""
+                + ""
+                );
+        break;
+
+
+
+ }
+                
+                + 
                 
         
         
