@@ -155,14 +155,10 @@ public class Informes {
 
         case 'd':
 
-        String comentarios = (
+        String comentarios2 = (
                 "\n\n---------------------" 
                 + "\nNOTAS:"
-                + "Desglose antigüedad = \" + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + \" + \" + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)\n" +
-"                ;
-                + ""
-                + ""
-                + ""
+                + "Desglose antigüedad = " + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + " + " + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)
                 );
         break;
 
@@ -170,9 +166,6 @@ public class Informes {
 
  }
                 
-                + 
-                
-        
         
         
         return informe;
