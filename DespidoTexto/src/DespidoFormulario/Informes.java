@@ -60,10 +60,12 @@ public class Informes {
         String textoTopeMensPOST = "";
         float topeImprocedente45 = 1260f;
         float topeImprocedente33 = 720f;
+        char codigoDespido = 'a';
         
         
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > reformaMilis) {
+            codigoDespido = 'a';
             antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = 0;
             diasDesdeReforma = antiguedadTotal;
@@ -74,6 +76,7 @@ public class Informes {
                     }
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= reformaMilis) {
+            codigoDespido = 'b';
             antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
             diasHastaReforma = antiguedadTotal;
             diasDesdeReforma = 0;
@@ -95,24 +98,31 @@ public class Informes {
             antiguedadPOSTreforma = (fBajaMilis - reformaMilis) / MILISEGS_POR_DIA;
             antiguedadTotalSumada = antiguedadPREreforma + antiguedadPOSTreforma;
             antiguedadTotal = (fBajaMilis - fAltaMilis) / MILISEGS_POR_DIA;
+            
             numDiasIndemnPreReforma = antiguedadPREreforma * (45f / 365f);
             numDiasIndemnPostReforma = antiguedadPOSTreforma * (33f / 365f);
             numDiasIndemnizacion = numDiasIndemnPreReforma + numDiasIndemnPostReforma;
-
-                    if (numDiasIndemnPreReforma > 1260f) {
+                        
+                    if (numDiasIndemnPreReforma >= 1260f) {
+                        codigoDespido = 'c';
                         numDiasIndemnPreReforma = 1260f;
-                        textoTopeMensPRE = " (TOPE ALCANZADO)";
+                        numDiasIndemnPostReforma = 0f;
+                        textoTopeMensPRE = " (Tope 42m alcanzado. Periodo 2 descartado)";
                         numDiasIndemnizacion = 1260f;
-                        numDiasIndemnPostReforma = 0;
                     }
-                    if (numDiasIndemnPreReforma > 720f) {
-                        textoTopeMensPRE = " (PERIODO 2 DESCARTADO)";
+                    if ((numDiasIndemnPreReforma >= 720f) && (numDiasIndemnPreReforma < 1260f)) {
+                        codigoDespido = 'd';
+                        textoTopeMensPRE = " (Periodo 2 descartado)";
                         numDiasIndemnizacion = numDiasIndemnPreReforma;
-                        numDiasIndemnPostReforma = 0;
                     }
-                    if (numDiasIndemnPostReforma > 720f) {
-                        numDiasIndemnPostReforma = 720f;
-                        textoTopeMensPOST = " (TOPE ALCANZADO)";
+                    if ((numDiasIndemnPreReforma < 720f) && ((numDiasIndemnPreReforma + numDiasIndemnPostReforma)>= 720f)) {
+                        codigoDespido = 'e';
+                        numDiasIndemnizacion = 720f;
+                        textoTopeMensPOST = " (Tope 24m alcanzado entre los dos tramos)";
+                    }
+                    if ((numDiasIndemnPreReforma < 720f) && ((numDiasIndemnPreReforma + numDiasIndemnPostReforma)< 720f)) {
+                        codigoDespido = 'f';
+                        numDiasIndemnPostReforma = (antiguedadPREreforma * (45f / 365f)) + (antiguedadPOSTreforma * (33f / 365f));
                     }
 
             textoControl
@@ -127,10 +137,9 @@ public class Informes {
         String informe
                 = ("Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
                 + "\nDespido seleccionado: " + tipoDespido
-                + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
+                + "\n\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
-                + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
-                + textoControl
+                + "\n\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)" + textoControl
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
                 + textoTopeMens
