@@ -3,7 +3,6 @@ package DespidoFormulario;
 import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class MetodosFechas {
