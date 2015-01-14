@@ -62,7 +62,7 @@ public class Despido extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Calculo Despido v2.0 (David Lara - david.lara@agelso.es)");
+        setTitle("Calculo Despido v3.0 (David Lara - david.lara@agelso.es)");
         setBackground(new java.awt.Color(255, 204, 153));
 
         jPanel2.setBackground(new java.awt.Color(158, 194, 245));

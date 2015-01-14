@@ -162,13 +162,11 @@ public class Informes {
                 );
         break;
 
-
-
- }
+        } /* Fin de la condicional Switch*/
                 
         
         
         return informe;
-    }
+    } /* Fin del informe de despido improcedente */
 
 } //Fin de la Clase Informes
