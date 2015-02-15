@@ -35,23 +35,23 @@ public class Informes {
     }
 
     public static String informeImprocedente(
-            String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja,
+            String tipoDespido, GregorianCalendar f_Alta, GregorianCalendar f_Baja,
             float bCotiz, float diasCotizados) {
 
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
-        float antiguedadTotal;
-        float antiguedadTotalSumada;
-        float reformaMilis = reforma.getTimeInMillis();
-        float fAltaMilis = fechaAlta.getTimeInMillis();
-        float fBajaMilis = fechaBaja.getTimeInMillis();
+        float antTotal;
+        float antTotalSumada;
+        float milisReforma = reforma.getTimeInMillis();
+        float fAltaMilis = f_Alta.getTimeInMillis();
+        float fBajaMilis = f_Baja.getTimeInMillis();
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion;
         float numDiasIndemnPreReforma;
         float numDiasIndemnPostReforma;
         float importeIndemnizacion;
-        float diasHastaReforma = MetodosFechas.diasHastaReforma(fechaAlta);
-        float diasDesdeReforma = MetodosFechas.diasDesdeReforma(fechaBaja);
+        float diasHastaReforma = MetodosFechas.diasHastaReforma(f_Alta);
+        float diasDesdeReforma = MetodosFechas.diasDesdeReforma(f_Baja);
         float antiguedadPREreforma = 0;
         float antiguedadPOSTreforma = 0;
         String textoControl = "";
@@ -64,23 +64,23 @@ public class Informes {
         
         
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
-        if (fAltaMilis > reformaMilis) {
+        if (fAltaMilis > milisReforma) {
             codigoDespido = 'a';
-            antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
+            antTotal = MetodosFechas.diferenciaEntreDosFechas(f_Baja, f_Alta);
             diasHastaReforma = 0;
-            diasDesdeReforma = antiguedadTotal;
-            numDiasIndemnizacion = antiguedadTotal * (33f / 365f);
+            diasDesdeReforma = antTotal;
+            numDiasIndemnizacion = antTotal * (33f / 365f);
                     if (numDiasIndemnizacion > topeImprocedente33) {
                         textoTopeMens = " (TOPE ALCANZADO)";
                         numDiasIndemnizacion = 720f;
                     }
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
-        } else if (fBajaMilis <= reformaMilis) {
+        } else if (fBajaMilis <= milisReforma) {
             codigoDespido = 'b';
-            antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
-            diasHastaReforma = antiguedadTotal;
+            antTotal = MetodosFechas.diferenciaEntreDosFechas(f_Baja, f_Alta);
+            diasHastaReforma = antTotal;
             diasDesdeReforma = 0;
-            numDiasIndemnizacion = antiguedadTotal * (45f / 365f);
+            numDiasIndemnizacion = antTotal * (45f / 365f);
             if (numDiasIndemnizacion > topeImprocedente45) {
                 textoTopeMens = " (TOPE ALCANZADO)";
                 numDiasIndemnizacion = 1260f;
@@ -94,10 +94,10 @@ public class Informes {
             la indemnización del periodo posterior a la reforma.
             */
         } else {
-            antiguedadPREreforma = (reformaMilis - fAltaMilis) / MILISEGS_POR_DIA;
-            antiguedadPOSTreforma = (fBajaMilis - reformaMilis) / MILISEGS_POR_DIA;
-            antiguedadTotalSumada = antiguedadPREreforma + antiguedadPOSTreforma;
-            antiguedadTotal = (fBajaMilis - fAltaMilis) / MILISEGS_POR_DIA;
+            antiguedadPREreforma = (milisReforma - fAltaMilis) / MILISEGS_POR_DIA;
+            antiguedadPOSTreforma = (fBajaMilis - milisReforma) / MILISEGS_POR_DIA;
+            antTotalSumada = antiguedadPREreforma + antiguedadPOSTreforma;
+            antTotal = (fBajaMilis - fAltaMilis) / MILISEGS_POR_DIA;
             
             numDiasIndemnPreReforma = antiguedadPREreforma * (45f / 365f);
             numDiasIndemnPostReforma = antiguedadPOSTreforma * (33f / 365f);
@@ -136,9 +136,9 @@ public class Informes {
         String informe = (
                 "Informe emitido en " + MetodosFechas.formatearFechaBonita(hoy)
                 + "\nDespido seleccionado: " + tipoDespido
-                + "\n\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
-                + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
-                + "\n\nAntigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias"
+                + "\n\nFecha de alta: " + MetodosFechas.formatearFechaBonita(f_Alta)
+                + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(f_Baja)
+                + "\n\nAntigüedad Total: " + MetodosFormatos.darFormatoEsp(antTotal) + " dias"
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
                 + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion))
