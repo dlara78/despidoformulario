@@ -1,3 +1,7 @@
+/**
+ * Aplicación para calcular la idemnización en despidos.
+ */
+
 package DespidoFormulario;
 
 import java.awt.print.PrinterException;

@@ -11,11 +11,11 @@ public class Informes {
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
-        float topeCausaObjetiva = 360f;
+        float topeCObjetiva = 360f;
         String textoTopeMens = "";
 
-        if (numDiasIndemnizacion > topeCausaObjetiva) {
-            numDiasIndemnizacion = topeCausaObjetiva;
+        if (numDiasIndemnizacion > topeCObjetiva) {
+            numDiasIndemnizacion = topeCObjetiva;
             textoTopeMens = " (TOPE ALCANZADO)";
         }
 
