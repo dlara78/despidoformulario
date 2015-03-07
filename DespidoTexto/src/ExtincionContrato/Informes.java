@@ -1,4 +1,4 @@
-package Despido;
+package ExtincionContrato;
 
 import MetodosComunes.MetodosFormatos;
 import MetodosComunes.MetodosFechas;

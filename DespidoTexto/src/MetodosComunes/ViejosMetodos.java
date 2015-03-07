@@ -1,6 +1,6 @@
 package MetodosComunes;
 
-import Despido.Despido;
+import ExtincionContrato.Despido;
 import static MetodosComunes.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;

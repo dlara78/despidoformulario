@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package IncapacidadTemporal;
+package IncTemp;
 
-import Despido.Informes;
+import ExtincionContrato.Informes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -300,7 +300,7 @@ public class IncapacidadTemporal extends javax.swing.JPanel {
                 dateFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de Alta.
 
-        CalculosIT(baseDiaria, tipoBaja, fechaBaja, fechaAlta);
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
