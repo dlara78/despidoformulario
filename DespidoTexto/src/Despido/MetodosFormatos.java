@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package DespidoFormulario;
+package Despido;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

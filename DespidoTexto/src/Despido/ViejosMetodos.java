@@ -1,6 +1,6 @@
-package DespidoFormulario;
+package Despido;
 
-import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
+import static Despido.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

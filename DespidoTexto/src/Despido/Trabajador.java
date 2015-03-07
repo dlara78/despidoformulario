@@ -1,4 +1,4 @@
-package DespidoFormulario;
+package Despido;
 
 import java.util.Calendar;
 import java.util.Date;

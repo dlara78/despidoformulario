@@ -1,7 +1,7 @@
-package DespidoFormulario;
+package Despido;
 
 import java.util.GregorianCalendar;
-import static DespidoFormulario.Trabajador.MILISEGS_POR_DIA;
+import static Despido.Trabajador.MILISEGS_POR_DIA;
 
 public class Informes {
 
