@@ -1,4 +1,4 @@
-package Despido;
+package MetodosComunes;
 
 import java.util.Calendar;
 import java.util.Date;

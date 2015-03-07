@@ -1,6 +1,6 @@
-package Despido;
+package MetodosComunes;
 
-import static Despido.Trabajador.MILISEGS_POR_DIA;
+import static MetodosComunes.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
