@@ -8,9 +8,7 @@ public class Informes {
 
     static float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
 
-    
-    
-    public static String informeCausaObjetiva(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados) {
+        public static String informeCausaObjetiva(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados) {
 
         float antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
         float bCotizDiaria = bCotiz / diasCotizados;
