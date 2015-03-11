@@ -257,7 +257,7 @@ public class Despido extends javax.swing.JFrame {
         cmbTipoDespido.setForeground(new java.awt.Color(0, 0, 153));
         cmbTipoDespido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Despido improcedente", "Causa objetiva" }));
 
-        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477133_button_blue_repeat.png"))); // NOI18N
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_reiniciar.png"))); // NOI18N
         btnBorrar.setEnabled(false);
         btnBorrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +266,7 @@ public class Despido extends javax.swing.JFrame {
             }
         });
 
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408477233_print.png"))); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_imprimir.png"))); // NOI18N
         btnImprimir.setEnabled(false);
         btnImprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +275,7 @@ public class Despido extends javax.swing.JFrame {
             }
         });
 
-        btnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/1408476432_Gnome-Edit-Paste-48.png"))); // NOI18N
+        btnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_pegar.png"))); // NOI18N
         btnCopy.setToolTipText("");
         btnCopy.setEnabled(false);
         btnCopy.addActionListener(new java.awt.event.ActionListener() {

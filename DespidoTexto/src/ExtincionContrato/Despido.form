@@ -431,7 +431,7 @@
         <Component class="javax.swing.JButton" name="btnBorrar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconsets/1408477133_button_blue_repeat.png"/>
+              <Image iconType="3" name="/iconsets/icon_reiniciar.png"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="verticalAlignment" type="int" value="1"/>
@@ -443,7 +443,7 @@
         <Component class="javax.swing.JButton" name="btnImprimir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconsets/1408477233_print.png"/>
+              <Image iconType="3" name="/iconsets/icon_imprimir.png"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="verticalAlignment" type="int" value="3"/>
@@ -455,7 +455,7 @@
         <Component class="javax.swing.JButton" name="btnCopy">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconsets/1408476432_Gnome-Edit-Paste-48.png"/>
+              <Image iconType="3" name="/iconsets/icon_pegar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="enabled" type="boolean" value="false"/>
