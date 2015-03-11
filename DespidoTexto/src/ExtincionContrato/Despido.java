@@ -4,6 +4,7 @@
 
 package ExtincionContrato;
 
+import MetodosComunes.Principal;
 import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -59,6 +60,7 @@ public class Despido extends javax.swing.JFrame {
         btnBorrar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnCopy = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -227,7 +229,7 @@ public class Despido extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -242,8 +244,7 @@ public class Despido extends javax.swing.JFrame {
         jPanel7.setToolTipText("");
 
         btnCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/calcular_Peque.png"))); // NOI18N
-        btnCalcular.setText("Calcular");
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_calcular.png"))); // NOI18N
         btnCalcular.setToolTipText("");
         btnCalcular.setEnabled(false);
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -275,12 +276,19 @@ public class Despido extends javax.swing.JFrame {
             }
         });
 
-        btnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_pegar.png"))); // NOI18N
+        btnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_copiar.png"))); // NOI18N
         btnCopy.setToolTipText("");
         btnCopy.setEnabled(false);
         btnCopy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCopyActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_salir.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -293,13 +301,17 @@ public class Despido extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbTipoDespido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCopy, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCopy, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -308,7 +320,9 @@ public class Despido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(cmbTipoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCalcular)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCopy)
@@ -424,6 +438,12 @@ public class Despido extends javax.swing.JFrame {
         this.btnCalcular.setEnabled(true);
     }//GEN-LAST:event_txtBaseCotizacionFocusLost
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+        Principal mostrar = new Principal();
+        mostrar.setVisible(true);    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -465,6 +485,7 @@ public class Despido extends javax.swing.JFrame {
     private javax.swing.JButton btnCopy;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JComboBox cmbTipoDespido;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

@@ -104,12 +104,13 @@ public class Principal extends javax.swing.JFrame {
     private void btnCalculoDespidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoDespidoActionPerformed
         ExtincionContrato.Despido verFormularioDespido = new ExtincionContrato.Despido();
         verFormularioDespido.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCalculoDespidoActionPerformed
 
     private void btnCalculoITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoITActionPerformed
         IncTemp.IncapacidadTemporal verFormularioIT = new IncTemp.IncapacidadTemporal();
-        this.btnCalculoIT.setEnabled(false);
-        verFormularioIT.setVisible(true);        // TODO add your handling code here:
+        verFormularioIT.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCalculoITActionPerformed
 
     void activaBotonIT(){

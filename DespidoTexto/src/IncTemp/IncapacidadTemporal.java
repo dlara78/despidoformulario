@@ -18,10 +18,6 @@ package IncTemp;
 
 import MetodosComunes.Principal;
 
-/**
- *
- * @author david
- */
 public class IncapacidadTemporal extends javax.swing.JFrame {
 
     /**
@@ -85,7 +81,7 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
 
         jLabel2.setText("Fecha de alta IT");
 
-        btnCalcularIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/calcular_Peque.png"))); // NOI18N
+        btnCalcularIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_calcular.png"))); // NOI18N
 
         jLabel3.setText("Base diaria");
 
@@ -307,7 +303,8 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
 
     private void btnSalirITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirITActionPerformed
         this.dispose();
-       
+        Principal mostrar = new Principal();
+        mostrar.setVisible(true);      
     }//GEN-LAST:event_btnSalirITActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

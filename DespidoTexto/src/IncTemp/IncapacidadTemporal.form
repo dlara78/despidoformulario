@@ -106,7 +106,7 @@
     <Component class="javax.swing.JButton" name="btnCalcularIT">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/iconsets/calcular_Peque.png"/>
+          <Image iconType="3" name="/iconsets/icon_calcular.png"/>
         </Property>
       </Properties>
     </Component>
