@@ -17,11 +17,17 @@
 package IncTemp;
 
 import MetodosComunes.Principal;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class IncapacidadTemporal extends javax.swing.JFrame {
 
 int numDiasIT;
-float baseDiaria;    
+float baseDiaria;
+float porcTramo1 = 0/100;
+float porctramo2 = 60/100;
+float porcTramo3 = 60/100;
+float porcTramo4 = 75/100;
     
     
     public IncapacidadTemporal() {
@@ -34,10 +40,11 @@ float baseDiaria;
     private void initComponents() {
 
         jLabel20 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dateFechaBajaIT = new com.toedter.calendar.JDateChooser();
+        dateFechaAltaIT = new com.toedter.calendar.JDateChooser();
         btnCalcularIT = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -49,18 +56,18 @@ float baseDiaria;
         labelTramoTres = new javax.swing.JLabel();
         labelTramoCuatro = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        labelDiasTramo1 = new javax.swing.JLabel();
+        labelEurosTramo1 = new javax.swing.JLabel();
+        labelComplTramo1 = new javax.swing.JLabel();
+        labelDiasTramo2 = new javax.swing.JLabel();
+        labelEurosTramo2 = new javax.swing.JLabel();
+        labelComplTramo2 = new javax.swing.JLabel();
+        labelDiasTramo3 = new javax.swing.JLabel();
+        labelEurosTramo3 = new javax.swing.JLabel();
+        labelComplTramo3 = new javax.swing.JLabel();
+        labelDiasTramo4 = new javax.swing.JLabel();
+        labelEurosTramo4 = new javax.swing.JLabel();
+        labelComplTramo4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -76,6 +83,10 @@ float baseDiaria;
         jLabel1.setText("Fecha de baja IT");
 
         jLabel2.setText("Fecha de alta IT");
+
+        dateFechaBajaIT.setDateFormatString("dd/MM/yyyy");
+
+        dateFechaAltaIT.setDateFormatString("dd/MM/yyyy");
 
         btnCalcularIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_calcular.png"))); // NOI18N
         btnCalcularIT.addActionListener(new java.awt.event.ActionListener() {
@@ -117,65 +128,65 @@ float baseDiaria;
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("TRAMOS");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("0");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDiasTramo1.setBackground(new java.awt.Color(255, 255, 255));
+        labelDiasTramo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTramo1.setText("0");
+        labelDiasTramo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("0");
-        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelEurosTramo1.setBackground(new java.awt.Color(255, 255, 255));
+        labelEurosTramo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTramo1.setText("0");
+        labelEurosTramo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("0");
-        jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelComplTramo1.setBackground(new java.awt.Color(255, 255, 255));
+        labelComplTramo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTramo1.setText("0");
+        labelComplTramo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("0");
-        jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDiasTramo2.setBackground(new java.awt.Color(255, 255, 255));
+        labelDiasTramo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTramo2.setText("0");
+        labelDiasTramo2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("0");
-        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelEurosTramo2.setBackground(new java.awt.Color(255, 255, 255));
+        labelEurosTramo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTramo2.setText("0");
+        labelEurosTramo2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("0");
-        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelComplTramo2.setBackground(new java.awt.Color(255, 255, 255));
+        labelComplTramo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTramo2.setText("0");
+        labelComplTramo2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("0");
-        jLabel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDiasTramo3.setBackground(new java.awt.Color(255, 255, 255));
+        labelDiasTramo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTramo3.setText("0");
+        labelDiasTramo3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("0");
-        jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelEurosTramo3.setBackground(new java.awt.Color(255, 255, 255));
+        labelEurosTramo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTramo3.setText("0");
+        labelEurosTramo3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("0");
-        jLabel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelComplTramo3.setBackground(new java.awt.Color(255, 255, 255));
+        labelComplTramo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTramo3.setText("0");
+        labelComplTramo3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("0");
-        jLabel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDiasTramo4.setBackground(new java.awt.Color(255, 255, 255));
+        labelDiasTramo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTramo4.setText("0");
+        labelDiasTramo4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("0");
-        jLabel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelEurosTramo4.setBackground(new java.awt.Color(255, 255, 255));
+        labelEurosTramo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTramo4.setText("0");
+        labelEurosTramo4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("0");
-        jLabel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelComplTramo4.setBackground(new java.awt.Color(255, 255, 255));
+        labelComplTramo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTramo4.setText("0");
+        labelComplTramo4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -204,29 +215,29 @@ float baseDiaria;
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDiasTramo1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEurosTramo1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelComplTramo1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDiasTramo2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEurosTramo2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelComplTramo2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDiasTramo3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEurosTramo3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelComplTramo3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDiasTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEurosTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelComplTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -247,15 +258,15 @@ float baseDiaria;
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTramoUno)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(labelDiasTramo1)
+                    .addComponent(labelEurosTramo1)
+                    .addComponent(labelComplTramo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTramoDos)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(labelDiasTramo2)
+                    .addComponent(labelEurosTramo2)
+                    .addComponent(labelComplTramo2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -265,14 +276,14 @@ float baseDiaria;
                         .addGap(79, 79, 79))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(labelEurosTramo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDiasTramo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelComplTramo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18))
+                            .addComponent(labelDiasTramo4)
+                            .addComponent(labelEurosTramo4)
+                            .addComponent(labelComplTramo4))
                         .addGap(75, 75, 75))))
         );
 
@@ -299,8 +310,8 @@ float baseDiaria;
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(dateFechaBajaIT, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(jTextField1)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
@@ -317,11 +328,11 @@ float baseDiaria;
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateFechaBajaIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
@@ -353,7 +364,20 @@ float baseDiaria;
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnCalcularITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularITActionPerformed
-        // TODO add your handling code here:
+        
+        GregorianCalendar fBajaMedica = new GregorianCalendar();
+        fBajaMedica.setTime(dateFechaBajaIT.getDate());
+        //Completar las 24 horas de la fecha de baja.
+        GregorianCalendar fAltaMedica = new GregorianCalendar();
+        fAltaMedica.set(
+                dateFechaAltaIT.getCalendar().get(Calendar.YEAR),
+                dateFechaAltaIT.getCalendar().get(Calendar.MONTH),
+                dateFechaAltaIT.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+        //Fin del bloque que AFINA la fecha de baja.
+        
+        float totalDiasIT = MetodosComunes.MetodosFechas.diferenciaEntreDosFechas(fBajaMedica, fAltaMedica);
+        this.labelDiasTramo1.setText(MetodosComunes.MetodosFormatos.pasar_Float_a_String(totalDiasIT));
+        
     }//GEN-LAST:event_btnCalcularITActionPerformed
 
     /**
@@ -394,32 +418,33 @@ float baseDiaria;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularIT;
     private javax.swing.JButton btnSalirIT;
+    private com.toedter.calendar.JDateChooser dateFechaAltaIT;
+    private com.toedter.calendar.JDateChooser dateFechaBajaIT;
     private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelComplTramo1;
+    private javax.swing.JLabel labelComplTramo2;
+    private javax.swing.JLabel labelComplTramo3;
+    private javax.swing.JLabel labelComplTramo4;
+    private javax.swing.JLabel labelDiasTramo1;
+    private javax.swing.JLabel labelDiasTramo2;
+    private javax.swing.JLabel labelDiasTramo3;
+    private javax.swing.JLabel labelDiasTramo4;
+    private javax.swing.JLabel labelEurosTramo1;
+    private javax.swing.JLabel labelEurosTramo2;
+    private javax.swing.JLabel labelEurosTramo3;
+    private javax.swing.JLabel labelEurosTramo4;
     private javax.swing.JLabel labelTramoCuatro;
     private javax.swing.JLabel labelTramoDos;
     private javax.swing.JLabel labelTramoTres;

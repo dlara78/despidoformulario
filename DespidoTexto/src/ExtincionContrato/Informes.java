@@ -29,9 +29,9 @@ public class Informes {
                 + "\nDespido seleccionado: " + tipoDespido
                 + "\nFecha de alta: " + MetodosFechas.formatearFechaBonita(fechaAlta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(fechaBaja)
-                + "\n(Antigüedad Total: " + MetodosFormatos.darFormatoEsp(antiguedadTotal) + " dias)"
+                + "\n(Antigüedad Total: " + MetodosFormatos.pasar_Float_a_String(antiguedadTotal) + " dias)"
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
-                + "\nDías a indemnizar: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion) + textoTopeMens
+                + "\nDías a indemnizar: " + MetodosFormatos.pasar_Float_a_String(numDiasIndemnizacion) + textoTopeMens
                 + "\nIndemnización total: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion));
 
         return informe;
@@ -128,8 +128,8 @@ public class Informes {
                         numDiasIndemnPostReforma = (antiguedadPREreforma * (45f / 365f)) + (antiguedadPOSTreforma * (33f / 365f));
                     }
 
-            textoControl = "\n(" + MetodosFormatos.darFormatoEsp(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
-                    + " \ny " + MetodosFormatos.darFormatoEsp(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
+            textoControl = "\n(" + MetodosFormatos.pasar_Float_a_String(diasHastaReforma) + textoTopeMensPRE + " antes de la reforma"
+                    + " \ny " + MetodosFormatos.pasar_Float_a_String(diasDesdeReforma) + textoTopeMensPOST + " despúes de la reforma)";
         };
 
         importeIndemnizacion = numDiasIndemnizacion * bCotizDiaria;
@@ -141,9 +141,9 @@ public class Informes {
                 + "\nDespido seleccionado: " + tipoDespido
                 + "\n\nFecha de alta: " + MetodosFechas.formatearFechaBonita(f_Alta)
                 + "\nFecha de baja: " + MetodosFechas.formatearFechaBonita(f_Baja)
-                + "\n\nAntigüedad Total: " + MetodosFormatos.darFormatoEsp(antTotal) + " dias"
+                + "\n\nAntigüedad Total: " + MetodosFormatos.pasar_Float_a_String(antTotal) + " dias"
                 + "\nBase de cotización diaria: " + MetodosFormatos.darFormatoMoneda(bCotizDiaria) + "/dias"
-                + "\nEl número de días de indemnización es: " + MetodosFormatos.darFormatoEsp(numDiasIndemnizacion)
+                + "\nEl número de días de indemnización es: " + MetodosFormatos.pasar_Float_a_String(numDiasIndemnizacion)
                 + "\nEl importe de la indemnización es: " + MetodosFormatos.darFormatoMoneda(importeIndemnizacion))
                 ;
                 
@@ -161,7 +161,7 @@ public class Informes {
         String comentarios2 = (
                 "\n\n---------------------" 
                 + "\nNOTAS:"
-                + "Desglose antigüedad = " + MetodosFormatos.darFormatoEsp(antiguedadPREreforma) + " + " + MetodosFormatos.darFormatoEsp(antiguedadPOSTreforma)
+                + "Desglose antigüedad = " + MetodosFormatos.pasar_Float_a_String(antiguedadPREreforma) + " + " + MetodosFormatos.pasar_Float_a_String(antiguedadPOSTreforma)
                 );
         break;
 

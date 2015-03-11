@@ -3,6 +3,7 @@ package MetodosComunes;
 import static MetodosComunes.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MetodosFechas {
@@ -54,7 +55,8 @@ public class MetodosFechas {
         float importeIndemnObjetiva = diasIndemnizacion * baseDiaria;
         return importeIndemnObjetiva;
     }
-
+    
+    
 } //Corchete final de la clase MetodosFechas.
 
 //  METODOS PARA PASAR UN JCALENDAR A STRING

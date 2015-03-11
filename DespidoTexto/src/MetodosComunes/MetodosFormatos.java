@@ -29,11 +29,12 @@ public class MetodosFormatos {
         return cantidadEuros;
     }
 
-    public static String darFormatoEsp(float cantidad) {
+    public static String pasar_Float_a_String(float cantidad) {
 
         DecimalFormat formatoEsp = new DecimalFormat("#####00.00");
         String nuevaCantidad = formatoEsp.format(cantidad);
         return nuevaCantidad;
     }
     
+   
 }
