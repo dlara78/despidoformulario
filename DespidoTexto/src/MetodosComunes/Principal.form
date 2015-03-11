@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,8 +27,8 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnCalculoIT" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnCalculoDespido" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -46,9 +47,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="btnCalculoDespido" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="btnCalculoIT" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" pref="29" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -57,20 +58,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnCalculoDespido">
       <Properties>
         <Property name="text" type="java.lang.String" value="C&#xe1;lculo Despido"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalculoDespidoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnCalculoIT">
       <Properties>
         <Property name="text" type="java.lang.String" value="Calculo IT"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalculoITActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

@@ -19,8 +19,8 @@ public class MetodosFechas {
         return fechaBonita;
     }
 
-    public static float diferenciaEntreDosFechas(GregorianCalendar fechaBaja, GregorianCalendar fechaAlta) {
-        float diferenciaEnMilis = fechaBaja.getTimeInMillis() - fechaAlta.getTimeInMillis();
+    public static float diferenciaEntreDosFechas(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
+        float diferenciaEnMilis = fechaFinal.getTimeInMillis() - fechaInicial.getTimeInMillis();
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
     }
