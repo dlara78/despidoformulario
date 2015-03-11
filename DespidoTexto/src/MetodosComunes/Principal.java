@@ -42,9 +42,9 @@ public class Principal extends javax.swing.JFrame {
         btnCalculoDespido = new javax.swing.JButton();
         btnCalculoIT = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tools Ver. 15.3.11");
         setResizable(false);
 
         btnCalculoDespido.setText("Cálculo Despido");
@@ -66,8 +66,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setToolTipText("");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("2.0");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,9 +76,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnCalculoIT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCalculoDespido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -93,9 +89,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnCalculoDespido, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCalculoIT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,7 +150,6 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculoDespido;
     private javax.swing.JButton btnCalculoIT;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
