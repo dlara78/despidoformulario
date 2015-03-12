@@ -24,12 +24,16 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
 
 int numDiasIT;
 float baseDiaria;
-float porcTramo1 = 0/100;
-float porctramo2 = 60/100;
-float porcTramo3 = 60/100;
-float porcTramo4 = 75/100;
-    
-    
+int diasTramo1 = 0;
+int diasTramo2 = 0;
+int diasTramo3 = 0;
+int diasTramo4 = 0;
+
+float eurosTramo1 = 0;
+float eurosTramo2 = 0;
+float eurosTramo3 = 0;
+float eurosTramo4 = 0;
+
     public IncapacidadTemporal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -47,7 +51,7 @@ float porcTramo4 = 75/100;
         dateFechaAltaIT = new com.toedter.calendar.JDateChooser();
         btnCalcularIT = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textBaseDiaria = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
@@ -71,6 +75,10 @@ float porcTramo4 = 75/100;
         jLabel13 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        labelDiasTotal = new javax.swing.JLabel();
+        labelEurosTotal = new javax.swing.JLabel();
+        labelComplTotal = new javax.swing.JLabel();
         btnSalirIT = new javax.swing.JButton();
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -200,18 +208,34 @@ float porcTramo4 = 75/100;
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("COMPL.");
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("TOTAL");
+
+        labelDiasTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        labelEurosTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        labelComplTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelTramoDos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTramoUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTramoTres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTramoCuatro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelTramoDos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTramoUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTramoTres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTramoCuatro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -233,17 +257,25 @@ float porcTramo4 = 75/100;
                         .addGap(18, 18, 18)
                         .addComponent(labelComplTramo3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelDiasTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelEurosTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelComplTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelDiasTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelEurosTramo4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelDiasTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelEurosTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelComplTramo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelComplTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(272, 272, 272))
         );
         jPanel1Layout.setVerticalGroup(
@@ -268,12 +300,17 @@ float porcTramo4 = 75/100;
                     .addComponent(labelEurosTramo2)
                     .addComponent(labelComplTramo2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelTramoTres, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelTramoCuatro)
-                        .addGap(79, 79, 79))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDiasTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEurosTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelComplTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(labelEurosTramo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -283,8 +320,8 @@ float porcTramo4 = 75/100;
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDiasTramo4)
                             .addComponent(labelEurosTramo4)
-                            .addComponent(labelComplTramo4))
-                        .addGap(75, 75, 75))))
+                            .addComponent(labelComplTramo4))))
+                .addGap(39, 39, 39))
         );
 
         btnSalirIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsets/icon_salir.png"))); // NOI18N
@@ -301,7 +338,7 @@ float porcTramo4 = 75/100;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,7 +349,7 @@ float porcTramo4 = 75/100;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(dateFechaBajaIT, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(textBaseDiaria)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -335,7 +372,7 @@ float porcTramo4 = 75/100;
                             .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(textBaseDiaria)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -346,8 +383,8 @@ float porcTramo4 = 75/100;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalirIT, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -364,19 +401,73 @@ float porcTramo4 = 75/100;
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnCalcularITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularITActionPerformed
+
+        this.numDiasIT = 0;
+        this.baseDiaria = 0;
+        this.diasTramo1 = 0;
+        this.diasTramo2 = 0;
+        this.diasTramo3 = 0;
+        this.diasTramo4 = 0;
         
-        GregorianCalendar fBajaMedica = new GregorianCalendar();
+        this.eurosTramo1 = 0;
+        this.eurosTramo2 = 0;
+        this.eurosTramo3 = 0;
+        this.eurosTramo4 = 0;
+        
+        GregorianCalendar fBajaMedica;
+        GregorianCalendar fAltaMedica;
+        fBajaMedica = new GregorianCalendar();
         fBajaMedica.setTime(dateFechaBajaIT.getDate());
-        //Completar las 24 horas de la fecha de baja.
-        GregorianCalendar fAltaMedica = new GregorianCalendar();
+        
+        this.baseDiaria = Float.parseFloat(this.textBaseDiaria.getText());
+
+
+        fAltaMedica = new GregorianCalendar();
         fAltaMedica.set(
                 dateFechaAltaIT.getCalendar().get(Calendar.YEAR),
                 dateFechaAltaIT.getCalendar().get(Calendar.MONTH),
                 dateFechaAltaIT.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
-        //Fin del bloque que AFINA la fecha de baja.
+
+        // int valorRedondeado = Math.round(valorFloat);
+        this.numDiasIT = Math.round(MetodosComunes.MetodosFechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
         
-        float totalDiasIT = MetodosComunes.MetodosFechas.diferenciaEntreDosFechas(fBajaMedica, fAltaMedica);
-        this.labelDiasTramo1.setText(MetodosComunes.MetodosFormatos.pasar_Float_a_String(totalDiasIT));
+        if (this.numDiasIT <= 3){
+            this.diasTramo1 = this.numDiasIT;
+        } else if (this.numDiasIT > 3 && this.numDiasIT <= 15) {
+            this.diasTramo1 = 3;
+            this.diasTramo2 = this.numDiasIT - this.diasTramo1;
+        
+        } else if (this.numDiasIT > 15 && this.numDiasIT <= 20){
+            this.diasTramo1 = 3;
+            this.diasTramo2 = 12;
+            this.diasTramo3 = this.numDiasIT - this.diasTramo1 - this.diasTramo2;
+            
+        } else {
+            this.diasTramo1 = 3;
+            this.diasTramo2 = 12;
+            this.diasTramo3 = 5;
+            this.diasTramo4 = this.numDiasIT - this.diasTramo1 - this.diasTramo2 - this.diasTramo3 - this.diasTramo4;
+        }
+        
+        this.labelDiasTramo1.setText(String.valueOf(this.diasTramo1));
+        this.labelDiasTramo2.setText(String.valueOf(this.diasTramo2));
+        this.labelDiasTramo3.setText(String.valueOf(this.diasTramo3));
+        this.labelDiasTramo4.setText(String.valueOf(this.diasTramo4));
+        
+        this.eurosTramo1 = this.diasTramo1 * this.baseDiaria;
+        this.eurosTramo2 = this.diasTramo2 * this.baseDiaria;
+        this.eurosTramo3 = this.diasTramo3 * this.baseDiaria;
+        this.eurosTramo4 = this.diasTramo4 * this.baseDiaria;
+                        
+        this.labelEurosTramo1.setText(String.valueOf(this.eurosTramo1));
+        this.labelEurosTramo2.setText(String.valueOf(this.eurosTramo2));
+        this.labelEurosTramo3.setText(String.valueOf(this.eurosTramo3));
+        this.labelEurosTramo4.setText(String.valueOf(this.eurosTramo4));
+        
+        this.labelDiasTotal.setText(String.valueOf(this.numDiasIT));
+        this.labelEurosTotal.setText(String.valueOf(this.eurosTramo1 + this.eurosTramo2 + this.eurosTramo3 + this.eurosTramo4));
+        
+        
         
     }//GEN-LAST:event_btnCalcularITActionPerformed
 
@@ -430,17 +521,20 @@ float porcTramo4 = 75/100;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelComplTotal;
     private javax.swing.JLabel labelComplTramo1;
     private javax.swing.JLabel labelComplTramo2;
     private javax.swing.JLabel labelComplTramo3;
     private javax.swing.JLabel labelComplTramo4;
+    private javax.swing.JLabel labelDiasTotal;
     private javax.swing.JLabel labelDiasTramo1;
     private javax.swing.JLabel labelDiasTramo2;
     private javax.swing.JLabel labelDiasTramo3;
     private javax.swing.JLabel labelDiasTramo4;
+    private javax.swing.JLabel labelEurosTotal;
     private javax.swing.JLabel labelEurosTramo1;
     private javax.swing.JLabel labelEurosTramo2;
     private javax.swing.JLabel labelEurosTramo3;
@@ -449,5 +543,6 @@ float porcTramo4 = 75/100;
     private javax.swing.JLabel labelTramoDos;
     private javax.swing.JLabel labelTramoTres;
     private javax.swing.JLabel labelTramoUno;
+    private javax.swing.JTextField textBaseDiaria;
     // End of variables declaration//GEN-END:variables
 }

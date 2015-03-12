@@ -49,7 +49,7 @@ public class ProcesoIT {
         this.baseDiaria = baseDiaria;
         this.convenioAplicacion = convenioAplicacion;
         
-        float diasTotalIT = MetodosComunes.MetodosFechas.diferenciaEntreDosFechas(fBaja, fBaja);
+        float diasTotalIT = MetodosComunes.MetodosFechas.diferenciaDosGregorian(fBaja, fBaja);
         
         if (diasTotalIT <= 3) {
             this.diasTramoUno = diasTotalIT;

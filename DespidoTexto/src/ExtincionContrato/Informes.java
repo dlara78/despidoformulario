@@ -10,7 +10,7 @@ public class Informes {
 
         public static String informeCausaObjetiva(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados) {
 
-        float antiguedadTotal = MetodosFechas.diferenciaEntreDosFechas(fechaBaja, fechaAlta);
+        float antiguedadTotal = MetodosFechas.diferenciaDosGregorian(fechaBaja, fechaAlta);
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion = MetodosFechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = MetodosFechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
@@ -69,7 +69,7 @@ public class Informes {
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > milisReforma) {
             codigoDespido = 'a';
-            antTotal = MetodosFechas.diferenciaEntreDosFechas(f_Baja, f_Alta);
+            antTotal = MetodosFechas.diferenciaDosGregorian(f_Baja, f_Alta);
             diasHastaReforma = 0;
             diasDesdeReforma = antTotal;
             numDiasIndemnizacion = antTotal * (33f / 365f);
@@ -80,7 +80,7 @@ public class Informes {
             //El siguiente IF es cuando todo se produce ANTES de la reforma.
         } else if (fBajaMilis <= milisReforma) {
             codigoDespido = 'b';
-            antTotal = MetodosFechas.diferenciaEntreDosFechas(f_Baja, f_Alta);
+            antTotal = MetodosFechas.diferenciaDosGregorian(f_Baja, f_Alta);
             diasHastaReforma = antTotal;
             diasDesdeReforma = 0;
             numDiasIndemnizacion = antTotal * (45f / 365f);

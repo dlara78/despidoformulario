@@ -20,7 +20,7 @@ public class MetodosFechas {
         return fechaBonita;
     }
 
-    public static float diferenciaEntreDosFechas(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
+    public static float diferenciaDosGregorian(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
         float diferenciaEnMilis = fechaFinal.getTimeInMillis() - fechaInicial.getTimeInMillis();
         float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
         return diferenciaEnDias;
