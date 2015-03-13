@@ -3,6 +3,7 @@ package IncTemp;
 import com.toedter.calendar.JDateChooser;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 
@@ -10,6 +11,8 @@ public class MetodosIT {
     
     GregorianCalendar fBajaMedica;
     GregorianCalendar fAltaMedica;
+    
+    String normaAplicable;
     
     int numDiasIT;
     float baseDiaria;
@@ -24,13 +27,40 @@ public class MetodosIT {
     float eurosTramo3;
     float eurosTramo4;
     
-    float porcTramo1 = 0;
-    float porcTramo2 = (float) 0.6;
-    float porcTramo3 = (float) 0.6;
+    float porcTramo1 = (float) 0.00;
+    float porcTramo2 = (float) 0.60;
+    float porcTramo3 = (float) 0.60;
     float porcTramo4 = (float) 0.75;
 
+    float complTramo1 = 0;
+    float complTramo2 = 0;
+    float complTramo3 = 0;
+    float complTramo4 = 0;
 
-public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria){
+public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio){
+
+    
+    this.normaAplicable = (String) convenio.getSelectedItem();
+    
+        switch (this.normaAplicable) {
+        
+        case "Estatuto de los trabajadores":
+            this.normaAplicable = "Es el ET, estúpido!";
+            break;
+        
+        case "Complemento al 100%":
+            this.porcTramo1 = 1;
+            this.porcTramo2 = (float) 0.40;
+            this.porcTramo3 = (float) 0.40;
+            this.porcTramo4 = (float) 0.25;
+            break;
+        
+        default:
+            this.normaAplicable = "opcion por defecto!";
+            break;
+        
+    }
+      
 
     //Usamos el valor de JTextField para pasarlo a baseDiaria como un float.    
     this.baseDiaria = Float.parseFloat(baseDiaria.getText());
@@ -66,10 +96,11 @@ public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField 
             this.diasTramo4 = this.numDiasIT - this.diasTramo1 - this.diasTramo2 - this.diasTramo3 - this.diasTramo4;
         }
         
-        this.eurosTramo1 = this.diasTramo1 * (this.baseDiaria * this.porcTramo1);
-        this.eurosTramo2 = this.diasTramo2 * (this.baseDiaria * this.porcTramo2);
-        this.eurosTramo3 = this.diasTramo3 * (this.baseDiaria * this.porcTramo3);
-        this.eurosTramo4 = this.diasTramo4 * (this.baseDiaria * this.porcTramo4);
+        this.eurosTramo1 = (this.diasTramo1 * (this.baseDiaria * this.porcTramo1));
+        this.complTramo1 = (this.diasTramo1 * (this.baseDiaria * this.complTramo1));
+        this.eurosTramo2 = (this.diasTramo2 * (this.baseDiaria * this.porcTramo2)) + (this.diasTramo2 * (this.baseDiaria * this.complTramo2));
+        this.eurosTramo3 = (this.diasTramo3 * (this.baseDiaria * this.porcTramo3)) + (this.diasTramo3 * (this.baseDiaria * this.complTramo3));
+        this.eurosTramo4 = (this.diasTramo4 * (this.baseDiaria * this.porcTramo4)) + (this.diasTramo4 * (this.baseDiaria * this.complTramo4));
         
     }    
 

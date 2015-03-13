@@ -39,7 +39,7 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         textBaseDiaria = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jcmbConvenio = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         labelTramoUno = new javax.swing.JLabel();
         labelTramoDos = new javax.swing.JLabel();
@@ -67,6 +67,7 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
         labelComplTotal = new javax.swing.JLabel();
         btnSalirIT = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtControl = new javax.swing.JTextField();
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,10 +103,10 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
 
         jLabel4.setText("Convenio");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatuto de los trabajadores", "Pte 2", "Pte 3", "Pte 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jcmbConvenio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estatuto de los trabajadores", "Complemento al 100%", "Pte 3", "Pte 4" }));
+        jcmbConvenio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jcmbConvenioActionPerformed(evt);
             }
         });
 
@@ -332,6 +333,13 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
             }
         });
 
+        txtControl.setText("jTextField1");
+        txtControl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtControlActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -342,17 +350,20 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(textBaseDiaria, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateFechaBajaIT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcmbConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(textBaseDiaria, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(dateFechaAltaIT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dateFechaBajaIT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtControl, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
@@ -388,9 +399,11 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jcmbConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(txtControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -403,14 +416,16 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
         mostrar.setVisible(true);      
     }//GEN-LAST:event_btnSalirITActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jcmbConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbConvenioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jcmbConvenioActionPerformed
 
     private void btnCalcularITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularITActionPerformed
 
    MetodosIT proceso1 = new MetodosIT();
-   proceso1.calculaIncTmp(this.dateFechaBajaIT, this.dateFechaAltaIT, this.textBaseDiaria);
+   proceso1.calculaIncTmp(this.dateFechaBajaIT, this.dateFechaAltaIT, this.textBaseDiaria, this.jcmbConvenio);
+   
+   this.txtControl.setText(proceso1.normaAplicable);
    
    this.labelDiasTramo1.setText(String.valueOf(proceso1.diasTramo1));
    this.labelDiasTramo2.setText(String.valueOf(proceso1.diasTramo2));
@@ -421,8 +436,7 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
    this.labelEurosTramo2.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo2));
    this.labelEurosTramo3.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo3));
    this.labelEurosTramo4.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo4));
-   
-   
+    
    //this.labelEurosTramo4.setText(String.valueOf(proceso1.eurosTramo4));
    
    this.labelDiasTotal.setText(String.valueOf(proceso1.numDiasIT));
@@ -436,6 +450,10 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
     private void textBaseDiariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBaseDiariaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBaseDiariaActionPerformed
+
+    private void txtControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtControlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtControlActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,7 +496,6 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateFechaAltaIT;
     private com.toedter.calendar.JDateChooser dateFechaBajaIT;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
@@ -491,6 +508,7 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox jcmbConvenio;
     private javax.swing.JLabel labelComplTotal;
     private javax.swing.JLabel labelComplTramo1;
     private javax.swing.JLabel labelComplTramo2;
@@ -511,5 +529,6 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
     private javax.swing.JLabel labelTramoTres;
     private javax.swing.JLabel labelTramoUno;
     private javax.swing.JTextField textBaseDiaria;
+    private javax.swing.JTextField txtControl;
     // End of variables declaration//GEN-END:variables
 }
