@@ -17,8 +17,6 @@
 package IncTemp;
 
 import MetodosComunes.Principal;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class IncapacidadTemporal extends javax.swing.JFrame {
 
