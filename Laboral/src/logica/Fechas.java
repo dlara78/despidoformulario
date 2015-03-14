@@ -1,6 +1,6 @@
-package utilidades;
+package logica;
 
-import static utilidades.Trabajador.MILISEGS_POR_DIA;
+import static logica.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

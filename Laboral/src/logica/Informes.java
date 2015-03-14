@@ -1,7 +1,7 @@
-package especificos;
+package logica;
 
-import utilidades.Formato;
-import utilidades.Fechas;
+import logica.Formato;
+import logica.Fechas;
 import java.util.GregorianCalendar;
 
 public class Informes {

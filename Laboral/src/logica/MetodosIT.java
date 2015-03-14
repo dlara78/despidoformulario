@@ -1,4 +1,4 @@
-package especificos;
+package logica;
 
 import com.toedter.calendar.JDateChooser;
 import java.util.Calendar;
@@ -37,7 +37,7 @@ public class MetodosIT {
     public float complTramo3 = (float) 0.00;
     public float complTramo4 = (float) 0.00;
 
-public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio){
+public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio){
 
     
     this.normaAplicable = (String) convenio.getSelectedItem();
@@ -49,10 +49,11 @@ public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField 
             break;
         
         case "Complemento al 100%":
-            this.porcTramo1 = 1;
-            this.porcTramo2 = (float) 0.40;
-            this.porcTramo3 = (float) 0.40;
-            this.porcTramo4 = (float) 0.25;
+            this.complTramo1 = 1;
+            this.complTramo2 = (float) 0.40;
+            this.complTramo3 = (float) 0.40;
+            this.complTramo4 = (float) 0.25;
+            this.normaAplicable = "Complemento 100%";
             break;
         
         default:
@@ -76,7 +77,7 @@ public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField 
 
         // int valorRedondeado = Math.round(valorFloat);
 
-        this.numDiasIT = Math.round(utilidades.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
+        this.numDiasIT = Math.round(logica.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
         
         if (this.numDiasIT <= 3){
             this.diasTramo1 = this.numDiasIT;

@@ -1,4 +1,4 @@
-package utilidades;
+package logica;
 
 import java.util.Calendar;
 import java.util.Date;

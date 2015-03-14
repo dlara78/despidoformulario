@@ -4,8 +4,7 @@
 
 package formularios;
 
-import especificos.Informes;
-import utilidades.Principal;
+import logica.Informes;
 import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

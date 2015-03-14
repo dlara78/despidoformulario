@@ -1,7 +1,7 @@
-package utilidades;
+package logica;
 
 import formularios.Despido;
-import static utilidades.Trabajador.MILISEGS_POR_DIA;
+import static logica.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

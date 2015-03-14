@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utilidades;
+package formularios;
 
 /**
  *
@@ -102,7 +102,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalculoDespidoActionPerformed
 
     private void btnCalculoITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoITActionPerformed
-        formularios.IncapacidadTemporal verFormularioIT = new formularios.IncapacidadTemporal();
+        formularios.IncTemp verFormularioIT = new formularios.IncTemp();
         verFormularioIT.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCalculoITActionPerformed

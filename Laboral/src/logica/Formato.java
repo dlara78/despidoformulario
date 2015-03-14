@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package utilidades;
+package logica;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
