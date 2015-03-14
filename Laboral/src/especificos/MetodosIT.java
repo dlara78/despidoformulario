@@ -1,4 +1,4 @@
-package IncTemp;
+package especificos;
 
 import com.toedter.calendar.JDateChooser;
 import java.util.Calendar;
@@ -12,30 +12,30 @@ public class MetodosIT {
     GregorianCalendar fBajaMedica;
     GregorianCalendar fAltaMedica;
     
-    String normaAplicable;
+    public String normaAplicable;
     
-    int numDiasIT;
-    float baseDiaria;
+    public int numDiasIT;
+    public float baseDiaria;
     
-    int diasTramo1;
-    int diasTramo2;
-    int diasTramo3;
-    int diasTramo4;
+    public int diasTramo1;
+    public int diasTramo2;
+    public int diasTramo3;
+    public int diasTramo4;
     
-    float eurosTramo1;
-    float eurosTramo2;
-    float eurosTramo3;
-    float eurosTramo4;
+    public float eurosTramo1;
+    public float eurosTramo2;
+    public float eurosTramo3;
+    public float eurosTramo4;
     
-    float porcTramo1 = (float) 0.00;
-    float porcTramo2 = (float) 0.60;
-    float porcTramo3 = (float) 0.60;
-    float porcTramo4 = (float) 0.75;
+    public float porcTramo1 = (float) 0.00;
+    public float porcTramo2 = (float) 0.60;
+    public float porcTramo3 = (float) 0.60;
+    public float porcTramo4 = (float) 0.75;
 
-    float complTramo1 = 0;
-    float complTramo2 = 0;
-    float complTramo3 = 0;
-    float complTramo4 = 0;
+    public float complTramo1 = (float) 0.00;
+    public float complTramo2 = (float) 0.00;
+    public float complTramo3 = (float) 0.00;
+    public float complTramo4 = (float) 0.00;
 
 public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio){
 
@@ -76,7 +76,7 @@ public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField 
 
         // int valorRedondeado = Math.round(valorFloat);
 
-        this.numDiasIT = Math.round(MetodosComunes.MetodosFechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
+        this.numDiasIT = Math.round(utilidades.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
         
         if (this.numDiasIT <= 3){
             this.diasTramo1 = this.numDiasIT;
@@ -97,11 +97,15 @@ public void calculaIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField 
         }
         
         this.eurosTramo1 = (this.diasTramo1 * (this.baseDiaria * this.porcTramo1));
+        this.eurosTramo2 = (this.diasTramo2 * (this.baseDiaria * this.porcTramo2));
+        this.eurosTramo3 = (this.diasTramo3 * (this.baseDiaria * this.porcTramo3));
+        this.eurosTramo4 = (this.diasTramo4 * (this.baseDiaria * this.porcTramo4));
+
         this.complTramo1 = (this.diasTramo1 * (this.baseDiaria * this.complTramo1));
-        this.eurosTramo2 = (this.diasTramo2 * (this.baseDiaria * this.porcTramo2)) + (this.diasTramo2 * (this.baseDiaria * this.complTramo2));
-        this.eurosTramo3 = (this.diasTramo3 * (this.baseDiaria * this.porcTramo3)) + (this.diasTramo3 * (this.baseDiaria * this.complTramo3));
-        this.eurosTramo4 = (this.diasTramo4 * (this.baseDiaria * this.porcTramo4)) + (this.diasTramo4 * (this.baseDiaria * this.complTramo4));
-        
+        this.complTramo2 = (this.diasTramo2 * (this.baseDiaria * this.complTramo2));
+        this.complTramo3 = (this.diasTramo3 * (this.baseDiaria * this.complTramo3));
+        this.complTramo4 = (this.diasTramo4 * (this.baseDiaria * this.complTramo4));
+
     }    
 
 }

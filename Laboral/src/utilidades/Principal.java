@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package MetodosComunes;
+package utilidades;
 
 /**
  *
@@ -96,13 +96,13 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalculoDespidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoDespidoActionPerformed
-        ExtincionContrato.Despido verFormularioDespido = new ExtincionContrato.Despido();
+        formularios.Despido verFormularioDespido = new formularios.Despido();
         verFormularioDespido.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCalculoDespidoActionPerformed
 
     private void btnCalculoITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoITActionPerformed
-        IncTemp.IncapacidadTemporal verFormularioIT = new IncTemp.IncapacidadTemporal();
+        formularios.IncapacidadTemporal verFormularioIT = new formularios.IncapacidadTemporal();
         verFormularioIT.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCalculoITActionPerformed

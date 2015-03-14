@@ -1,4 +1,4 @@
-package MetodosComunes;
+package utilidades;
 
 import java.util.Calendar;
 import java.util.Date;

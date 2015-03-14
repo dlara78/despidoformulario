@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package MetodosComunes;
+package utilidades;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -13,7 +13,7 @@ import java.text.NumberFormat;
  *
  * @author david
  */
-public class MetodosFormatos {
+public class Formato {
  
     public static String darFormatoMoneda(float cantidad) {
 

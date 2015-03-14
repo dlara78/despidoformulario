@@ -14,9 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package IncTemp;
+package formularios;
 
-import MetodosComunes.Principal;
+import especificos.MetodosIT;
+import utilidades.Principal;
 
 public class IncapacidadTemporal extends javax.swing.JFrame {
 
@@ -432,10 +433,10 @@ public class IncapacidadTemporal extends javax.swing.JFrame {
    this.labelDiasTramo3.setText(String.valueOf(proceso1.diasTramo3));
    this.labelDiasTramo4.setText(String.valueOf(proceso1.diasTramo4));
    
-   this.labelEurosTramo1.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo1));
-   this.labelEurosTramo2.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo2));
-   this.labelEurosTramo3.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo3));
-   this.labelEurosTramo4.setText(MetodosComunes.MetodosFormatos.darFormatoMoneda(proceso1.eurosTramo4));
+   this.labelEurosTramo1.setText(utilidades.Formato.darFormatoMoneda(proceso1.eurosTramo1));
+   this.labelEurosTramo2.setText(utilidades.Formato.darFormatoMoneda(proceso1.eurosTramo2));
+   this.labelEurosTramo3.setText(utilidades.Formato.darFormatoMoneda(proceso1.eurosTramo3));
+   this.labelEurosTramo4.setText(utilidades.Formato.darFormatoMoneda(proceso1.eurosTramo4));
     
    //this.labelEurosTramo4.setText(String.valueOf(proceso1.eurosTramo4));
    

@@ -1,12 +1,12 @@
-package MetodosComunes;
+package utilidades;
 
-import static MetodosComunes.Trabajador.MILISEGS_POR_DIA;
+import static utilidades.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class MetodosFechas {
+public class Fechas {
 
     public static String formatearFechaBonita(GregorianCalendar fechaDate) {
         DateFormat formatoElegante = DateFormat.getDateInstance(DateFormat.FULL);
@@ -57,7 +57,7 @@ public class MetodosFechas {
     }
     
     
-} //Corchete final de la clase MetodosFechas.
+} //Corchete final de la clase Fechas.
 
 //  METODOS PARA PASAR UN JCALENDAR A STRING
 //        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"

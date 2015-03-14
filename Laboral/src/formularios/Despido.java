@@ -2,9 +2,10 @@
  * Aplicación para calcular la idemnización en despidos.
  */
 
-package ExtincionContrato;
+package formularios;
 
-import MetodosComunes.Principal;
+import especificos.Informes;
+import utilidades.Principal;
 import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
