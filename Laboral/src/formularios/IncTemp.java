@@ -224,12 +224,15 @@ public class IncTemp extends javax.swing.JFrame {
         jLabel5.setText("TOTAL");
 
         labelDiasTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTotal.setText("0");
         labelDiasTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         labelEurosTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelEurosTotal.setText("0");
         labelEurosTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         labelComplTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelComplTotal.setText("0");
         labelComplTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -529,7 +532,7 @@ public class IncTemp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
