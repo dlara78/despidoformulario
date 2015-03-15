@@ -25,6 +25,40 @@ public class IncTemp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+   private void calcular(){
+       
+       MetodosIT proceso1 = new MetodosIT();
+   proceso1.objetoIncTmp(this.dateFechaBajaIT, this.dateFechaAltaIT, this.textBaseDiaria, this.jcmbConvenio, this.jMonthActual, this.jYearActual);
+   
+   this.labelDiasTramo1.setText(String.valueOf(proceso1.diasTramo[0]));
+   this.labelDiasTramo2.setText(String.valueOf(proceso1.diasTramo[1]));
+   this.labelDiasTramo3.setText(String.valueOf(proceso1.diasTramo[2]));
+   this.labelDiasTramo4.setText(String.valueOf(proceso1.diasTramo[3]));
+   
+   this.labelEurosTramo1.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0]));
+   this.labelEurosTramo2.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[1]));
+   this.labelEurosTramo3.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[2]));
+   this.labelEurosTramo4.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[3]));
+   
+   this.labelComplTramo1.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0]));
+   this.labelComplTramo2.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[1]));
+   this.labelComplTramo3.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[2]));
+   this.labelComplTramo4.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[3]));
+
+   this.labelSalarioEmpresa.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0] + proceso1.eurosTramo[1]));
+   this.labelSegSocial.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[2] + proceso1.eurosTramo[3]));
+   this.labelSalarioCompl.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0] + proceso1.complTramo[1] + proceso1.complTramo[2] + proceso1.complTramo[3]));
+   
+   this.labelDiasTotal.setText(String.valueOf(proceso1.totalDiasIT));
+   this.labelEurosTotal.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0] + proceso1.eurosTramo[1] + proceso1.eurosTramo[2] + proceso1.eurosTramo[3]));
+   this.labelComplTotal.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0] + proceso1.complTramo[1] + proceso1.complTramo[2] + proceso1.complTramo[3]));
+   
+   this.labelDiasGastados.setText(String.valueOf(proceso1.diasGastadosNominasAnteriores));
+       
+   } 
+    
+    
+    
    private void limpiar(){
         
    
@@ -563,35 +597,13 @@ public class IncTemp extends javax.swing.JFrame {
     }//GEN-LAST:event_jcmbConvenioActionPerformed
 
     private void btnCalcularITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularITActionPerformed
+        
+        //Incluir aquí código para verificar que los campos necesarios están
+        //correctamente rellenos.
+        
+        //entonces... 
+        calcular();
 
-   MetodosIT proceso1 = new MetodosIT();
-   proceso1.objetoIncTmp(this.dateFechaBajaIT, this.dateFechaAltaIT, this.textBaseDiaria, this.jcmbConvenio, this.jMonthActual, this.jYearActual);
-   
-   this.labelDiasTramo1.setText(String.valueOf(proceso1.diasTramo[0]));
-   this.labelDiasTramo2.setText(String.valueOf(proceso1.diasTramo[1]));
-   this.labelDiasTramo3.setText(String.valueOf(proceso1.diasTramo[2]));
-   this.labelDiasTramo4.setText(String.valueOf(proceso1.diasTramo[3]));
-   
-   this.labelEurosTramo1.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0]));
-   this.labelEurosTramo2.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[1]));
-   this.labelEurosTramo3.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[2]));
-   this.labelEurosTramo4.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[3]));
-   
-   this.labelComplTramo1.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0]));
-   this.labelComplTramo2.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[1]));
-   this.labelComplTramo3.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[2]));
-   this.labelComplTramo4.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[3]));
-
-   this.labelSalarioEmpresa.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0] + proceso1.eurosTramo[1]));
-   this.labelSegSocial.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[2] + proceso1.eurosTramo[3]));
-   this.labelSalarioCompl.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0] + proceso1.complTramo[1] + proceso1.complTramo[2] + proceso1.complTramo[3]));
-   
-   this.labelDiasTotal.setText(String.valueOf(proceso1.totalDiasIT));
-   this.labelEurosTotal.setText(logica.Formato.darFormatoMoneda(proceso1.eurosTramo[0] + proceso1.eurosTramo[1] + proceso1.eurosTramo[2] + proceso1.eurosTramo[3]));
-   this.labelComplTotal.setText(logica.Formato.darFormatoMoneda(proceso1.complTramo[0] + proceso1.complTramo[1] + proceso1.complTramo[2] + proceso1.complTramo[3]));
-   
-   this.labelDiasGastados.setText(String.valueOf(proceso1.diasGastadosNominasAnteriores));
-   
     }//GEN-LAST:event_btnCalcularITActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
