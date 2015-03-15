@@ -1,112 +1,120 @@
 package logica;
 
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JMonthChooser;
+import com.toedter.calendar.JYearChooser;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-
 public class MetodosIT {
-    
-    GregorianCalendar fBajaMedica;
-    GregorianCalendar fAltaMedica;
+
+    GregorianCalendar fBajaMedica;  //Fecha de la baja médica
+    GregorianCalendar fAltaMedica;  //Fecha del alta médica
+    GregorianCalendar fechaNomina;  //Fecha (mes) del recibo de salario.
     
     public String normaAplicable;
-    
-    public int numDiasIT;
+
+    public int totalDiasIT;
+    public int mensualDiasIT;
     public float baseDiaria;
-    
-    public int diasTramo1;
-    public int diasTramo2;
-    public int diasTramo3;
-    public int diasTramo4;
-    
-    public float eurosTramo1;
-    public float eurosTramo2;
-    public float eurosTramo3;
-    public float eurosTramo4;
-    
-    public float porcTramo1 = (float) 0.00;
-    public float porcTramo2 = (float) 0.60;
-    public float porcTramo3 = (float) 0.60;
-    public float porcTramo4 = (float) 0.75;
+    public int numeroDeTramos = 4;
+    public int diasGastadosNominasAnteriores;
 
-    public float complTramo1 = (float) 0.00;
-    public float complTramo2 = (float) 0.00;
-    public float complTramo3 = (float) 0.00;
-    public float complTramo4 = (float) 0.00;
+    public int[]    diasTramo   = {0, 0, 0, 0};
+    public float[]  eurosTramo  = {0, 0, 0, 0};
+    public float[]  porcTramo   = {0, 60, 60, 75};
+    public float[]  complTramo  = {0, 0, 0, 0};
 
-public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio){
+    public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio, JMonthChooser mesActual, JYearChooser anoActual) {
 
-    
-    this.normaAplicable = (String) convenio.getSelectedItem();
-    
+        this.normaAplicable = (String) convenio.getSelectedItem();
+
         switch (this.normaAplicable) {
-        
-        case "Estatuto de los trabajadores":
-            this.normaAplicable = "Es el ET, estúpido!";
-            break;
-        
-        case "Complemento al 100%":
-            this.complTramo1 = 1;
-            this.complTramo2 = (float) 0.40;
-            this.complTramo3 = (float) 0.40;
-            this.complTramo4 = (float) 0.25;
-            this.normaAplicable = "Complemento 100%";
-            break;
-        
-        default:
-            this.normaAplicable = "opcion por defecto!";
-            break;
-        
-    }
-      
 
-    //Usamos el valor de JTextField para pasarlo a baseDiaria como un float.    
-    this.baseDiaria = Float.parseFloat(baseDiaria.getText());
-            
-    GregorianCalendar fBajaMedica = new GregorianCalendar();
-        fBajaMedica.setTime(fInicio.getDate());
+            case "Estatuto de los trabajadores":
+
+                break;
+
+            case "Complemento al 100%":
+
+                this.complTramo[0] = 100;
+                this.complTramo[1] = 40;
+                this.complTramo[2] = 40;
+                this.complTramo[3] = 25;
+
+                this.normaAplicable = "Complemento 100%";
+                break;
+
+            case "opcion 3":
+
+                break;
+
+            case "opcion 4":
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+        //Usamos el valor de JTextField para pasarlo a baseDiaria como un float.    
+        this.baseDiaria = Float.parseFloat(baseDiaria.getText());
+
+       
+        /*
+        Iniciamos el procesamiento de las fechas.
+        */
         
+        GregorianCalendar fBajaMedica = new GregorianCalendar();
+        fBajaMedica.setTime(fInicio.getDate());
+
         GregorianCalendar fAltaMedica = new GregorianCalendar();
         fAltaMedica.set(
                 fFinal.getCalendar().get(Calendar.YEAR),
                 fFinal.getCalendar().get(Calendar.MONTH),
                 fFinal.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
 
+        GregorianCalendar fechaNomina = new GregorianCalendar();
+        fechaNomina.set (anoActual.getYear(), mesActual.getMonth(), 1, 0, 0, 0);
+
+        this.diasGastadosNominasAnteriores = (int) Fechas.diferenciaDosGregorian(fBajaMedica, fechaNomina);
         // int valorRedondeado = Math.round(valorFloat);
+        this.totalDiasIT = Math.round(logica.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
+        this.mensualDiasIT = this.totalDiasIT - this.diasGastadosNominasAnteriores;
+        
+        
+        
+        
+        if (this.totalDiasIT <= 3) {
+            this.diasTramo[0] = this.totalDiasIT;
+        } else if (this.totalDiasIT > 3 && this.totalDiasIT <= 15) {
+            this.diasTramo[0] = 3;
+            this.diasTramo[1] = this.totalDiasIT - this.diasTramo[0];
+        } else if (this.totalDiasIT > 15 && this.totalDiasIT <= 20) {
+            this.diasTramo[0] = 3;
+            this.diasTramo[1] = 12;
+            this.diasTramo[2] = this.totalDiasIT - this.diasTramo[0] - this.diasTramo[1];
 
-        this.numDiasIT = Math.round(logica.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
-        
-        if (this.numDiasIT <= 3){
-            this.diasTramo1 = this.numDiasIT;
-        } else if (this.numDiasIT > 3 && this.numDiasIT <= 15) {
-            this.diasTramo1 = 3;
-            this.diasTramo2 = this.numDiasIT - this.diasTramo1;
-        
-        } else if (this.numDiasIT > 15 && this.numDiasIT <= 20){
-            this.diasTramo1 = 3;
-            this.diasTramo2 = 12;
-            this.diasTramo3 = this.numDiasIT - this.diasTramo1 - this.diasTramo2;
-            
         } else {
-            this.diasTramo1 = 3;
-            this.diasTramo2 = 12;
-            this.diasTramo3 = 5;
-            this.diasTramo4 = this.numDiasIT - this.diasTramo1 - this.diasTramo2 - this.diasTramo3 - this.diasTramo4;
+            this.diasTramo[0] = 3;
+            this.diasTramo[1] = 12;
+            this.diasTramo[2] = 5;
+            this.diasTramo[3] = this.totalDiasIT - this.diasTramo[0] - this.diasTramo[1] - this.diasTramo[2];
         }
-        
-        this.eurosTramo1 = (this.diasTramo1 * (this.baseDiaria * this.porcTramo1));
-        this.eurosTramo2 = (this.diasTramo2 * (this.baseDiaria * this.porcTramo2));
-        this.eurosTramo3 = (this.diasTramo3 * (this.baseDiaria * this.porcTramo3));
-        this.eurosTramo4 = (this.diasTramo4 * (this.baseDiaria * this.porcTramo4));
 
-        this.complTramo1 = (this.diasTramo1 * (this.baseDiaria * this.complTramo1));
-        this.complTramo2 = (this.diasTramo2 * (this.baseDiaria * this.complTramo2));
-        this.complTramo3 = (this.diasTramo3 * (this.baseDiaria * this.complTramo3));
-        this.complTramo4 = (this.diasTramo4 * (this.baseDiaria * this.complTramo4));
+        //El siguiente bucle FOR asigna los euros a cada uno de los tramos existentes.
+        for (int i = 0; i < eurosTramo.length; i++) {
+            this.eurosTramo[i] = (this.diasTramo[i] * this.baseDiaria * (this.porcTramo[i] / 100));
+        }
+        //El siguiente bucle FOR asigna los euros a cada uno de los tramos de complementos existentes.
+        for (int i = 0; i < complTramo.length; i++) {
+            this.complTramo[i] = (this.diasTramo[i] * this.baseDiaria * (this.complTramo[i] / 100));
+        }
 
-    }    
+    }
 
 }
