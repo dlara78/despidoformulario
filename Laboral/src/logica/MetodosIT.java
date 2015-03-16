@@ -19,8 +19,8 @@ public class MetodosIT {
     public int totalDiasIT;
     public int mensualDiasIT;
     public float baseDiaria;
-    public int numeroDeTramos = 4;
     public int diasGastadosNominasAnteriores;
+    public int diasMesActual;
 
     public int[]    diasTramo   = {0, 0, 0, 0};
     public float[]  eurosTramo  = {0, 0, 0, 0};
@@ -78,17 +78,14 @@ public class MetodosIT {
                 fFinal.getCalendar().get(Calendar.MONTH),
                 fFinal.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
 
-        GregorianCalendar fechaNomina = new GregorianCalendar();
-        fechaNomina.set (anoActual.getYear(), mesActual.getMonth(), 1, 0, 0, 0);
-
-        this.diasGastadosNominasAnteriores = (int) Fechas.diferenciaDosGregorian(fBajaMedica, fechaNomina);
-        // int valorRedondeado = Math.round(valorFloat);
+        GregorianCalendar fechaNominaActual = new GregorianCalendar();
+        this.diasMesActual = fechaNominaActual.getActualMaximum(Calendar.DAY_OF_MONTH);
+        this.diasGastadosNominasAnteriores = (int) Fechas.diferenciaDosGregorian(fBajaMedica, fechaNominaActual);
         this.totalDiasIT = Math.round(logica.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
         this.mensualDiasIT = this.totalDiasIT - this.diasGastadosNominasAnteriores;
+        if (this.mensualDiasIT >= diasMesActual) this.mensualDiasIT = diasMesActual;
         
-        
-        
-        
+
         if (this.totalDiasIT <= 3) {
             this.diasTramo[0] = this.totalDiasIT;
         } else if (this.totalDiasIT > 3 && this.totalDiasIT <= 15) {
