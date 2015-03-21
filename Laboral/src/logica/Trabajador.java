@@ -8,21 +8,21 @@ public class Trabajador {
     GregorianCalendar reforma2012 = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
     //Variables generales
-    String nombre;
-    String empresa;
-    GregorianCalendar fechaAltaEmpresa;
-    GregorianCalendar fechaBajaEmpresa;
+    public String nombre;
+    public String empresa;
+    public GregorianCalendar fechaAltaEmpresa;
+    public GregorianCalendar fechaBajaEmpresa;
 
     //Variables específicas para los despidos
-    String tipoDespido;
-    float baseDiariaDespido;
-    int antiguedadTotalEmpresa;
-    int antigAntesReforma;
-    int antigDespuesReforma;
-    GregorianCalendar[] tramos;
-    float indemnAntesReforma;
-    float indemnDespuesReforma;
-    float indemnTotal;
+    public String tipoDespido;
+    public float baseDiariaDespido;
+    public int antiguedadTotalEmpresa;
+    public int antigAntesReforma;
+    public int antigDespuesReforma;
+    public GregorianCalendar[] tramos;
+    public float indemnAntesReforma;
+    public float indemnDespuesReforma;
+    public float indemnTotal;
 
     //Variables especificas para los procesos IT
     GregorianCalendar fechaAltaIT;

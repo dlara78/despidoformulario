@@ -9,6 +9,7 @@ import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import logica.Formato;
 import logica.Trabajador;
 
 public class Despido extends javax.swing.JFrame {
@@ -390,7 +391,7 @@ public class Despido extends javax.swing.JFrame {
 
         Trabajador trabajador1 = new Trabajador(fechaAlta, fechaBaja, bCotizacion, diasCotizados, tipoDespido);
 
-        this.txtResultado.setText(trabajador1.toString());
+        this.txtResultado.setText(Formato.pasar_Float_a_String(trabajador1.antigAntesReforma));
         
         
 //        if (tipoDespido.equals("Causa objetiva")) {
