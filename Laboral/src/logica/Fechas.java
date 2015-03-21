@@ -1,6 +1,5 @@
 package logica;
 
-import static logica.Trabajador.MILISEGS_POR_DIA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -8,21 +7,46 @@ import java.util.GregorianCalendar;
 
 public class Fechas {
 
+    static float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
+
+    /*
+    El siguiente método recibe un argumento GregorianCalendar y devuelve
+    una fecha elegante de clase String.
+    */
     public static String formatearFechaBonita(GregorianCalendar fechaDate) {
         DateFormat formatoElegante = DateFormat.getDateInstance(DateFormat.FULL);
         String fechaBonita = formatoElegante.format(fechaDate.getTime());
         return fechaBonita;
     }
 
+    /*
+    El siguiente método recibe un argumento de tipo GregorianCalendar y devuelve
+    una fecha completa, con día de la semana, en una clase String.
+    */
     public static String formatearFechaCompleta(GregorianCalendar fechaDate) {
         DateFormat formatoCompleto = new SimpleDateFormat("EEE, dd/MM/yyyy, HH:mm:S");
         String fechaBonita = formatoCompleto.format(fechaDate.getTime());
         return fechaBonita;
     }
+    
+    /*
+    El siguiente método recibe un argumento jCalendar y devuelve
+    un String de formato "dd/MM/yyyy"
+    */
+    public String fechaGregCalAString(GregorianCalendar fecha){    
+        String fechaString
+                = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH)) + "/"
+                + String.valueOf(fecha.get(Calendar.MONTH)) + "/"
+                + String.valueOf(fecha.get(Calendar.YEAR));
+    
+        return fechaString;
+    }
 
-    public static float diferenciaDosGregorian(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
-        float diferenciaEnMilis = fechaFinal.getTimeInMillis() - fechaInicial.getTimeInMillis();
-        float diferenciaEnDias = diferenciaEnMilis / MILISEGS_POR_DIA;
+    
+
+    public static int diferenciaDosGregorian(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
+        int diferenciaEnDias = 
+                Math.round((fechaFinal.getTimeInMillis() - fechaInicial.getTimeInMillis())/MILISEGS_POR_DIA);
         return diferenciaEnDias;
     }
 

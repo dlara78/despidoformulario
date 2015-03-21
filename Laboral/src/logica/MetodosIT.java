@@ -14,14 +14,13 @@ public class MetodosIT {
     GregorianCalendar fAltaMedica;  //Fecha del alta médica
     GregorianCalendar fechaNomina;  //Fecha (mes) del recibo de salario.
     
-    public String normaAplicable;
 
-    public int totalDiasIT;
-    public int mensualDiasIT;
+    public int diasDelMesActual;
+    public int diasDeEsteMesEnIT;
+    public int diasTotalesEnIT;
     public float baseDiaria;
-    public int diasGastadosNominasAnteriores;
-    public int diasMesActual;
-
+    public int diasAnterioresEnIT;
+    
     public int[]    diasTramo   = {0, 0, 0, 0};
     public float[]  eurosTramo  = {0, 0, 0, 0};
     public float[]  porcTramo   = {0, 60, 60, 75};
@@ -29,12 +28,16 @@ public class MetodosIT {
 
     public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio, JMonthChooser mesActual, JYearChooser anoActual) {
 
-        this.normaAplicable = (String) convenio.getSelectedItem();
+        String normaAplicable = (String) convenio.getSelectedItem();
 
-        switch (this.normaAplicable) {
+        switch (normaAplicable) {
 
             case "Estatuto de los trabajadores":
 
+                this.complTramo[0] = 0;
+                this.complTramo[1] = 0;
+                this.complTramo[2] = 0;
+                this.complTramo[3] = 0;
                 break;
 
             case "Complemento al 100%":
@@ -43,15 +46,17 @@ public class MetodosIT {
                 this.complTramo[1] = 40;
                 this.complTramo[2] = 40;
                 this.complTramo[3] = 25;
-
-                this.normaAplicable = "Complemento 100%";
                 break;
 
-            case "opcion 3":
+            case "Construcción Cádiz":
 
+                this.complTramo[0] = 0;
+                this.complTramo[1] = 0;
+                this.complTramo[2] = 0;
+                this.complTramo[3] = 25;
                 break;
 
-            case "opcion 4":
+            case "Construccion Sevilla":
 
                 break;
 
@@ -68,39 +73,51 @@ public class MetodosIT {
         /*
         Iniciamos el procesamiento de las fechas.
         */
-        
+
+        //Usamos el argumento fInicio para establecer la fecha de la baja médica
         GregorianCalendar fBajaMedica = new GregorianCalendar();
         fBajaMedica.setTime(fInicio.getDate());
 
+        //Usamos el argumento fFinal para establecer la fecha de la baja médica
+        // y le añadimos las 24h del día para que los cálculos cuadren.
         GregorianCalendar fAltaMedica = new GregorianCalendar();
         fAltaMedica.set(
                 fFinal.getCalendar().get(Calendar.YEAR),
                 fFinal.getCalendar().get(Calendar.MONTH),
                 fFinal.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
 
+        //Establecemos la fecha de la nómina que estamos calculando, usando los argumentos
+        //pasados en las variables anoActual y mesActual.
         GregorianCalendar fechaNominaActual = new GregorianCalendar();
-        this.diasMesActual = fechaNominaActual.getActualMaximum(Calendar.DAY_OF_MONTH);
-        this.diasGastadosNominasAnteriores = (int) Fechas.diferenciaDosGregorian(fBajaMedica, fechaNominaActual);
-        this.totalDiasIT = Math.round(logica.Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica));
-        this.mensualDiasIT = this.totalDiasIT - this.diasGastadosNominasAnteriores;
-        if (this.mensualDiasIT >= diasMesActual) this.mensualDiasIT = diasMesActual;
+        fechaNominaActual.set (
+                anoActual.getYear(),
+                mesActual.getMonth(),
+                1, 0, 0 ,0
+        );
+        
+        this.diasDelMesActual = fechaNominaActual.getActualMaximum(Calendar.DAY_OF_MONTH);
+        this.diasAnterioresEnIT = Fechas.diferenciaDosGregorian(fBajaMedica, fechaNominaActual);
+        this.diasTotalesEnIT = Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica);
+        this.diasDeEsteMesEnIT = this.diasTotalesEnIT - this.diasAnterioresEnIT;
+        
+        if (this.diasDeEsteMesEnIT >= diasDelMesActual) this.diasDeEsteMesEnIT = diasDelMesActual;
         
 
-        if (this.totalDiasIT <= 3) {
-            this.diasTramo[0] = this.totalDiasIT;
-        } else if (this.totalDiasIT > 3 && this.totalDiasIT <= 15) {
+        if (this.diasTotalesEnIT <= 3) {
+            this.diasTramo[0] = this.diasTotalesEnIT;
+        } else if (this.diasTotalesEnIT > 3 && this.diasTotalesEnIT <= 15) {
             this.diasTramo[0] = 3;
-            this.diasTramo[1] = this.totalDiasIT - this.diasTramo[0];
-        } else if (this.totalDiasIT > 15 && this.totalDiasIT <= 20) {
+            this.diasTramo[1] = this.diasTotalesEnIT - this.diasTramo[0];
+        } else if (this.diasTotalesEnIT > 15 && this.diasTotalesEnIT <= 20) {
             this.diasTramo[0] = 3;
             this.diasTramo[1] = 12;
-            this.diasTramo[2] = this.totalDiasIT - this.diasTramo[0] - this.diasTramo[1];
+            this.diasTramo[2] = this.diasTotalesEnIT - this.diasTramo[0] - this.diasTramo[1];
 
         } else {
             this.diasTramo[0] = 3;
             this.diasTramo[1] = 12;
             this.diasTramo[2] = 5;
-            this.diasTramo[3] = this.totalDiasIT - this.diasTramo[0] - this.diasTramo[1] - this.diasTramo[2];
+            this.diasTramo[3] = this.diasTotalesEnIT - this.diasTramo[0] - this.diasTramo[1] - this.diasTramo[2];
         }
 
         //El siguiente bucle FOR asigna los euros a cada uno de los tramos existentes.

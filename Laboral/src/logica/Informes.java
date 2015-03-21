@@ -1,7 +1,5 @@
 package logica;
 
-import logica.Formato;
-import logica.Fechas;
 import java.util.GregorianCalendar;
 
 public class Informes {
@@ -10,7 +8,7 @@ public class Informes {
 
         public static String informeCausaObjetiva(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float bCotiz, float diasCotizados) {
 
-        float antiguedadTotal = Fechas.diferenciaDosGregorian(fechaBaja, fechaAlta);
+        int antiguedadTotal = Fechas.diferenciaDosGregorian(fechaAlta, fechaBaja);
         float bCotizDiaria = bCotiz / diasCotizados;
         float numDiasIndemnizacion = Fechas.calculaDiasIndemnObjetiva(antiguedadTotal);
         float importeIndemnizacion = Fechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
@@ -38,12 +36,11 @@ public class Informes {
     }
 
     public static String informeImprocedente(
-            String tipoDespido, GregorianCalendar f_Alta, GregorianCalendar f_Baja,
-            float bCotiz, float diasCotizados) {
+            String tipoDespido, GregorianCalendar f_Alta, GregorianCalendar f_Baja, float bCotiz, float diasCotizados) {
 
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
-        float antTotal;
+        int antTotal;
         float antTotalSumada;
         float milisReforma = reforma.getTimeInMillis();
         float fAltaMilis = f_Alta.getTimeInMillis();
@@ -69,7 +66,7 @@ public class Informes {
         //El siguiente IF es cuando todo se produce DESPUÉS de la reforma.
         if (fAltaMilis > milisReforma) {
             codigoDespido = 'a';
-            antTotal = Fechas.diferenciaDosGregorian(f_Baja, f_Alta);
+            antTotal = Fechas.diferenciaDosGregorian(f_Alta, f_Baja);
             diasHastaReforma = 0;
             diasDesdeReforma = antTotal;
             numDiasIndemnizacion = antTotal * (33f / 365f);
@@ -100,7 +97,7 @@ public class Informes {
             antiguedadPREreforma = (milisReforma - fAltaMilis) / MILISEGS_POR_DIA;
             antiguedadPOSTreforma = (fBajaMilis - milisReforma) / MILISEGS_POR_DIA;
             antTotalSumada = antiguedadPREreforma + antiguedadPOSTreforma;
-            antTotal = (fBajaMilis - fAltaMilis) / MILISEGS_POR_DIA;
+            antTotal = logica.Fechas.diferenciaDosGregorian(f_Alta, f_Baja);
             
             numDiasIndemnPreReforma = antiguedadPREreforma * (45f / 365f);
             numDiasIndemnPostReforma = antiguedadPOSTreforma * (33f / 365f);
