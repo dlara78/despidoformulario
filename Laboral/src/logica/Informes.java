@@ -36,7 +36,11 @@ public class Informes {
     }
 
     public static String informeImprocedente(
-            String tipoDespido, GregorianCalendar f_Alta, GregorianCalendar f_Baja, float bCotiz, float diasCotizados) {
+            String tipoDespido,
+            GregorianCalendar f_Alta,
+            GregorianCalendar f_Baja,
+            float bCotiz,
+            float diasCotizados) {
 
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 

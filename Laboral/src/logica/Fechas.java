@@ -3,6 +3,7 @@ package logica;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Fechas {
@@ -27,6 +28,10 @@ public class Fechas {
         DateFormat formatoCompleto = new SimpleDateFormat("EEE, dd/MM/yyyy, HH:mm:S");
         String fechaBonita = formatoCompleto.format(fechaDate.getTime());
         return fechaBonita;
+    }
+
+    static int diferenciaDosGregorian(Date fechaBajaIT, Date fechaAltaIT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /*
