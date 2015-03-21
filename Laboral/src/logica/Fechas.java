@@ -55,14 +55,17 @@ public class Fechas {
         return diferenciaEnDias;
     }
 
-    public static float diasHastaReforma(GregorianCalendar fecha) {
-        float dias;
+    public static int diasHastaReforma(GregorianCalendar fecha) {
+        int dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
-        float temp1 = reforma.getTimeInMillis() - fecha.getTimeInMillis();
-        dias = temp1 / MILISEGS_POR_DIA;
+        dias = Fechas.diferenciaDosGregorian(fecha, reforma);
         return dias;
     }
-
+    
+    
+    
+    
+    
     public static float diasDesdeReforma(GregorianCalendar fecha) {
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
         float temp1 = fecha.getTimeInMillis() - reforma.getTimeInMillis();
@@ -86,17 +89,4 @@ public class Fechas {
     }
     
     
-} //Corchete final de la clase Fechas.
-
-//  METODOS PARA PASAR UN JCALENDAR A STRING
-//        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
-//        String fechaBaja
-//                = String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
-//                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.MONTH)) + "/"
-//                + String.valueOf(jDateChooserFechaBaja.getCalendar().get(Calendar.YEAR));
-//
-//        //El siguiente comando pasa el objeto jCalendar a un String de formato "dd/MM/yyyy"
-//        String fechaAlta
-//                = String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.DAY_OF_MONTH)) + "/"
-//                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.MONTH)) + "/"
-//                + String.valueOf(jDateChooserFechaAlta.getCalendar().get(Calendar.YEAR));
+}

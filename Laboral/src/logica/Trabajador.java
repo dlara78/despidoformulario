@@ -8,24 +8,27 @@ public class Trabajador {
     GregorianCalendar reforma2012 = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
 
     //Variables generales
-    private String nombre;
-    private String empresa;
-    private GregorianCalendar fechaAltaEmpresa;
-    private GregorianCalendar fechaBajaEmpresa;
+    String nombre;
+    String empresa;
+    GregorianCalendar fechaAltaEmpresa;
+    GregorianCalendar fechaBajaEmpresa;
 
     //Variables específicas para los despidos
-    private String tipoDespido;
-    private float baseDiariaDespido;
-    private int antiguedadTotalEmpresa;
-    private int antigAntesReforma;
-    private int antigDespuesReforma;
-    private GregorianCalendar[] tramos = {fechaAltaEmpresa, reforma2012, fechaBajaEmpresa};
+    String tipoDespido;
+    float baseDiariaDespido;
+    int antiguedadTotalEmpresa;
+    int antigAntesReforma;
+    int antigDespuesReforma;
+    GregorianCalendar[] tramos;
+    float indemnAntesReforma;
+    float indemnDespuesReforma;
+    float indemnTotal;
 
     //Variables especificas para los procesos IT
-    private GregorianCalendar fechaAltaIT;
-    private GregorianCalendar fechaBajaIT;
-    private float baseCotizacionIT;
-    private int antiguedadTotalIT;
+    GregorianCalendar fechaAltaIT;
+    GregorianCalendar fechaBajaIT;
+    float baseCotizacionIT;
+    int antiguedadTotalIT;
 
     /*
      Método constructor para casos de despido
@@ -34,17 +37,39 @@ public class Trabajador {
             GregorianCalendar fechaAltaEmpresa,
             GregorianCalendar fechaBajaEmpresa,
             float baseCotizacionDespido,
-            int diasCotizadosMesAnterior,
+            float diasCotizadosMesAnterior,
             String tipoDespido) {
 
         this.fechaAltaEmpresa = fechaAltaEmpresa;
         this.fechaBajaEmpresa = fechaBajaEmpresa;
-        this.baseDiariaDespido = baseCotizacionDespido / (float) diasCotizadosMesAnterior;
-        this.tipoDespido = tipoDespido;
         this.antiguedadTotalEmpresa = Fechas.diferenciaDosGregorian(fechaAltaEmpresa, fechaBajaEmpresa);
+        this.baseDiariaDespido = baseCotizacionDespido / diasCotizadosMesAnterior;
+        this.tipoDespido = tipoDespido;
+
+        if (fechaBajaEmpresa.getTimeInMillis() < reforma2012.getTimeInMillis()) {
+            this.antigAntesReforma = this.antiguedadTotalEmpresa;
+            this.antigDespuesReforma = 0;
+            this.indemnAntesReforma = (this.antigAntesReforma * (45 / 365)) * this.baseDiariaDespido;
+            this.indemnDespuesReforma = 0;
+            this.indemnTotal = this.indemnAntesReforma;
+        } else if (fechaAltaEmpresa.getTimeInMillis() >= reforma2012.getTimeInMillis()) {
+            this.antigAntesReforma = 0;
+            this.antigDespuesReforma = this.antiguedadTotalEmpresa;
+            this.indemnAntesReforma = 0;
+            this.indemnDespuesReforma = (this.antigDespuesReforma * (33 / 365)) * this.baseDiariaDespido;
+            this.indemnTotal = this.indemnAntesReforma;
+        } else {
+            this.antigAntesReforma = Fechas.diferenciaDosGregorian(fechaAltaEmpresa, reforma2012);
+            this.antigDespuesReforma = Fechas.diferenciaDosGregorian(reforma2012, fechaBajaEmpresa);
+            this.indemnAntesReforma = (this.antigAntesReforma * (45 / 365)) * this.baseDiariaDespido;
+            this.indemnDespuesReforma = (this.antigDespuesReforma * (33 / 365)) * this.baseDiariaDespido;
+        }
 
     }
 
+    /*
+     Métodos constructor para casos de Incapacidad Temporal
+     */
     public Trabajador(GregorianCalendar fechaBajaIT, GregorianCalendar fechaAltaIT, float baseCotizacionIT) {
 
         this.nombre = "Nombre de prueba";

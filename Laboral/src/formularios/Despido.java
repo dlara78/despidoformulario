@@ -9,6 +9,7 @@ import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import logica.Trabajador;
 
 public class Despido extends javax.swing.JFrame {
 
@@ -387,12 +388,17 @@ public class Despido extends javax.swing.JFrame {
                 txtFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
-        if (tipoDespido.equals("Causa objetiva")) {
-            this.txtResultado.setText(Informes.informeCausaObjetiva(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados)
-            );
-        } else {
-            this.txtResultado.setText(Informes.informeImprocedente(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados));
-        }
+        Trabajador trabajador1 = new Trabajador(fechaAlta, fechaBaja, bCotizacion, diasCotizados, tipoDespido);
+
+        this.txtResultado.setText(trabajador1.toString());
+        
+        
+//        if (tipoDespido.equals("Causa objetiva")) {
+//            this.txtResultado.setText(Informes.informeCausaObjetiva(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados)
+//            );
+//        } else {
+//            this.txtResultado.setText(Informes.informeImprocedente(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados));
+//        }
 
     }//GEN-LAST:event_btnCalcularActionPerformed
 
