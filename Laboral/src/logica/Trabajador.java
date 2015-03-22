@@ -34,7 +34,7 @@ public class Trabajador {
      Método constructor para casos de despido
      */
     public Trabajador(
-            GregorianCalendar fechaAltaEmpresa,
+            GregorianCalendar fechaAltaEmpresa, //
             GregorianCalendar fechaBajaEmpresa,
             float baseCotizacionDespido,
             float diasCotizadosMesAnterior,
