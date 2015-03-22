@@ -47,8 +47,8 @@ public class InformeDespido {
 
         GregorianCalendar fechaInforme = new GregorianCalendar(); //Fecha del informe
         int antiguedadTotal = logica.Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
-        float topeImproced45dias = 1260;
-        float topeImproced33dias = 720;
+        float topeImproced45dias = 1260f;
+        float topeImproced33dias = 720f;
 
 
         /*
@@ -61,19 +61,19 @@ public class InformeDespido {
                  Este primer if es en caso de que la relación laboral sucediese integramente
                  antes de la reforma laboral.
                  */
-                this.diasTrabajadosDespuesReforma = 0;
-                this.diasIndemnDespuesReforma = 0;
                 this.diasTrabajadosAntesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
-                this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
+                this.diasTrabajadosDespuesReforma = 0;
+                this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f/365f);
+                this.diasIndemnDespuesReforma = 0;
                 if (this.diasIndemnAntesReforma > topeImproced45dias) {
                     this.textoControl1 = "TOPADO";
                     this.diasIndemnAntesReforma = topeImproced45dias;
                 }
 
                 this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-                this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-                this.eurosIndemnDespuesReforma = 0;
-                this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
+//                this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+//                this.eurosIndemnDespuesReforma = 0;
+//                this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
             } else if (this.fechaAlta.getTimeInMillis() >= this.fechaReforma.getTimeInMillis()) {
                 /* 
@@ -92,9 +92,9 @@ public class InformeDespido {
                 }
 
                 this.diasIndemnTOTAL = this.diasIndemnDespuesReforma;
-                this.eurosIndemnAntesReforma = 0;
-                this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
-                this.eurosIndemnTOTAL = this.eurosIndemnDespuesReforma;
+//                this.eurosIndemnAntesReforma = 0;
+//                this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
+//                this.eurosIndemnTOTAL = this.eurosIndemnDespuesReforma;
 
             } else {
                 /*
@@ -111,9 +111,9 @@ public class InformeDespido {
                     this.diasIndemnAntesReforma = 1260;
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-                    this.eurosIndemnDespuesReforma = 0;
-                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
+//                    this.eurosIndemnDespuesReforma = 0;
+//                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+//                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
                 } else if ((this.diasIndemnAntesReforma >= 720f) && (this.diasIndemnAntesReforma < 1260f)) {
 
@@ -121,24 +121,29 @@ public class InformeDespido {
                     this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-                    this.eurosIndemnDespuesReforma = 0;
-                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
-                    this.diasIndemnDespuesReforma = 0;
+//                    this.eurosIndemnDespuesReforma = 0;
+//                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+//                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) >= 720f)) {
 
                     this.textoControl2 = " (Tope 24m alcanzado entre los dos tramos)";
-                    this.diasIndemnAntesReforma = 0;
-                    this.diasIndemnDespuesReforma = 720;
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
+                    this.diasIndemnDespuesReforma = 720f - (float) this.diasIndemnAntesReforma;
+                    this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
 
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) < 720f)) {
 
-                    this.diasIndemnDespuesReforma = (this.diasTrabajadosAntesReforma * (45f / 365f));
-                    this.diasIndemnDespuesReforma = (this.diasTrabajadosDespuesReforma * (33f / 365f));
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
+                    this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * (33f / 365f);
+                    this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
                 }
 
             }
+
+            this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+            this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
+            this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma + this.eurosIndemnDespuesReforma;
 
         }
 
