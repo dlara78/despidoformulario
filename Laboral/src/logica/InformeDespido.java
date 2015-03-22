@@ -22,8 +22,8 @@ public class InformeDespido {
     float eurosIndemnDespuesReforma;
     float eurosIndemnTOTAL;
 
-    String textoControl1 = "textoControl1 inicial";
-    String textoControl2 = "textoControl2 inicial";
+    String textoControl1 = "";
+    String textoControl2 = "No hay más incidencias.";
     String textoControl3 = "textoControl3 inicial";
     String textoControl4 = "textoControl4 inicial";
 
@@ -54,9 +54,7 @@ public class InformeDespido {
         /*
          Comienza la preparación del informe.
          */
-        if (tipoDespido == "Despido improcedente") {
-
-            this.tipoDespido = "Entramos en el if del Despido improcedente.";
+        if ("Despido improcedente".equals(tipoDespido)) {
 
             if (this.fechaBaja.getTimeInMillis() < this.fechaReforma.getTimeInMillis()) {
                 /*
@@ -67,9 +65,8 @@ public class InformeDespido {
                 this.diasIndemnDespuesReforma = 0;
                 this.diasTrabajadosAntesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
                 this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
-                this.textoControl1 = "Toda la relación laboral se produce antes de la reforma de 2012.";
                 if (this.diasIndemnAntesReforma > topeImproced45dias) {
-                    this.textoControl2 = "Tope 45 alcanzado";
+                    this.textoControl1 = "TOPADO";
                     this.diasIndemnAntesReforma = topeImproced45dias;
                 }
 
@@ -84,16 +81,20 @@ public class InformeDespido {
                  despues de la reforma laboral.
                  */
 
-                this.textoControl1 = "Toda la relación laboral se produce después de la reforma de 2012.";
                 this.diasTrabajadosAntesReforma = 0;
                 this.diasIndemnAntesReforma = 0;
                 this.diasTrabajadosDespuesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
                 this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * (33f / 365f);
 
                 if (this.diasIndemnDespuesReforma > topeImproced33dias) {
-                    textoControl2 = "Tope 33 alcanzado";
+                    textoControl1 = "TOPADO";
                     this.diasIndemnDespuesReforma = topeImproced33dias;
                 }
+
+                this.diasIndemnTOTAL = this.diasIndemnDespuesReforma;
+                this.eurosIndemnAntesReforma = 0;
+                this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
+                this.eurosIndemnTOTAL = this.eurosIndemnDespuesReforma;
 
             } else {
                 /*
@@ -103,24 +104,36 @@ public class InformeDespido {
                  resultante (de entre 720d y 1260d) sería la máxima aplicable, desechando 
                  la indemnización del periodo posterior a la fechaReforma.
                  */
-                this.textoControl1 = "La relación laboral empieza antes de la reforma de 2012, y acaba después.";
 
                 if (this.diasIndemnAntesReforma >= 1260) {
-                    //codigoDespido = 'c';
+
+                    this.textoControl2 = "(Periodo 2 descartado. Tope 42m alcanzado.)";
                     this.diasIndemnAntesReforma = 1260;
                     this.diasIndemnDespuesReforma = 0;
-                    this.textoControl2 = "(Periodo 2 descartado. Tope 42m alcanzado.)";
+                    this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
+                    this.eurosIndemnDespuesReforma = 0;
+                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
+
                 } else if ((this.diasIndemnAntesReforma >= 720f) && (this.diasIndemnAntesReforma < 1260f)) {
-                    //codigoDespido = 'd';
+
                     this.textoControl2 = " (Periodo 2 descartado. Tope 42m no alcanzado)";
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
                     this.diasIndemnDespuesReforma = 0;
+                    this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
+                    this.eurosIndemnDespuesReforma = 0;
+                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
+                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
+                    this.diasIndemnDespuesReforma = 0;
+
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) >= 720f)) {
-                    //codigoDespido = 'e';
+
+                    this.textoControl2 = " (Tope 24m alcanzado entre los dos tramos)";
                     this.diasIndemnAntesReforma = 0;
                     this.diasIndemnDespuesReforma = 720;
-                    this.textoControl2 = " (Tope 24m alcanzado entre los dos tramos)";
+
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) < 720f)) {
-                    //codigoDespido = 'f';
+
                     this.diasIndemnDespuesReforma = (this.diasTrabajadosAntesReforma * (45f / 365f));
                     this.diasIndemnDespuesReforma = (this.diasTrabajadosDespuesReforma * (33f / 365f));
                 }
@@ -129,15 +142,19 @@ public class InformeDespido {
 
         }
 
+        /*
+         La siguiente instrucción asigna el contenido final a la variable 'informe'
+         que se usará para ser mostrada en el contenido del formulario.
+         */
         this.informe = ("Informe emitido en " + Fechas.formatearFechaBonita(fechaInforme)
                 + "\nDespido seleccionado: " + this.tipoDespido
                 + "\n\nFecha de alta: " + Fechas.formatearFechaBonita(this.fechaAlta)
                 + "\nFecha de baja: " + Fechas.formatearFechaBonita(this.fechaBaja)
                 + "\n\nAntigüedad Total: " + antiguedadTotal + " dias"
-                + "\n" + this.textoControl1
                 + "\nBase de cotización diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
-                + "\nNº días indemnización totales: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + ")"
-                + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + "(" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")");
+                + "\nNº días indemnización totales: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + " ) " + this.textoControl1
+                + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + "(" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")"
+                + "\n" + this.textoControl2);
 
     }
 
