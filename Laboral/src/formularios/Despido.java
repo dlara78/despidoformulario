@@ -82,6 +82,7 @@ public class Despido extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("B. Cotización");
 
+        txtBaseCotizacion.setText("1000");
         txtBaseCotizacion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBaseCotizacionFocusGained(evt);
@@ -389,9 +390,8 @@ public class Despido extends javax.swing.JFrame {
                 txtFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
-        Trabajador trabajador1 = new Trabajador(fechaAlta, fechaBaja, bCotizacion, diasCotizados, tipoDespido);
-        
-        this.txtResultado.setText(Formato.pasar_Float_a_String(trabajador1.antigAntesReforma));
+        InformeDespido informe1 = new InformeDespido(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados);
+        this.txtResultado.setText(informe1.getInforme());
         
         
         

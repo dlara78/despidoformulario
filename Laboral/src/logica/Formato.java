@@ -36,5 +36,11 @@ public class Formato {
         return nuevaCantidad;
     }
     
+    public static String pasar_int_a_String(int cantidad) {
+
+        DecimalFormat formatoEsp = new DecimalFormat("#####00.00");
+        String nuevaCantidad = formatoEsp.format(cantidad);
+        return nuevaCantidad;
+    }
    
 }
