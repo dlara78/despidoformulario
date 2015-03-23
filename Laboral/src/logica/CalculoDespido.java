@@ -154,7 +154,7 @@ public class CalculoDespido {
                 + "\n" + this.textoControl3
                 + "\n\nFecha de alta: " + Fechas.formatearFechaBonita(this.fechaAlta)
                 + "\nFecha de baja: " + Fechas.formatearFechaBonita(this.fechaBaja)
-                + "\n\nAntigüedad Total: " + antiguedadTotal + " dias"
+                + "\n\nAntigüedad Total: " + antiguedadTotal + " dias (" + this.diasTrabajadosAntesReforma + " + " + this.diasTrabajadosDespuesReforma + ")"
                 + "\nBase de cotización diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
                 + "\nNº días indemnización totales: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + " ) " + this.textoControl1
                 + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + "(" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")"
