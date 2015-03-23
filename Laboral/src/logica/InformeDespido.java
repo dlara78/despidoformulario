@@ -49,6 +49,8 @@ public class InformeDespido {
         int antiguedadTotal = logica.Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
         float topeImproced45dias = 1260f;
         float topeImproced33dias = 720f;
+        float diasIndemnizables45 = 45f/365f;
+        float diasIndemnizables33 = 33f/365f;
 
 
         /*
@@ -63,13 +65,12 @@ public class InformeDespido {
                  */
                 this.diasTrabajadosAntesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
                 this.diasTrabajadosDespuesReforma = 0;
-                this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f/365f);
-                this.diasIndemnDespuesReforma = 0;
+                this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                 if (this.diasIndemnAntesReforma > topeImproced45dias) {
                     this.textoControl1 = "TOPADO";
                     this.diasIndemnAntesReforma = topeImproced45dias;
                 }
-
+                this.diasIndemnDespuesReforma = 0;
                 this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
 //                this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
 //                this.eurosIndemnDespuesReforma = 0;
@@ -80,12 +81,10 @@ public class InformeDespido {
                  Este segundo if es en caso de que la relación laboral sucediese integramente
                  despues de la reforma laboral.
                  */
-
                 this.diasTrabajadosAntesReforma = 0;
-                this.diasIndemnAntesReforma = 0;
                 this.diasTrabajadosDespuesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
-                this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * (33f / 365f);
-
+                this.diasIndemnAntesReforma = 0;
+                this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * diasIndemnizables33;
                 if (this.diasIndemnDespuesReforma > topeImproced33dias) {
                     textoControl1 = "TOPADO";
                     this.diasIndemnDespuesReforma = topeImproced33dias;
@@ -118,7 +117,7 @@ public class InformeDespido {
                 } else if ((this.diasIndemnAntesReforma >= 720f) && (this.diasIndemnAntesReforma < 1260f)) {
 
                     this.textoControl2 = " (Periodo 2 descartado. Tope 42m no alcanzado)";
-                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
 //                    this.eurosIndemnDespuesReforma = 0;
@@ -128,14 +127,14 @@ public class InformeDespido {
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) >= 720f)) {
 
                     this.textoControl2 = " (Tope 24m alcanzado entre los dos tramos)";
-                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                     this.diasIndemnDespuesReforma = 720f - (float) this.diasIndemnAntesReforma;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
 
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) < 720f)) {
 
-                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * (45f / 365f);
-                    this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * (33f / 365f);
+                    this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
+                    this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * diasIndemnizables33;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
                 }
 
