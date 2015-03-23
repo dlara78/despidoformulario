@@ -107,7 +107,7 @@ public class CalculoDespido {
                  la indemnización del periodo posterior a la fechaReforma.
                  */
 
-                this.textoControl3 = "Tramo mixto";
+                this.textoControl3 = "\nTramo mixto";
 
                 this.diasTrabajadosAntesReforma = Fechas.difFechas(this.fechaAlta, this.fechaReforma);
                 this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaReforma, this.fechaBaja);
@@ -169,10 +169,10 @@ public class CalculoDespido {
          */
         this.informe = ("Informe emitido en " + Fechas.formatearFechaBonita(fechaInforme)
                 + "\nDespido seleccionado: " + this.tipoDespido
-                + "\n" + this.textoControl3
-                + "\n\nFecha de alta: " + Fechas.formatearFechaBonita(this.fechaAlta)
-                + "\nFecha de baja: " + Fechas.formatearFechaBonita(this.fechaBaja)
-                + "\n\nAntigüedad Total: " + antiguedadTotal + " días" + this.textoExtraAntiguedad
+                + this.textoControl3
+                + "\nAlta: " + Fechas.formatearFechaBonita(this.fechaAlta)
+                + "\nBaja: " + Fechas.formatearFechaBonita(this.fechaBaja)
+                + "\nAntigüedad: " + antiguedadTotal + " días" + this.textoExtraAntiguedad
                 + "\nBase diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
                 + "\nDías de indemnización: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días" + this.textoExtraDiasIndemn
                 + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + this.textoExtraEurosIndemn
