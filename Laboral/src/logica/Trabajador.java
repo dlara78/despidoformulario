@@ -42,7 +42,7 @@ public class Trabajador {
 
         this.fechaAltaEmpresa = fechaAltaEmpresa;
         this.fechaBajaEmpresa = fechaBajaEmpresa;
-        this.antiguedadTotalEmpresa = Fechas.diferenciaDosGregorian(fechaAltaEmpresa, fechaBajaEmpresa);
+        this.antiguedadTotalEmpresa = Fechas.difFechas(fechaAltaEmpresa, fechaBajaEmpresa);
         this.baseDiariaDespido = baseCotizacionDespido / diasCotizadosMesAnterior;
         this.tipoDespido = tipoDespido;
 
@@ -59,8 +59,8 @@ public class Trabajador {
             this.indemnDespuesReforma = (this.antigDespuesReforma * (33 / 365)) * this.baseDiariaDespido;
             this.indemnTotal = this.indemnAntesReforma;
         } else {
-            this.antigAntesReforma = Fechas.diferenciaDosGregorian(fechaAltaEmpresa, reforma2012);
-            this.antigDespuesReforma = Fechas.diferenciaDosGregorian(reforma2012, fechaBajaEmpresa);
+            this.antigAntesReforma = Fechas.difFechas(fechaAltaEmpresa, reforma2012);
+            this.antigDespuesReforma = Fechas.difFechas(reforma2012, fechaBajaEmpresa);
             this.indemnAntesReforma = (this.antigAntesReforma * (45 / 365)) * this.baseDiariaDespido;
             this.indemnDespuesReforma = (this.antigDespuesReforma * (33 / 365)) * this.baseDiariaDespido;
         }
@@ -77,7 +77,7 @@ public class Trabajador {
         this.fechaBajaIT = fechaBajaIT;
         this.fechaAltaIT = fechaAltaIT;
         this.baseCotizacionIT = baseCotizacionIT;
-        this.antiguedadTotalIT = logica.Fechas.diferenciaDosGregorian(fechaBajaIT, fechaAltaIT);
+        this.antiguedadTotalIT = logica.Fechas.difFechas(fechaBajaIT, fechaAltaIT);
     }
 
 }

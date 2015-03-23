@@ -96,8 +96,8 @@ public class MetodosIT {
         );
         
         this.diasDelMesActual = fechaNominaActual.getActualMaximum(Calendar.DAY_OF_MONTH);
-        this.diasAnterioresEnIT = Fechas.diferenciaDosGregorian(fBajaMedica, fechaNominaActual);
-        this.diasTotalesEnIT = Fechas.diferenciaDosGregorian(fBajaMedica, fAltaMedica);
+        this.diasAnterioresEnIT = Fechas.difFechas(fBajaMedica, fechaNominaActual);
+        this.diasTotalesEnIT = Fechas.difFechas(fBajaMedica, fAltaMedica);
         this.diasDeEsteMesEnIT = this.diasTotalesEnIT - this.diasAnterioresEnIT;
         
         if (this.diasDeEsteMesEnIT >= diasDelMesActual) this.diasDeEsteMesEnIT = diasDelMesActual;

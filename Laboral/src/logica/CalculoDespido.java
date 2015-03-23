@@ -2,7 +2,7 @@ package logica;
 
 import java.util.GregorianCalendar;
 
-public class InformeDespido {
+public class CalculoDespido {
 
     final float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
     final GregorianCalendar fechaReforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
@@ -31,7 +31,7 @@ public class InformeDespido {
         return informe;
     }
 
-    public InformeDespido(
+    public CalculoDespido(
             String tipoDespido, //Tipo de despido
             GregorianCalendar fechaAlta, //Fecha de alta en la empresa
             GregorianCalendar fechaBaja, //Fecha de baja en la empresa
@@ -46,11 +46,11 @@ public class InformeDespido {
         this.baseCotizDiaria = baseCotizacion / diasCotizados;
 
         GregorianCalendar fechaInforme = new GregorianCalendar(); //Fecha del informe
-        int antiguedadTotal = logica.Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
+        int antiguedadTotal = logica.Fechas.difFechas(this.fechaAlta, this.fechaBaja);
         float topeImproced45dias = 1260f;
         float topeImproced33dias = 720f;
-        float diasIndemnizables45 = 45f/365f;
-        float diasIndemnizables33 = 33f/365f;
+        float diasIndemnizables45 = 45f / 365f;
+        float diasIndemnizables33 = 33f / 365f;
 
 
         /*
@@ -61,9 +61,9 @@ public class InformeDespido {
             if (this.fechaBaja.getTimeInMillis() < this.fechaReforma.getTimeInMillis()) {
                 /*
                  Este primer if es en caso de que la relación laboral sucediese integramente
-                 antes de la reforma laboral.
+                 antes de la reforma laboral. #CORRECTO.
                  */
-                this.diasTrabajadosAntesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
+                this.diasTrabajadosAntesReforma = Fechas.difFechas(this.fechaAlta, this.fechaBaja);
                 this.diasTrabajadosDespuesReforma = 0;
                 this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                 if (this.diasIndemnAntesReforma > topeImproced45dias) {
@@ -79,10 +79,10 @@ public class InformeDespido {
             } else if (this.fechaAlta.getTimeInMillis() >= this.fechaReforma.getTimeInMillis()) {
                 /* 
                  Este segundo if es en caso de que la relación laboral sucediese integramente
-                 despues de la reforma laboral.
+                 despues de la reforma laboral.  #CORRECTO.
                  */
                 this.diasTrabajadosAntesReforma = 0;
-                this.diasTrabajadosDespuesReforma = Fechas.diferenciaDosGregorian(this.fechaAlta, this.fechaBaja);
+                this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaAlta, this.fechaBaja);
                 this.diasIndemnAntesReforma = 0;
                 this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * diasIndemnizables33;
                 if (this.diasIndemnDespuesReforma > topeImproced33dias) {
@@ -91,9 +91,6 @@ public class InformeDespido {
                 }
 
                 this.diasIndemnTOTAL = this.diasIndemnDespuesReforma;
-//                this.eurosIndemnAntesReforma = 0;
-//                this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
-//                this.eurosIndemnTOTAL = this.eurosIndemnDespuesReforma;
 
             } else {
                 /*
@@ -105,14 +102,13 @@ public class InformeDespido {
                  */
 
                 if (this.diasIndemnAntesReforma >= 1260) {
-
+                    
                     this.textoControl2 = "(Periodo 2 descartado. Tope 42m alcanzado.)";
+                    this.diasTrabajadosAntesReforma = Fechas.difFechas(this.fechaAlta, this.fechaReforma);
+                    this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaReforma, this.fechaBaja);
                     this.diasIndemnAntesReforma = 1260;
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-//                    this.eurosIndemnDespuesReforma = 0;
-//                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-//                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
                 } else if ((this.diasIndemnAntesReforma >= 720f) && (this.diasIndemnAntesReforma < 1260f)) {
 
@@ -120,9 +116,6 @@ public class InformeDespido {
                     this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-//                    this.eurosIndemnDespuesReforma = 0;
-//                    this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-//                    this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) >= 720f)) {
 
@@ -169,7 +162,7 @@ public class InformeDespido {
 //            float bCotiz,
 //            float diasCotizados) {
 //
-//        int antiguedadTotal = Fechas.diferenciaDosGregorian(fechaAlta, fechaBaja);
+//        int antiguedadTotal = Fechas.difFechas(fechaAlta, fechaBaja);
 //        float bCotizDiaria = bCotiz / diasCotizados;
 //        float numDiasIndemnizacion = Fechas.calculaDiasIndemnObjetiva(antiguedadTotal);
 //        float importeIndemnizacion = Fechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
@@ -195,4 +188,4 @@ public class InformeDespido {
 //
 //        return informe;
 //    }
-} //Fin de la Clase InformeDespido
+} //Fin de la Clase CalculoDespido

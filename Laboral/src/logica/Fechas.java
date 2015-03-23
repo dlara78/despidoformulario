@@ -30,7 +30,7 @@ public class Fechas {
         return fechaString;
     }
 
-    public static int diferenciaDosGregorian(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
+    public static int difFechas(GregorianCalendar fechaInicial, GregorianCalendar fechaFinal) {
         int diferenciaEnDias
                 = Math.round((fechaFinal.getTimeInMillis() - fechaInicial.getTimeInMillis()) / MILISEGS_POR_DIA);
         return diferenciaEnDias;
@@ -39,13 +39,13 @@ public class Fechas {
     public static int diasHastaReforma(GregorianCalendar fecha) {
         int dias;
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
-        dias = Fechas.diferenciaDosGregorian(fecha, reforma);
+        dias = Fechas.difFechas(fecha, reforma);
         return dias;
     }
 
     public static int diasDesdeReforma(GregorianCalendar fecha) {
         GregorianCalendar reforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
-        int dias = Fechas.diferenciaDosGregorian(reforma, fecha);
+        int dias = Fechas.difFechas(reforma, fecha);
         return dias;
     }
 

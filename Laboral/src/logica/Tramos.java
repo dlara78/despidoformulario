@@ -4,16 +4,21 @@ import java.util.GregorianCalendar;
 
 
 public class Tramos {
+    private final GregorianCalendar fInicioTramo;
+    private final GregorianCalendar fFinTramo;
+    private final int numDiasPorAno;
+    private final int numMaxMensualidades;
+    private final int numDiasTrabajados;
+    private final float baseCotizacionDiariaTramo;
 
-    private GregorianCalendar fInicioTramo;
-    private GregorianCalendar fFinTramo;
-    private int numDiasPorAno;
-    private int numMaxMensualidades;
-
-    private int numDiasTrabajados;
-    private float baseCotizacionDiariaTramo;
-
-    public Tramos(GregorianCalendar fInicioTramo, GregorianCalendar fFinTramo, int numDiasPorAno, int numMaxMensualidades, int numDiasTrabajados, float baseCotizacionDiariaTramo) {
+    public Tramos(
+            GregorianCalendar fInicioTramo,
+            GregorianCalendar fFinTramo,
+            int numDiasPorAno,
+            int numMaxMensualidades,
+            int numDiasTrabajados,
+            float baseCotizacionDiariaTramo) {
+        
         this.fInicioTramo = fInicioTramo;
         this.fFinTramo = fFinTramo;
         this.numDiasPorAno = numDiasPorAno;
