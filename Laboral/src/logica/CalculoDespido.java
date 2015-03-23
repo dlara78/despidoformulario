@@ -158,6 +158,11 @@ public class CalculoDespido {
         
             this.diasTrabajadosTOTAL = Fechas.difFechas(fechaAlta, fechaBaja);
             this.diasIndemnTOTAL = (float) this.diasTrabajadosTOTAL * diasIndemnizable20; 
+            if (this.diasIndemnTOTAL > 360f){
+                this.textoControl2 = " (Tope 12m alcanzado entre los dos tramos)";
+                this.diasIndemnTOTAL = 360f;
+            }
+            
             this.eurosIndemnTOTAL = this.diasIndemnTOTAL * this.baseCotizDiaria;
             
         }
