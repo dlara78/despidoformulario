@@ -101,11 +101,16 @@ public class CalculoDespido {
                  la indemnización del periodo posterior a la fechaReforma.
                  */
 
+                this.textoControl3 = "Tramo mixto";
+
+                this.diasTrabajadosAntesReforma = Fechas.difFechas(this.fechaAlta, this.fechaReforma);
+                this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaReforma, this.fechaBaja);
+                this.diasIndemnAntesReforma = this.diasTrabajadosAntesReforma * diasIndemnizables45;
+                this.diasIndemnDespuesReforma = this.diasTrabajadosDespuesReforma * diasIndemnizables33;
+
                 if (this.diasIndemnAntesReforma >= 1260) {
-                    
+
                     this.textoControl2 = "(Periodo 2 descartado. Tope 42m alcanzado.)";
-                    this.diasTrabajadosAntesReforma = Fechas.difFechas(this.fechaAlta, this.fechaReforma);
-                    this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaReforma, this.fechaBaja);
                     this.diasIndemnAntesReforma = 1260;
                     this.diasIndemnDespuesReforma = 0;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
@@ -126,6 +131,7 @@ public class CalculoDespido {
 
                 } else if ((this.diasIndemnAntesReforma < 720f) && ((this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma) < 720f)) {
 
+                    this.textoControl2 = "Indemnización en 2 periodos. Sin tope alguno";
                     this.diasIndemnAntesReforma = (float) this.diasTrabajadosAntesReforma * diasIndemnizables45;
                     this.diasIndemnDespuesReforma = (float) this.diasTrabajadosDespuesReforma * diasIndemnizables33;
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
@@ -145,6 +151,7 @@ public class CalculoDespido {
          */
         this.informe = ("Informe emitido en " + Fechas.formatearFechaBonita(fechaInforme)
                 + "\nDespido seleccionado: " + this.tipoDespido
+                + "\n" + this.textoControl3
                 + "\n\nFecha de alta: " + Fechas.formatearFechaBonita(this.fechaAlta)
                 + "\nFecha de baja: " + Fechas.formatearFechaBonita(this.fechaBaja)
                 + "\n\nAntigüedad Total: " + antiguedadTotal + " dias"
