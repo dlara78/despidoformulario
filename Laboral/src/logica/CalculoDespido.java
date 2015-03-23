@@ -13,20 +13,28 @@ public class CalculoDespido {
     float baseCotizacion;
     float diasCotizados;
     float baseCotizDiaria;
+    
     int diasTrabajadosAntesReforma;
     int diasTrabajadosDespuesReforma;
     float diasIndemnAntesReforma;
     float diasIndemnDespuesReforma;
-    float diasIndemnTOTAL;
     float eurosIndemnAntesReforma;
     float eurosIndemnDespuesReforma;
+    
+    float diasIndemnTOTAL;
     float eurosIndemnTOTAL;
-
+    int diasTrabajadosTOTAL;
+    
     String textoControl1 = "";
     String textoControl2 = "No hay más incidencias.";
-    String textoControl3 = "textoControl3 inicial";
-    String textoControl4 = "textoControl4 inicial";
+    String textoControl3 = "";
 
+    String textoExtraAntiguedad = "";
+    String textoExtraDiasIndemn = "";
+    String textoExtraEurosIndemn = "";
+    
+    
+    
     public String getInforme() {
         return informe;
     }
@@ -47,16 +55,17 @@ public class CalculoDespido {
 
         GregorianCalendar fechaInforme = new GregorianCalendar(); //Fecha del informe
         int antiguedadTotal = logica.Fechas.difFechas(this.fechaAlta, this.fechaBaja);
-        float topeImproced45dias = 1260f;
-        float topeImproced33dias = 720f;
-        float diasIndemnizables45 = 45f / 365f;
-        float diasIndemnizables33 = 33f / 365f;
+        final float topeImproced45dias = 1260f;
+        final float topeImproced33dias = 720f;
+        final float diasIndemnizables45 = 45f / 365f;
+        final float diasIndemnizables33 = 33f / 365f;
+        final float diasIndemnizable20 = 20f / 365f;
 
 
         /*
          Comienza la preparación del informe.
          */
-        if ("Despido improcedente".equals(tipoDespido)) {
+        if ("Despido improcedente".equals(tipoDespido)){
 
             if (this.fechaBaja.getTimeInMillis() < this.fechaReforma.getTimeInMillis()) {
                 /*
@@ -72,9 +81,6 @@ public class CalculoDespido {
                 }
                 this.diasIndemnDespuesReforma = 0;
                 this.diasIndemnTOTAL = this.diasIndemnAntesReforma;
-//                this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
-//                this.eurosIndemnDespuesReforma = 0;
-//                this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma;
 
             } else if (this.fechaAlta.getTimeInMillis() >= this.fechaReforma.getTimeInMillis()) {
                 /* 
@@ -142,8 +148,20 @@ public class CalculoDespido {
             this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
             this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
             this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma + this.eurosIndemnDespuesReforma;
-
+            this.textoExtraAntiguedad = " (" + this.diasTrabajadosAntesReforma + " + " + this.diasTrabajadosDespuesReforma + ")";
+            this.textoExtraDiasIndemn = " (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + ")" + this.textoControl1;
+            this.textoExtraEurosIndemn = " (" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")";
+        
+        }  //Fin de la lógica del Despido Improcedente.
+        
+        if ("Causa objetiva".equals(tipoDespido)){
+        
+            this.diasTrabajadosTOTAL = Fechas.difFechas(fechaAlta, fechaBaja);
+            this.diasIndemnTOTAL = (float) this.diasTrabajadosTOTAL * diasIndemnizable20; 
+            this.eurosIndemnTOTAL = this.diasIndemnTOTAL * this.baseCotizDiaria;
+            
         }
+        
 
         /*
          La siguiente instrucción asigna el contenido final a la variable 'informe'
@@ -154,10 +172,10 @@ public class CalculoDespido {
                 + "\n" + this.textoControl3
                 + "\n\nFecha de alta: " + Fechas.formatearFechaBonita(this.fechaAlta)
                 + "\nFecha de baja: " + Fechas.formatearFechaBonita(this.fechaBaja)
-                + "\n\nAntigüedad Total: " + antiguedadTotal + " dias (" + this.diasTrabajadosAntesReforma + " + " + this.diasTrabajadosDespuesReforma + ")"
-                + "\nBase de cotización diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
-                + "\nNº días indemnización totales: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + " ) " + this.textoControl1
-                + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + "(" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")"
+                + "\n\nAntigüedad Total: " + antiguedadTotal + " días" + this.textoExtraAntiguedad
+                + "\nBase diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
+                + "\nDías de indemnización: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días" + this.textoExtraDiasIndemn
+                + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + this.textoExtraEurosIndemn
                 + "\n" + this.textoControl2);
 
     }
