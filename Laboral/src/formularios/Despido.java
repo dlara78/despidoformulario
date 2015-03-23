@@ -4,7 +4,7 @@
 
 package formularios;
 
-import logica.CalculoDespido;
+import logica.InformeDespido;
 import java.awt.print.PrinterException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -388,7 +388,7 @@ public class Despido extends javax.swing.JFrame {
                 txtFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
-        CalculoDespido informe1 = new CalculoDespido(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados);
+        InformeDespido informe1 = new InformeDespido(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados);
         this.txtResultado.setText(informe1.getInforme());
         
 
