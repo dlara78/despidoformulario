@@ -13,18 +13,18 @@ public class CalculoDespido {
     float baseCotizacion;
     float diasCotizados;
     float baseCotizDiaria;
-    
+
     int diasTrabajadosAntesReforma;
     int diasTrabajadosDespuesReforma;
     float diasIndemnAntesReforma;
     float diasIndemnDespuesReforma;
     float eurosIndemnAntesReforma;
     float eurosIndemnDespuesReforma;
-    
+
     float diasIndemnTOTAL;
     float eurosIndemnTOTAL;
     int diasTrabajadosTOTAL;
-    
+
     String textoControl1 = "";
     String textoControl2 = "No hay más incidencias.";
     String textoControl3 = "";
@@ -32,9 +32,7 @@ public class CalculoDespido {
     String textoExtraAntiguedad = "";
     String textoExtraDiasIndemn = "";
     String textoExtraEurosIndemn = "";
-    
-    
-    
+
     public String getInforme() {
         return informe;
     }
@@ -65,7 +63,7 @@ public class CalculoDespido {
         /*
          Comienza la preparación del informe.
          */
-        if ("Despido improcedente".equals(tipoDespido)){
+        if ("Despido improcedente".equals(tipoDespido)) {
 
             if (this.fechaBaja.getTimeInMillis() < this.fechaReforma.getTimeInMillis()) {
                 /*
@@ -143,30 +141,43 @@ public class CalculoDespido {
                     this.diasIndemnTOTAL = this.diasIndemnAntesReforma + this.diasIndemnDespuesReforma;
                 }
 
+                /*
+                El siguiente bloque añade un texto en el informe para diferenciar los totales
+                cuando se trata de un periodo mixto.
+                */
+                this.textoExtraAntiguedad = " (" + this.diasTrabajadosAntesReforma + " + " + this.diasTrabajadosDespuesReforma + ")";
+                this.textoExtraDiasIndemn = " (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + ")" + this.textoControl1;
+                this.textoExtraEurosIndemn = " (" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")";
+
             }
 
+            /*
+            El siguiente bloque establece el valor definitivo de las variables relacionadas con cantidades
+            en el caso de despido improcedente.
+            */
             this.eurosIndemnAntesReforma = (this.baseCotizDiaria * this.diasIndemnAntesReforma);
             this.eurosIndemnDespuesReforma = (this.baseCotizDiaria * this.diasIndemnDespuesReforma);
             this.eurosIndemnTOTAL = this.eurosIndemnAntesReforma + this.eurosIndemnDespuesReforma;
-            this.textoExtraAntiguedad = " (" + this.diasTrabajadosAntesReforma + " + " + this.diasTrabajadosDespuesReforma + ")";
-            this.textoExtraDiasIndemn = " (" + Formato.pasar_Float_a_String(this.diasIndemnAntesReforma) + " + " + Formato.pasar_Float_a_String(this.diasIndemnDespuesReforma) + ")" + this.textoControl1;
-            this.textoExtraEurosIndemn = " (" + Formato.darFormatoMoneda(this.eurosIndemnAntesReforma) + " + " + Formato.darFormatoMoneda(this.eurosIndemnDespuesReforma) + ")";
-        
+
         }  //Fin de la lógica del Despido Improcedente.
+
         
-        if ("Causa objetiva".equals(tipoDespido)){
-        
+        /*
+        Comenzamos aquí con la lógica en los casos de despido por Causa objetiva.
+        */
+        if ("Causa objetiva".equals(tipoDespido)) {
+
             this.diasTrabajadosTOTAL = Fechas.difFechas(fechaAlta, fechaBaja);
-            this.diasIndemnTOTAL = (float) this.diasTrabajadosTOTAL * diasIndemnizable20; 
-            if (this.diasIndemnTOTAL > 360f){
+            this.diasIndemnTOTAL = (float) this.diasTrabajadosTOTAL * diasIndemnizable20;
+            if (this.diasIndemnTOTAL > 360f) {
                 this.textoControl2 = " (Tope 12m alcanzado entre los dos tramos)";
                 this.diasIndemnTOTAL = 360f;
             }
-            
+
             this.eurosIndemnTOTAL = this.diasIndemnTOTAL * this.baseCotizDiaria;
-            
-        }
-        
+
+        } //Fin de los argumentos de la lógica en caso de Causa Objetiva.
+
 
         /*
          La siguiente instrucción asigna el contenido final a la variable 'informe'
@@ -183,39 +194,6 @@ public class CalculoDespido {
                 + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + this.textoExtraEurosIndemn
                 + "\n" + this.textoControl2);
 
-    }
+    } //Fin del método constructor
 
-//    public static String informeCausaObjetiva(
-//            String tipoDespido,
-//            GregorianCalendar fechaAlta,
-//            GregorianCalendar fechaBaja,
-//            float bCotiz,
-//            float diasCotizados) {
-//
-//        int antiguedadTotal = Fechas.difFechas(fechaAlta, fechaBaja);
-//        float bCotizDiaria = bCotiz / diasCotizados;
-//        float numDiasIndemnizacion = Fechas.calculaDiasIndemnObjetiva(antiguedadTotal);
-//        float importeIndemnizacion = Fechas.calculaImporteIndemnObjetiva(numDiasIndemnizacion, bCotizDiaria);
-//        float topeCObjetiva = 360f;
-//        String textoTopeMens = "";
-//
-//        if (numDiasIndemnizacion > topeCObjetiva) {
-//            numDiasIndemnizacion = topeCObjetiva;
-//            textoTopeMens = " (TOPE ALCANZADO)";
-//        }
-//
-//        GregorianCalendar hoy = new GregorianCalendar();
-//
-//        String informe
-//                = ("Informe emitido en " + Fechas.formatearFechaBonita(hoy)
-//                + "\nDespido seleccionado: " + tipoDespido
-//                + "\nFecha de alta: " + Fechas.formatearFechaBonita(fechaAlta)
-//                + "\nFecha de baja: " + Fechas.formatearFechaBonita(fechaBaja)
-//                + "\n(Antigüedad Total: " + Formato.pasar_Float_a_String(antiguedadTotal) + " dias)"
-//                + "\nBase de cotización diaria: " + Formato.darFormatoMoneda(bCotizDiaria) + "/dias"
-//                + "\nDías a indemnizar: " + Formato.pasar_Float_a_String(numDiasIndemnizacion) + textoTopeMens
-//                + "\nIndemnización total: " + Formato.darFormatoMoneda(importeIndemnizacion));
-//
-//        return informe;
-//    }
 } //Fin de la Clase CalculoDespido
