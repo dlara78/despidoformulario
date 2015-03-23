@@ -13,24 +13,46 @@ public class TrabajadorIncTmp {
     GregorianCalendar fBajaMedica;  //Fecha de la baja médica
     GregorianCalendar fAltaMedica;  //Fecha del alta médica
     GregorianCalendar fechaNomina;  //Fecha (mes) del recibo de salario.
-    
 
-    public int diasDelMesActual;
-    public int diasDeEsteMesEnIT;
-    public int diasTotalesEnIT;
-    public float baseDiaria;
-    public int diasAnterioresEnIT;
-    
-    public int[]    diasTramo   = {0, 0, 0, 0};
-    public float[]  eurosTramo  = {0, 0, 0, 0};
-    public float[]  porcTramo   = {0, 60, 60, 75};
-    public float[]  complTramo  = {0, 0, 0, 0};
+    private float baseDiaria;
+    private int diasDelMesActual;
+    private int diasDeEsteMesEnIT;
+    private int diasTotalesEnIT;
+    private int diasAnterioresEnIT;
 
-    public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria, JComboBox convenio, JMonthChooser mesActual, JYearChooser anoActual) {
+    private int[] diasTramo = {0, 0, 0, 0};
+    private float[] eurosTramo = {0, 0, 0, 0};
+    private float[] porcTramo = {0, 60, 60, 75};
+    private float[] complTramo = {0, 0, 0, 0};
 
-        String normaAplicable = (String) convenio.getSelectedItem();
+    public void objetoIncTmp(JDateChooser fInicio, JDateChooser fFinal, JTextField baseDiaria,
+            JComboBox convenio, JMonthChooser mesActual, JYearChooser anoActual) {
 
-        switch (normaAplicable) {
+        /* Usamos el valor de JTextField para pasarlo a baseDiaria como un float */
+        this.baseDiaria = Float.parseFloat(baseDiaria.getText());
+
+        /*
+         Establecemos la fecha de la nómina que estamos calculando, usando los argumentos
+         pasados en las variables anoActual y mesActual.
+         */
+        GregorianCalendar fechaNominaActual = new GregorianCalendar();
+        fechaNominaActual.set(anoActual.getYear(), mesActual.getMonth(), 1, 0, 0, 0);
+
+        /* Usamos el argumento fInicio para establecer la fecha de la baja médica */
+        this.fBajaMedica = new GregorianCalendar();
+        fBajaMedica.setTime(fInicio.getDate());
+
+        /*
+        Usamos el argumento fFinal para establecer la fecha de la baja médica
+        y le añadimos las 24h del día para que los cálculos cuadren.
+        */
+        this.fAltaMedica = new GregorianCalendar();
+        fAltaMedica.set(
+                fFinal.getCalendar().get(Calendar.YEAR),
+                fFinal.getCalendar().get(Calendar.MONTH),
+                fFinal.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+
+        switch ((String) convenio.getSelectedItem()) {
 
             case "Estatuto de los trabajadores":
 
@@ -66,42 +88,14 @@ public class TrabajadorIncTmp {
 
         }
 
-        //Usamos el valor de JTextField para pasarlo a baseDiaria como un float.    
-        this.baseDiaria = Float.parseFloat(baseDiaria.getText());
-
-       
-        /*
-        Iniciamos el procesamiento de las fechas.
-        */
-
-        //Usamos el argumento fInicio para establecer la fecha de la baja médica
-        GregorianCalendar fBajaMedica = new GregorianCalendar();
-        fBajaMedica.setTime(fInicio.getDate());
-
-        //Usamos el argumento fFinal para establecer la fecha de la baja médica
-        // y le añadimos las 24h del día para que los cálculos cuadren.
-        GregorianCalendar fAltaMedica = new GregorianCalendar();
-        fAltaMedica.set(
-                fFinal.getCalendar().get(Calendar.YEAR),
-                fFinal.getCalendar().get(Calendar.MONTH),
-                fFinal.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
-
-        //Establecemos la fecha de la nómina que estamos calculando, usando los argumentos
-        //pasados en las variables anoActual y mesActual.
-        GregorianCalendar fechaNominaActual = new GregorianCalendar();
-        fechaNominaActual.set (
-                anoActual.getYear(),
-                mesActual.getMonth(),
-                1, 0, 0 ,0
-        );
-        
         this.diasDelMesActual = fechaNominaActual.getActualMaximum(Calendar.DAY_OF_MONTH);
         this.diasAnterioresEnIT = Fechas.difFechas(fBajaMedica, fechaNominaActual);
         this.diasTotalesEnIT = Fechas.difFechas(fBajaMedica, fAltaMedica);
         this.diasDeEsteMesEnIT = this.diasTotalesEnIT - this.diasAnterioresEnIT;
-        
-        if (this.diasDeEsteMesEnIT >= diasDelMesActual) this.diasDeEsteMesEnIT = diasDelMesActual;
-        
+
+        if (this.diasDeEsteMesEnIT >= diasDelMesActual) {
+            this.diasDeEsteMesEnIT = diasDelMesActual;
+        }
 
         if (this.diasTotalesEnIT <= 3) {
             this.diasTramo[0] = this.diasTotalesEnIT;
@@ -131,4 +125,56 @@ public class TrabajadorIncTmp {
 
     }
 
+    public GregorianCalendar getfBajaMedica() {
+        return fBajaMedica;
+    }
+
+    public GregorianCalendar getfAltaMedica() {
+        return fAltaMedica;
+    }
+
+    public GregorianCalendar getFechaNomina() {
+        return fechaNomina;
+    }
+
+    public float getBaseDiaria() {
+        return baseDiaria;
+    }
+
+    public int getDiasDelMesActual() {
+        return diasDelMesActual;
+    }
+
+    public int getDiasDeEsteMesEnIT() {
+        return diasDeEsteMesEnIT;
+    }
+
+    public int getDiasTotalesEnIT() {
+        return diasTotalesEnIT;
+    }
+
+    public int getDiasAnterioresEnIT() {
+        return diasAnterioresEnIT;
+    }
+
+    public int[] getDiasTramo() {
+        return diasTramo;
+    }
+
+    public float[] getEurosTramo() {
+        return eurosTramo;
+    }
+
+    public float[] getPorcTramo() {
+        return porcTramo;
+    }
+
+    public float[] getComplTramo() {
+        return complTramo;
+    }
+
+    
+    
+    
+    
 }

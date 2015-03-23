@@ -1,7 +1,6 @@
 /**
  * Aplicación para calcular la idemnización en despidos.
  */
-
 package formularios;
 
 import logica.TrabajadorDespido;
@@ -388,9 +387,11 @@ public class Despido extends javax.swing.JFrame {
                 txtFechaBaja.getCalendar().get(Calendar.DAY_OF_MONTH), 23, 59, 59);
         //Fin del bloque que AFINA la fecha de baja.
 
+        //Creamos un objeto y le pasamos los argumentos obtenidos del formulario.
         TrabajadorDespido informe1 = new TrabajadorDespido(tipoDespido, fechaAlta, fechaBaja, bCotizacion, diasCotizados);
+        //Pegamos en el formulario el informe objetivo del objeto creado anteriormente.
         this.txtResultado.setText(informe1.getInforme());
-        
+
 
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -437,9 +438,9 @@ public class Despido extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBaseCotizacionFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        this.dispose();
         Principal mostrar = new Principal();
-        mostrar.setVisible(true);    
+        mostrar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

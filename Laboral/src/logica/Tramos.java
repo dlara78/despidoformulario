@@ -2,8 +2,8 @@ package logica;
 
 import java.util.GregorianCalendar;
 
-
 public class Tramos {
+
     private final GregorianCalendar fInicioTramo;
     private final GregorianCalendar fFinTramo;
     private final int numDiasPorAno;
@@ -11,14 +11,9 @@ public class Tramos {
     private final int numDiasTrabajados;
     private final float baseCotizacionDiariaTramo;
 
-    public Tramos(
-            GregorianCalendar fInicioTramo,
-            GregorianCalendar fFinTramo,
-            int numDiasPorAno,
-            int numMaxMensualidades,
-            int numDiasTrabajados,
-            float baseCotizacionDiariaTramo) {
-        
+    public Tramos(GregorianCalendar fInicioTramo, GregorianCalendar fFinTramo, int numDiasPorAno,
+            int numMaxMensualidades, int numDiasTrabajados, float baseCotizacionDiariaTramo) {
+
         this.fInicioTramo = fInicioTramo;
         this.fFinTramo = fFinTramo;
         this.numDiasPorAno = numDiasPorAno;
@@ -50,8 +45,7 @@ public class Tramos {
     public float getBaseCotizacionDiariaTramo() {
         return baseCotizacionDiariaTramo;
     }
-        
-    
+
 }
 
 
