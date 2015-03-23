@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tools Ver. 15.3.13");
+        setTitle("Tools Ver. 15.3.23");
         setResizable(false);
 
         btnCalculoDespido.setText("Cálculo Despido");
