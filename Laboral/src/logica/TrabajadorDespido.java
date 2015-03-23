@@ -2,7 +2,7 @@ package logica;
 
 import java.util.GregorianCalendar;
 
-public class InformeDespido {
+public class TrabajadorDespido {
 
     final float MILISEGS_POR_DIA = (24 * 60 * 60 * 1000);
     final GregorianCalendar fechaReforma = new GregorianCalendar(2012, 1, 12, 0, 0, 0);
@@ -14,22 +14,28 @@ public class InformeDespido {
     float diasCotizados;
     float baseCotizDiaria;
 
+    //Variables ANTES de la reforma
     int diasTrabajadosAntesReforma;
-    int diasTrabajadosDespuesReforma;
     float diasIndemnAntesReforma;
-    float diasIndemnDespuesReforma;
     float eurosIndemnAntesReforma;
+    
+    //Variables DESPUES de la reforma
+    int diasTrabajadosDespuesReforma;
+    float diasIndemnDespuesReforma;
     float eurosIndemnDespuesReforma;
 
+    //Variables TOTALES
     float diasIndemnTOTAL;
     float eurosIndemnTOTAL;
     int diasTrabajadosTOTAL;
 
+    //Variables de CONTROL, para casos de errores.
     String textoControl1 = "";
     String textoControl2 = "No hay más incidencias.";
     String textoControl3 = "";
     String textoControl4 = "";
 
+    //Variables para información EXTRA en el informe final.
     String textoExtraAntiguedad = "";
     String textoExtraDiasIndemn = "";
     String textoExtraEurosIndemn = "";
@@ -38,12 +44,7 @@ public class InformeDespido {
         return informe;
     }
 
-    public InformeDespido(
-            String tipoDespido, //Tipo de despido
-            GregorianCalendar fechaAlta, //Fecha de alta en la empresa
-            GregorianCalendar fechaBaja, //Fecha de baja en la empresa
-            float baseCotizacion, //Base de cotización comunicada
-            float diasCotizados) {          //Dias correspondientes a la base de cotización
+    public TrabajadorDespido(String tipoDespido, GregorianCalendar fechaAlta, GregorianCalendar fechaBaja, float baseCotizacion, float diasCotizados) {
 
         this.tipoDespido = tipoDespido;
         this.fechaAlta = fechaAlta;
@@ -112,9 +113,10 @@ public class InformeDespido {
                 this.diasTrabajadosDespuesReforma = Fechas.difFechas(this.fechaReforma, this.fechaBaja);
                 this.diasIndemnAntesReforma = this.diasTrabajadosAntesReforma * diasIndemnizables45;
                 this.diasIndemnDespuesReforma = this.diasTrabajadosDespuesReforma * diasIndemnizables33;
+                
 
                 if (this.diasIndemnAntesReforma >= 1260) {
-
+                    
                     this.textoControl2 = "(Periodo 2 descartado. Tope 42m alcanzado.)";
                     this.diasIndemnAntesReforma = 1260;
                     this.diasIndemnDespuesReforma = 0;
@@ -194,17 +196,16 @@ public class InformeDespido {
          */
         this.informe = ("Informe emitido en " + Fechas.formatearFechaBonita(fechaInforme)
                 + "\nDespido seleccionado: " + this.tipoDespido
-//                + this.textoControl3
+                //                + this.textoControl3
                 + "\nAlta: " + Fechas.formatearFechaBonita(this.fechaAlta)
                 + "\nBaja: " + Fechas.formatearFechaBonita(this.fechaBaja)
                 + "\nAntigüedad: " + Formato.pasar_int_a_String(antiguedadTotal) + " días" + this.textoExtraAntiguedad
                 + "\nBase diaria: " + Formato.darFormatoMoneda(this.baseCotizDiaria) + "/dia"
                 + "\nDías de indemnización: " + Formato.pasar_Float_a_String(this.diasIndemnTOTAL) + " días" + this.textoExtraDiasIndemn
                 + "\nIndemnización TOTAL: " + Formato.darFormatoMoneda(this.eurosIndemnTOTAL) + this.textoExtraEurosIndemn
-                + "\n" + this.textoControl2
-//                + "\n " + this.textoControl4
+                + "\n" + this.textoControl2 //                + "\n " + this.textoControl4
                 );
 
     } //Fin del método constructor
 
-} //Fin de la Clase InformeDespido
+} //Fin de la Clase TrabajadorDespido

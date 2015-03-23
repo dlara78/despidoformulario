@@ -16,7 +16,7 @@
  */
 package formularios;
 
-import logica.MetodosIT;
+import logica.TrabajadorIncTmp;
 
 public class IncTemp extends javax.swing.JFrame {
 
@@ -27,7 +27,7 @@ public class IncTemp extends javax.swing.JFrame {
 
     private void calcular() {
 
-        MetodosIT proceso1 = new MetodosIT();
+        TrabajadorIncTmp proceso1 = new TrabajadorIncTmp();
         proceso1.objetoIncTmp(this.dateFechaBajaIT, this.dateFechaAltaIT, this.textBaseDiaria, this.jcmbConvenio, this.jMonthActual, this.jYearActual);
 
         this.txtControl1.setText(String.valueOf(proceso1.diasDelMesActual));

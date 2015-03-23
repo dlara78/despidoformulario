@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class MetodosIT {
+public class TrabajadorIncTmp {
 
     GregorianCalendar fBajaMedica;  //Fecha de la baja médica
     GregorianCalendar fAltaMedica;  //Fecha del alta médica
